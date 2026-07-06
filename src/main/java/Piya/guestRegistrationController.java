@@ -5,8 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class guestRegistrationController
-{
+public class guestRegistrationController {
     @javafx.fxml.FXML
     private TextField nameTF;
     @javafx.fxml.FXML
@@ -20,6 +19,7 @@ public class guestRegistrationController
 
     @javafx.fxml.FXML
     public void initialize() {
+
     }
 
     @javafx.fxml.FXML
@@ -29,20 +29,32 @@ public class guestRegistrationController
         String phoneNumber = phoneNumberTF.getText();
         String email = emailTF.getText();
 
-        if(!phoneNumber.matches("11")){
-            messageLabel.setText("Phone Number must contain 11 digits");
+        if (fullName.isEmpty() || phoneNumber.isEmpty()
+                || email.isEmpty() || password.isEmpty()) {
+
+            messageLabel.setText("Please fill in all fields.");
+
         }
-        else if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")){
+        else if (!phoneNumber.matches("\\d{11}")) {
+
+            messageLabel.setText("Phone number must contain exactly 11 digits.");
+
+        }
+        else if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+
+            messageLabel.setText("Invalid email address.");
+
+        }
+        else if (password.length() < 6) {
+
             messageLabel.setText("Password must be at least 6 characters.");
-            return;
+
+        }
+        else {
+
+            messageLabel.setText("Registration Successful!");
+
         }
     }
 
-    @javafx.fxml.FXML
-    public void clearButtonOA(ActionEvent actionEvent) {
-        nameTF.clear();
-        passwordTF.clear();
-        phoneNumberTF.clear();
-        emailTF.clear();
-    }
 }
