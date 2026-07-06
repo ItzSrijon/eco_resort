@@ -5,4 +5,6 @@ module com.summer.sectiton1.group7.eco_resort {
 
     opens com.summer.sectiton1.group7.eco_resort to javafx.fxml;
     exports com.summer.sectiton1.group7.eco_resort;
+    exports Piya;
+    opens Piya to javafx.fxml;
 }
