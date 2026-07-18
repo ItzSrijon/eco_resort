@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Piya.controller.ViewLostAndFoundItemsController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="24.0" text="View Lost And Found Items">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="61.0" text="Lost &amp; Found List" />
+      <TableView fx:id="lostFoundTableView" layoutX="50.0" layoutY="100.0" prefHeight="200.0" prefWidth="422.0">
+        <columns>
+          <TableColumn fx:id="itemIdTC" prefWidth="75.0" text="Item ID" />
+          <TableColumn fx:id="itemNameTC" prefWidth="75.0" text="Item Name" />
+            <TableColumn fx:id="foundLocationTC" prefWidth="106.0" text="Found Location" />
+            <TableColumn fx:id="statusTC" prefWidth="78.0" text="Status" />
+            <TableColumn fx:id="dateFoundTC" prefWidth="87.0" text="Found Date" />
+        </columns>
+      </TableView>
+      <Button layoutX="30.0" layoutY="315.0" mnemonicParsing="false" onAction="#updateStatusButtonOA" text="Update Status" />
+      <Label fx:id="messageLabel" layoutX="354.0" layoutY="328.0" prefHeight="49.0" prefWidth="205.0" />
+      <Button layoutX="134.0" layoutY="315.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="219.0" layoutY="315.0" mnemonicParsing="false" onAction="#backButtonOA" text="Back" />
+   </children>
+</AnchorPane>
