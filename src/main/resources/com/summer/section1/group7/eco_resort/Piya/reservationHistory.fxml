@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Piya.controller.ReservationHistoryController">
+   <children>
+      <Label layoutX="206.0" layoutY="21.0" text="Reservation History">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="reservationTableView" layoutX="24.0" layoutY="75.0" prefHeight="200.0" prefWidth="548.0">
+        <columns>
+          <TableColumn fx:id="reservationIdTC" prefWidth="106.0" text="Reservation ID" />
+            <TableColumn fx:id="roomNumberTC" prefWidth="103.0" text="Room Number" />
+            <TableColumn fx:id="checkInDateTC" prefWidth="117.5" text="Check-in Date" />
+          <TableColumn fx:id="checkOutDateTC" minWidth="0.0" prefWidth="118.5" text="Check-out Date" />
+            <TableColumn fx:id="statusTC" prefWidth="112.0" text="Status" />
+        </columns>
+      </TableView>
+      <Button layoutX="72.0" layoutY="289.0" mnemonicParsing="false" onAction="#viewDetailsButtonOA" prefHeight="25.0" prefWidth="111.0" text="View Details" />
+      <Button layoutX="468.0" layoutY="289.0" mnemonicParsing="false" onAction="#backButtonOA" text="Back" />
+      <Label fx:id="messageLabel" layoutX="62.0" layoutY="335.0" prefHeight="39.0" prefWidth="293.0" />
+   </children>
+</AnchorPane>

@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.summer.sectiton1.group7.eco_resort/com.summer.sectiton1.group7.eco_resort.HelloApplication
+                                com.summer.sectiton1.group7.eco_resort/com.summer.section1.group7.eco_resort.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
