@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Nazmun.ManageEcoMealPlanningController">
+
+    <Label layoutX="280.0" layoutY="20.0" text="Eco Meal Planning">
+        <font><javafx.scene.text.Font name="System Bold" size="24.0" /></font>
+    </Label>
+
+    <Label layoutX="30.0" layoutY="90.0" text="Meal Plan Name" />
+    <TextField fx:id="mealPlanNameTF" layoutX="170.0" layoutY="86.0" prefWidth="250.0" />
+
+    <Label layoutX="30.0" layoutY="140.0" text="Available Organic and Local Ingredients" />
+    <ListView fx:id="organicIngredientsListView" layoutX="30.0" layoutY="165.0" prefHeight="220.0" prefWidth="740.0" />
+
+    <CheckBox fx:id="certifiedOrganicCheckB" layoutX="30.0" layoutY="410.0" text="Confirm selected ingredients are certified organic" />
+
+    <Button layoutX="30.0" layoutY="450.0" onAction="#saveMealPlanButtonOA" text="Save Eco Meal Plan" />
+
+    <Label fx:id="nonOrganicWarningLabel" layoutX="30.0" layoutY="490.0" textFill="RED" />
+    <Label fx:id="mealPlanStatusLabel" layoutX="30.0" layoutY="520.0" />
+
+    <Button layoutX="30.0" layoutY="590.0" onAction="#backButtonOA" text="Back" />
+
+</AnchorPane>
