@@ -6,11 +6,15 @@ import java.util.ArrayList;
 
 public class FeedbackRepository {
 
-    private ArrayList<Feedback> feedbackList;
+    private static ArrayList<Feedback> feedbackList;
 
     public FeedbackRepository() {
 
-        feedbackList = new ArrayList<>();
+        if (feedbackList == null) {
+
+            feedbackList = new ArrayList<>();
+
+        }
 
     }
 
