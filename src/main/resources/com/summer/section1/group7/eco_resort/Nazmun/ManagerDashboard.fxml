@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Nazmun.ManagerDashboardController">
+<AnchorPane prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ManagerDashboardController">
 
     <Label layoutX="270.0" layoutY="40.0" text="Manager Dashboard">
         <font><javafx.scene.text.Font name="System Bold" size="24.0" /></font>

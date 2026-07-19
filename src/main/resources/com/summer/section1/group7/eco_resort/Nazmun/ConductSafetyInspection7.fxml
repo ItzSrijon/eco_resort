@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Nazmun.ManageSafetyInspectionController">
+<AnchorPane prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ManageSafetyInspectionController">
 
     <Label layoutX="230.0" layoutY="20.0" text="Safety Inspection and Risk Management">
         <font><javafx.scene.text.Font name="System Bold" size="20.0" /></font>

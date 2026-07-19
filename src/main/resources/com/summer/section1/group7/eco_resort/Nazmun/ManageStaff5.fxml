@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Nazmun.ManageStaffManagementController">
+<AnchorPane prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ManageStaffManagementController">
 
     <Label layoutX="310.0" layoutY="20.0" text="Staff Management">
         <font><javafx.scene.text.Font name="System Bold" size="24.0" /></font>
