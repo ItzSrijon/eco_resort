@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="413.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Piya.controller.UpdateProfileController">
+<AnchorPane prefHeight="413.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.UpdateProfileController">
    <children>
       <Label layoutX="19.0" layoutY="56.0" text="Full Name :" />
       <TextField fx:id="phoneTF" layoutX="107.0" layoutY="159.0" />

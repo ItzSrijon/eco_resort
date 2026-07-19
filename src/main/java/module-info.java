@@ -12,11 +12,11 @@ module com.summer.section1.group7.eco_resort {
     exports com.summer.section1.group7.eco_resort.Nazmun.Model;
     opens com.summer.section1.group7.eco_resort.Nazmun.Model to javafx.fxml;
 
-    exports Piya.controller;
-    opens Piya.controller to javafx.fxml;
+    exports com.summer.section1.group7.eco_resort.Piya.controller;
+    opens com.summer.section1.group7.eco_resort.Piya.controller to javafx.fxml;
 
-    exports Piya.model;
-    opens Piya.model to javafx.fxml;
+    exports com.summer.section1.group7.eco_resort.Piya.model;
+    opens com.summer.section1.group7.eco_resort.Piya.model to javafx.fxml;
 
-    exports Piya.repository;
+    exports com.summer.section1.group7.eco_resort.Piya.repository;
 }
