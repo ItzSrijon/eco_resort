@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Piya.controller.SecurityDashboardController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.SecurityDashboardController">
    <children>
       <Label layoutX="183.0" layoutY="65.0" text="Welcome to your Dashboard !!!" />
       <Button layoutX="308.0" layoutY="122.0" mnemonicParsing="false" onAction="#lostFoundButtonOA" prefHeight="25.0" prefWidth="154.0" text="Lost &amp; Found" />

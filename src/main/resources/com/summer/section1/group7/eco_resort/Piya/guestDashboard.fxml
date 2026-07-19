@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Piya.controller.GuestDashboardController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.GuestDashboardController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="122.0" layoutY="21.0" prefHeight="17.0" prefWidth="309.0" text="Guest Dashboard" textAlignment="CENTER">
          <font>
