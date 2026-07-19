@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ManageSafetyInspectionController">
+
+    <Label layoutX="230.0" layoutY="20.0" text="Safety Inspection and Risk Management">
+        <font><javafx.scene.text.Font name="System Bold" size="20.0" /></font>
+    </Label>
+
+    <Label layoutX="30.0" layoutY="80.0" text="Select Area" />
+    <ComboBox fx:id="areaCB" layoutX="130.0" layoutY="76.0" prefWidth="200.0" />
+
+    <Label layoutX="30.0" layoutY="120.0" text="Checklist Items" />
+    <ListView fx:id="checklistListView" layoutX="30.0" layoutY="145.0" prefHeight="180.0" prefWidth="740.0" />
+
+    <CheckBox fx:id="passCheckB" layoutX="30.0" layoutY="340.0" text="Mark as Pass" />
+    <CheckBox fx:id="failCheckB" layoutX="200.0" layoutY="340.0" text="Mark as Fail" />
+
+    <Label layoutX="30.0" layoutY="380.0" text="Notes" />
+    <TextArea fx:id="inspectionNotesTF" layoutX="30.0" layoutY="405.0" prefHeight="70.0" prefWidth="740.0" />
+
+    <Label layoutX="30.0" layoutY="495.0" text="Fix Deadline" />
+    <DatePicker fx:id="deadlineDP" layoutX="130.0" layoutY="491.0" prefWidth="160.0" />
+
+    <Button layoutX="320.0" layoutY="490.0" onAction="#saveInspectionButtonOA" text="Save Inspection Report" />
+
+    <Label fx:id="inspectionStatusLabel" layoutX="30.0" layoutY="535.0" />
+
+    <Button layoutX="30.0" layoutY="590.0" onAction="#backButtonOA" text="Back" />
+
+</AnchorPane>
