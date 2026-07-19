@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ManageFoodQualityController">
+
+    <Label layoutX="280.0" layoutY="20.0" text="Food Quality Inspection">
+        <font><javafx.scene.text.Font name="System Bold" size="22.0" /></font>
+    </Label>
+
+    <TableView fx:id="todaysDishesTableView" layoutX="30.0" layoutY="80.0" prefHeight="270.0" prefWidth="790.0">
+        <columns>
+            <TableColumn fx:id="dishNameTC" prefWidth="260.0" text="Dish Name" />
+            <TableColumn fx:id="stationTC" prefWidth="260.0" text="Station" />
+            <TableColumn fx:id="cookTC" prefWidth="260.0" text="Cook" />
+        </columns>
+    </TableView>
+
+    <Label layoutX="30.0" layoutY="370.0" text="Quality Rating (1-5)" />
+    <Slider fx:id="qualitySlider" layoutX="200.0" layoutY="366.0" majorTickUnit="1.0" max="5.0" min="1.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
+
+    <Label layoutX="30.0" layoutY="420.0" text="Presentation Rating (1-5)" />
+    <Slider fx:id="presentationSlider" layoutX="230.0" layoutY="416.0" majorTickUnit="1.0" max="5.0" min="1.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
+
+    <Button layoutX="30.0" layoutY="470.0" onAction="#submitRatingButtonOA" text="Submit Quality Record" />
+
+    <Label fx:id="belowStandardAlertLabel" layoutX="30.0" layoutY="510.0" textFill="RED" />
+
+    <Button layoutX="30.0" layoutY="590.0" onAction="#backButtonOA" text="Back" />
+
+</AnchorPane>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ManageStaffManagementController">
+
+    <Label layoutX="310.0" layoutY="20.0" text="Staff Management">
+        <font><javafx.scene.text.Font name="System Bold" size="24.0" /></font>
+    </Label>
+
+    <TableView fx:id="staffTableView" layoutX="30.0" layoutY="80.0" prefHeight="260.0" prefWidth="790.0">
+        <columns>
+            <TableColumn fx:id="staffIdTC" prefWidth="100.0" text="Staff ID" />
+            <TableColumn fx:id="staffNameTC" prefWidth="180.0" text="Name" />
+            <TableColumn fx:id="roleTC" prefWidth="150.0" text="Role" />
+            <TableColumn fx:id="shiftTC" prefWidth="150.0" text="Shift Timing" />
+            <TableColumn fx:id="staffStatusTC" prefWidth="150.0" text="Status" />
+        </columns>
+    </TableView>
+
+    <Label layoutX="30.0" layoutY="360.0" text="Staff Name" />
+    <TextField fx:id="staffNameTF" layoutX="130.0" layoutY="356.0" prefWidth="160.0" />
+
+    <Label layoutX="320.0" layoutY="360.0" text="Role" />
+    <ComboBox fx:id="roleCB" layoutX="380.0" layoutY="356.0" prefWidth="160.0" />
+
+    <Label layoutX="30.0" layoutY="400.0" text="Shift Timing" />
+    <ComboBox fx:id="shiftCB" layoutX="130.0" layoutY="396.0" prefWidth="160.0" />
+
+    <Label layoutX="320.0" layoutY="400.0" text="Training Date" />
+    <DatePicker fx:id="trainingDateDP" layoutX="420.0" layoutY="396.0" prefWidth="160.0" />
+
+    <Button layoutX="30.0" layoutY="440.0" onAction="#addStaffButtonOA" text="Add Staff" />
+    <Button layoutX="150.0" layoutY="440.0" onAction="#assignTrainingButtonOA" text="Assign Training" />
+
+    <Label fx:id="staffConflictLabel" layoutX="30.0" layoutY="480.0" textFill="RED" />
+
+    <Button layoutX="30.0" layoutY="580.0" onAction="#backButtonOA" text="Back" />
+
+</AnchorPane>

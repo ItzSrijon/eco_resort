@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ManageBudgetFinanceController">
+
+    <Label layoutX="270.0" layoutY="20.0" text="Budget and Finance">
+        <font><javafx.scene.text.Font name="System Bold" size="24.0" /></font>
+    </Label>
+
+    <Label layoutX="30.0" layoutY="90.0" text="Report Period" />
+    <ComboBox fx:id="reportPeriodCB" layoutX="150.0" layoutY="86.0" prefWidth="160.0" />
+    <Button layoutX="330.0" layoutY="85.0" onAction="#generateReportButtonOA" text="Generate Financial Summary" />
+
+    <Label layoutX="30.0" layoutY="150.0" text="Total Revenue" />
+    <Label fx:id="totalRevenueLabel" layoutX="230.0" layoutY="150.0" text="-" />
+
+    <Label layoutX="30.0" layoutY="190.0" text="Total Expenses" />
+    <Label fx:id="totalExpensesLabel" layoutX="230.0" layoutY="190.0" text="-" />
+
+    <Label layoutX="30.0" layoutY="230.0" text="Profit / Loss" />
+    <Label fx:id="profitLossLabel" layoutX="230.0" layoutY="230.0" text="-" />
+
+    <Label layoutX="30.0" layoutY="270.0" text="Budget Status" />
+    <Label fx:id="budgetStatusLabel" layoutX="230.0" layoutY="270.0" text="-" />
+
+    <Label fx:id="overspendAlertLabel" layoutX="30.0" layoutY="320.0" textFill="RED" />
+
+    <Button layoutX="30.0" layoutY="480.0" onAction="#backButtonOA" text="Back" />
+
+</AnchorPane>
