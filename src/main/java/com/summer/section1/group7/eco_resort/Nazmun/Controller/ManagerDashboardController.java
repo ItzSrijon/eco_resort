@@ -66,6 +66,16 @@ public class ManagerDashboardController
 
     @javafx.fxml.FXML
     public void staffManagementButtonOA(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(
+                    "/com/summer/section1/group7/eco_resort/Nazmun/ManageStaff5.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            loginErrorLabel.setText("Failed to open Staff Management.");
+            e.printStackTrace();
+        }
     }
 
     @javafx.fxml.FXML
@@ -74,6 +84,16 @@ public class ManagerDashboardController
 
     @javafx.fxml.FXML
     public void foodBeverageButtonOA(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(
+                    "/com/summer/section1/group7/eco_resort/Nazmun/ManageFoodBeverage4.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            loginErrorLabel.setText("Failed to open Food & Beverage.");
+            e.printStackTrace();
+        }
     }
 
     @javafx.fxml.FXML
