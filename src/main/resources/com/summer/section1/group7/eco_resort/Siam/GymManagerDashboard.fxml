@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="612.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.GymManagerDashboardController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="-1.0" prefHeight="63.0" prefWidth="682.0" text="Gym Manager Dashboard" textAlignment="JUSTIFY" textOverrun="CLIP">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+      </Label>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="99.0" layoutY="143.0" mnemonicParsing="false" onAction="#registerNewGymMemberOA" prefHeight="34.0" prefWidth="181.0" text="Register New Gym Member" />
+   </children>
+</AnchorPane>
