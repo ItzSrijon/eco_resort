@@ -75,6 +75,7 @@ public class LoginController {
         } else {
             messageLabel.setText("Invalid username or password.");
         }
+
     }
 
     private void openDashboard(String role, ActionEvent event) throws IOException {
@@ -88,6 +89,9 @@ public class LoginController {
             fxmlFile = "/com/summer/section1/group7/eco_resort/Piya/guestDashboard.fxml";
         } else if (role.equals("Security Officer")) {
             fxmlFile = "/com/summer/section1/group7/eco_resort/Piya/securityDashboard.fxml";
+        }
+        else if (role.equals("Gym Manager")){
+            fxmlFile="/com/summer/section1/group7/eco_resort/Siam/GymManagerDashboard.fxml";
         }
         // Receptionist, Maintenance Officer, Gym Manager, Accountant:
         // dashboards not found yet — falls through to "not yet implemented" below
