@@ -3,33 +3,30 @@ package com.summer.section1.group7.eco_resort.Siam;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class RegisterGymManagerController
+public class U3G4_RecordGymAttendanceController
 {
     @javafx.fxml.FXML
-    private ComboBox<String> membershipPackageCB;
+    private TextField phoneTF;
     @javafx.fxml.FXML
-    private TextField phoneNumberTF;
+    private TextField packageTF;
     @javafx.fxml.FXML
     private TextField guestNameTF;
     @javafx.fxml.FXML
-    private TextField guestIDTF;
-    @javafx.fxml.FXML
-    private ComboBox<Integer> membershipDurationCB;
-    @javafx.fxml.FXML
-    private TextField emailAddressTF;
-    @javafx.fxml.FXML
     private AnchorPane mainPane;
+    @javafx.fxml.FXML
+    private TextField statusTF;
+    @javafx.fxml.FXML
+    private TextField guestIdTF;
 
     @javafx.fxml.FXML
     public void initialize() {
     }
 
     @javafx.fxml.FXML
-    public void backToDashboardOA(ActionEvent actionEvent) {
+    public void backButtonOA(ActionEvent actionEvent) {
         try{
             FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
             Node node=fxmlLoader.load();
@@ -41,10 +38,10 @@ public class RegisterGymManagerController
     }
 
     @javafx.fxml.FXML
-    public void loadGuestOA(ActionEvent actionEvent) {
+    public void searchGuestOA(ActionEvent actionEvent) {
     }
 
     @javafx.fxml.FXML
-    public void registerMemberOA(ActionEvent actionEvent) {
+    public void recordAttendanceBtn(ActionEvent actionEvent) {
     }
 }

@@ -7,25 +7,42 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class RegisterGymManagerController
+public class U3G5_EquipmentUsageController
 {
     @javafx.fxml.FXML
-    private ComboBox<String> membershipPackageCB;
+    private TextField memberNameTF;
     @javafx.fxml.FXML
-    private TextField phoneNumberTF;
+    private TextField availableQtyTF;
     @javafx.fxml.FXML
-    private TextField guestNameTF;
+    private ComboBox durationCB;
     @javafx.fxml.FXML
-    private TextField guestIDTF;
+    private ComboBox equipmentCB;
     @javafx.fxml.FXML
-    private ComboBox<Integer> membershipDurationCB;
+    private TextField memberIdTF;
     @javafx.fxml.FXML
-    private TextField emailAddressTF;
+    private TextField startTimeTF;
     @javafx.fxml.FXML
     private AnchorPane mainPane;
 
     @javafx.fxml.FXML
     public void initialize() {
+    }
+
+    @Deprecated
+    public void assignEquipment(ActionEvent actionEvent) {
+    }
+
+
+    @Deprecated
+    public void searchMember(ActionEvent actionEvent) {
+    }
+
+    @javafx.fxml.FXML
+    public void showAvailability(ActionEvent actionEvent) {
+    }
+
+    @javafx.fxml.FXML
+    public void searchButtonOA(ActionEvent actionEvent) {
     }
 
     @javafx.fxml.FXML
@@ -41,10 +58,6 @@ public class RegisterGymManagerController
     }
 
     @javafx.fxml.FXML
-    public void loadGuestOA(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void registerMemberOA(ActionEvent actionEvent) {
+    public void assignEquipmentOA(ActionEvent actionEvent) {
     }
 }
