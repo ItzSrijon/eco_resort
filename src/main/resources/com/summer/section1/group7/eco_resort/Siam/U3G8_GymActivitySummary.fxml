@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" prefHeight="550.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.U3G8_GymActivitySummaryController">
+
+    <children>
+
+        <Label alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="60.0" prefWidth="707.0" style="-fx-background-color: grey;" text="Gym Activity Summary Report">
+
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+
+        </Label>
+
+        <Label layoutX="40.0" layoutY="90.0" text="From Date:">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+
+        <DatePicker fx:id="fromDateDP" layoutX="130.0" layoutY="85.0" prefHeight="26.0" prefWidth="118.0" />
+
+        <Label layoutX="291.0" layoutY="88.0" text="To Date:">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+
+        <DatePicker fx:id="toDateDP" layoutX="346.0" layoutY="84.0" prefHeight="26.0" prefWidth="118.0" />
+
+        <Button layoutX="505.0" layoutY="86.0" onAction="#generateSummaryOA" prefHeight="26.0" prefWidth="118.0" text="Generate">
+
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+
+        </Button>
+
+        <TableView fx:id="summaryTV" layoutX="-2.0" layoutY="145.0" prefHeight="280.0" prefWidth="707.0">
+
+            <columns>
+
+                <TableColumn fx:id="summaryItemTC" prefWidth="428.800030708313" text="Summary Item" />
+
+                <TableColumn fx:id="valueTC" prefWidth="305.5999755859375" text="Value" />
+
+            </columns>
+
+        </TableView>
+
+        <Button layoutX="285.0" layoutY="465.0" onAction="#backButtonOA" prefHeight="40.0" prefWidth="180.0" text="Back to Dashboard">
+
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+
+        </Button>
+
+    </children>
+
+</AnchorPane>

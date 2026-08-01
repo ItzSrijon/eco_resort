@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" prefHeight="528.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.U3G6_ViewGymMembersController">
+
+    <children>
+
+        <Label alignment="CENTER" layoutX="-1.0" prefHeight="58.0" prefWidth="750.0" style="-fx-background-color: grey;" text="View Gym Members" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+
+        <Label layoutX="25.0" layoutY="89.0" prefHeight="19.0" prefWidth="130.0" text="Membership Status:">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+
+        <ComboBox fx:id="memberStatusCB" layoutX="163.0" layoutY="86.0" prefWidth="170.0" />
+
+        <Button layoutX="375.0" layoutY="85.0" onAction="#loadMembersOA" prefHeight="26.0" prefWidth="110.0" text="Load Members">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+
+        <TableView fx:id="memberTV" layoutX="2.0" layoutY="146.0" prefHeight="270.0" prefWidth="744.0">
+
+            <columns>
+
+                <TableColumn fx:id="memberIdTC" prefWidth="110.0" text="Member ID" />
+
+                <TableColumn fx:id="guestNameTC" prefWidth="180.0" text="Guest Name" />
+
+                <TableColumn fx:id="phoneNumberTC" prefWidth="170.0" text="Phone Number" />
+
+                <TableColumn fx:id="packageTC" prefWidth="137.5999755859375" text="Membership Package" />
+            <TableColumn fx:id="statusTC" prefWidth="137.5999755859375" text="Status" />
+
+            </columns>
+
+        </TableView>
+
+        <Button layoutX="285.0" layoutY="430.0" onAction="#backButtonOA" prefHeight="40.0" prefWidth="180.0" text="Back to Dashboard">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+
+    </children>
+
+</AnchorPane>

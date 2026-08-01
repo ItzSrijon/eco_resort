@@ -86,9 +86,42 @@ public class GymManagerDashboardController
     }
 
     @javafx.fxml.FXML
-    public void updateMembershipStatusOA(ActionEvent actionEvent) {
-        try{
+    public void updateMembershipStatusOA(ActionEvent actionEvent) throws  IOException{
+
             FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U3G2_updateMembershipStatus.fxml"));
+            Node node=fxmlLoader.load();
+            mainPane.getChildren().setAll(node);
+
+    }
+
+    @javafx.fxml.FXML
+    public void viewGymMembersOA(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U3G6_ViewGymMembers.fxml"));
+            Node node=fxmlLoader.load();
+            mainPane.getChildren().setAll(node);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @javafx.fxml.FXML
+    public void assignFitnessPackageOA(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U3G7_AssignFitnessPackage.fxml"));
+            Node node=fxmlLoader.load();
+            mainPane.getChildren().setAll(node);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @javafx.fxml.FXML
+    public void gymActivitySummaryOA(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U3G8_GymActivitySummary.fxml"));
             Node node=fxmlLoader.load();
             mainPane.getChildren().setAll(node);
         }

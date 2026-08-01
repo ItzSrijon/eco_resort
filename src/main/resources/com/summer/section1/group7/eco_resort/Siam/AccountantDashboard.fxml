@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.AccountantDashboardController">
+
+    <children>
+
+        <Label alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="60.0" prefWidth="700.0" style="-fx-background-color: grey;" text="Accountant Dashboard">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+
+        <GridPane alignment="CENTER" hgap="70.0" layoutX="80.0" layoutY="100.0" prefHeight="298.0" prefWidth="540.0" vgap="35.0">
+
+            <columnConstraints>
+                <ColumnConstraints maxWidth="255.20001220703125" minWidth="224.800048828125" prefWidth="255.20001220703125" />
+                <ColumnConstraints maxWidth="215.19995117187506" minWidth="184.7999877929688" prefWidth="184.7999877929688" />
+            </columnConstraints>
+
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+
+            <children>
+
+                <!-- Row 1 -->
+
+                <Button onAction="#recordPaymentOA" prefHeight="40" prefWidth="190" text="Record Payment" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+
+                <Button onAction="#viewPaymentRecordsOA" prefHeight="40" prefWidth="190" text="View Payment Records" GridPane.columnIndex="1" GridPane.rowIndex="0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+
+                <!-- Row 2 -->
+
+                <Button onAction="#financialSummaryOA" prefHeight="40" prefWidth="190" text="Financial Summary" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+                <Button onAction="#pendingPaymentsOA" prefHeight="40" prefWidth="190" text="Pending Payments" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <!-- Row 3 -->
+
+                <Button onAction="#manageRefundOA" prefHeight="40" prefWidth="190" text="Manage Refund" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+
+                <Button onAction="#revenueReportOA" prefHeight="40" prefWidth="190" text="Revenue Report" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <!-- Row 4 -->
+
+                <Button onAction="#paymentMethodsOA" prefHeight="40" prefWidth="190" text="Payment Methods" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+                <Button onAction="#generateReceiptOA" prefHeight="40" prefWidth="190" text="Generate Receipt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            </children>
+
+        </GridPane>
+
+        <Button layoutX="260.0" layoutY="470.0" onAction="#backToLoginOA" prefHeight="40.0" prefWidth="180.0" text="Back to Login">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+
+    </children>
+
+</AnchorPane>

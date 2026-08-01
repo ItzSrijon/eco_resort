@@ -92,6 +92,9 @@ public class LoginController {
         }
         else if (role.equals("Gym Manager")){
             fxmlFile="/com/summer/section1/group7/eco_resort/Siam/GymManagerDashboard.fxml";
+            }
+        else if (role.equals("Accountant")) {
+            fxmlFile = "/com/summer/section1/group7/eco_resort/Siam/AccountantDashboard.fxml";
         }
         // Receptionist, Maintenance Officer, Gym Manager, Accountant:
         // dashboards not found yet — falls through to "not yet implemented" below

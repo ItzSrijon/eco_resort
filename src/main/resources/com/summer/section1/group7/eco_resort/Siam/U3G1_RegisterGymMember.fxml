@@ -34,20 +34,38 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Guest ID:" />
+            <Label text="Guest ID:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <TextField fx:id="guestIDTF" prefHeight="26.0" prefWidth="250.0" GridPane.columnIndex="1" />
-            <Label text="Guest name:" GridPane.rowIndex="1" />
+            <Label text="Guest name:" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <TextField fx:id="guestNameTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Phone Number:" GridPane.rowIndex="2" />
+            <Label text="Phone Number:" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <TextField fx:id="phoneNumberTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Email Address:" GridPane.rowIndex="3" />
+            <Label text="Email Address:" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <TextField fx:id="emailAddressTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Label layoutX="55.0" layoutY="276.0" text="Membership package:" />
-      <ComboBox fx:id="membershipPackageCB" layoutX="178.0" layoutY="272.0" prefHeight="26.0" prefWidth="117.0" />
-      <Label layoutX="322.0" layoutY="276.0" text="Membership Duration:" />
-      <ComboBox fx:id="membershipDurationCB" layoutX="448.0" layoutY="271.0" prefHeight="26.0" prefWidth="117.0" />
+      <Label layoutX="55.0" layoutY="276.0" text="Membership package:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <ComboBox fx:id="membershipPackageCB" layoutX="186.0" layoutY="271.0" prefHeight="26.0" prefWidth="117.0" />
+      <Label layoutX="322.0" layoutY="276.0" text="Membership Duration:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <ComboBox fx:id="membershipDurationCB" layoutX="457.0" layoutY="271.0" prefHeight="26.0" prefWidth="117.0" />
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="380.0" mnemonicParsing="false" onAction="#registerMemberOA" prefHeight="43.0" prefWidth="127.0" text="Register Member" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="12.0" />
