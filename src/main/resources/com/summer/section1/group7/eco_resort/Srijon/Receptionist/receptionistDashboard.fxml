@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.summer.section1.group7.eco_resort.Srijon.controller.receptionistDashboardController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Srijon.controller.receptionistDashboardController">
+   <left>
+      <VBox prefHeight="400.0" prefWidth="278.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!!" textAlignment="CENTER" wrappingWidth="280.396484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Receptionist Dashboard">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+            <Button mnemonicParsing="false" onAction="#openCreateReservation" text="Create Reservations" />
+            <Button mnemonicParsing="false" onAction="#openViewReservation" text="View Reservation" />
+            <Button mnemonicParsing="false" onAction="#openCancelReservation" text="Cancel Reservation" />
+            <Button mnemonicParsing="false" onAction="#openAssignRoom" text="Assign Room" />
+            <Button mnemonicParsing="false" onAction="#openUpdateRoomStatus" text="Update Room Status" />
+            <Button mnemonicParsing="false" onAction="#openViewRooms" text="View Rooms" />
+            <Button mnemonicParsing="false" onAction="#openOccupancySummary" text="Occupancy Summary" />
+            <Button mnemonicParsing="false" onAction="#openUpdateGuestInfo" text="Update Guest Info" />
+            <Button alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="60.0" text="LogOut" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="ContentArea" prefHeight="400.0" prefWidth="339.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
