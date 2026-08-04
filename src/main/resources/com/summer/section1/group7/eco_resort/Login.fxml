@@ -5,31 +5,112 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.LoginController">
+<AnchorPane prefHeight="688.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.LoginController">
+
     <children>
-        <VBox alignment="CENTER" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+        <!-- Header -->
+
+        <VBox alignment="CENTER" layoutY="-1.0" prefHeight="78.0" prefWidth="550" style="-fx-background-color:#4F4F4F;">
+
             <children>
-                <Label text="Login" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
 
-                <ComboBox fx:id="userTypeComboBox" prefWidth="220.0" promptText="Select User Type" />
+                <Label text="Eco Resort">
+                    <font>
+                        <Font name="System Bold" size="28" />
+                    </font>
+                    <style>
+                        -fx-text-fill:white;
+                    </style>
+                </Label>
 
-                <TextField fx:id="usernameField" prefWidth="220.0" promptText="Username" />
+                <Label text="Management System">
+                    <font>
+                        <Font size="15" />
+                    </font>
+                    <style>
+                        -fx-text-fill:white;
+                    </style>
+                </Label>
 
-                <PasswordField fx:id="passwordField" prefWidth="220.0" promptText="Password" />
-
-                <Button fx:id="loginButton" onAction="#handleLogin" prefWidth="150.0" text="Login" />
-
-                <Label fx:id="messageLabel" textFill="RED" />
-
-                <Button fx:id="goToSignupButton" onAction="#handleGoToSignup" style="-fx-background-color: transparent; -fx-text-fill: #2255cc; -fx-underline: true;" text="Create Account" />
             </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
+
         </VBox>
+
+        <!-- Login Card -->
+
+        <VBox alignment="TOP_CENTER" layoutX="65" layoutY="106.0" prefHeight="574.0" prefWidth="420" spacing="16" style="-fx-background-color:white;                      -fx-background-radius:12;                      -fx-border-radius:12;                      -fx-border-color:#D0D0D0;">
+
+            <padding>
+                <Insets bottom="25" left="25" right="25" top="25" />
+            </padding>
+
+            <children>
+
+                <Label text="Welcome Back">
+                    <font>
+                        <Font name="System Bold" size="24" />
+                    </font>
+                </Label>
+
+                <Label style="-fx-text-fill:gray;" text="Sign in to continue" />
+
+                <Separator prefWidth="350" />
+
+                <Label maxWidth="350" text="User Type">
+                    <font>
+                        <Font name="System Bold" size="12" />
+                    </font>
+                </Label>
+
+                <ComboBox fx:id="userTypeComboBox" prefHeight="38" prefWidth="350" promptText="Select User Type" />
+
+                <Label maxWidth="350" text="Username / User ID">
+                    <font>
+                        <Font name="System Bold" size="12" />
+                    </font>
+                </Label>
+
+                <TextField fx:id="usernameField" prefHeight="38" prefWidth="350" promptText="Enter Username or User ID" />
+
+                <Label maxWidth="350" text="Password">
+                    <font>
+                        <Font name="System Bold" size="12" />
+                    </font>
+                </Label>
+
+                <PasswordField fx:id="passwordField" prefHeight="38" prefWidth="350" promptText="Enter Password" />
+
+                <Button onAction="#loginButtonOA" prefHeight="42" prefWidth="350" style="-fx-background-color:#4F4F4F;                                -fx-text-fill:white;                                -fx-background-radius:8;" text="LOGIN">
+
+                    <font>
+                        <Font name="System Bold" size="13" />
+                    </font>
+
+                </Button>
+
+                <Separator prefWidth="350" />
+
+                <Label style="-fx-text-fill:gray;" text="Don't have an account?" />
+
+                <Button onAction="#createNewAccountOA" prefHeight="40" prefWidth="350" style="-fx-background-color:white;                                -fx-border-color:#4F4F4F;                                -fx-border-radius:8;                                -fx-background-radius:8;" text="Create New Account">
+
+                    <font>
+                        <Font name="System Bold" size="12" />
+                    </font>
+
+                </Button>
+
+            </children>
+
+        </VBox>
+
     </children>
+
 </AnchorPane>
