@@ -149,13 +149,18 @@
 
                 </Button>
 
-                <Button onAction="#backToDashboardOA" prefHeight="40" prefWidth="170" style="-fx-background-color:#616161;                    -fx-text-fill:white;                    -fx-background-radius:8;" text="Back to Dashboard">
+                <Button onAction="#viewAttendancesOA" prefHeight="40" prefWidth="170" style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-background-radius: 8;" text="View Attendances">
 
                     <font>
                         <Font name="System Bold" size="12" />
                     </font>
 
                 </Button>
+            <Button layoutX="304.0" layoutY="10.0" onAction="#backToDashboardOA" prefHeight="40" prefWidth="170" style="-fx-background-color:#616161;                    -fx-text-fill:white;                    -fx-background-radius:8;" text="Back to Dashboard">
+               <font>
+                  <Font name="System Bold" size="12" />
+               </font>
+            </Button>
 
             </HBox>
 

@@ -186,4 +186,16 @@ public class U3G4_RecordGymAttendanceController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void viewAttendancesOA(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewGymAttendance.fxml"));
+            Node node = loader.load();
+            mainPane.getChildren().setAll(node);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
