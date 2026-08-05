@@ -16,11 +16,8 @@
     <children>
 
         <!-- Header -->
-
         <VBox alignment="CENTER" layoutY="-1.0" prefHeight="78.0" prefWidth="550" style="-fx-background-color:#4F4F4F;">
-
             <children>
-
                 <Label text="Eco Resort">
                     <font>
                         <Font name="System Bold" size="28" />
@@ -38,21 +35,16 @@
                         -fx-text-fill:white;
                     </style>
                 </Label>
-
             </children>
-
         </VBox>
 
         <!-- Login Card -->
-
-        <VBox alignment="TOP_CENTER" layoutX="65" layoutY="106.0" prefHeight="574.0" prefWidth="420" spacing="16" style="-fx-background-color:white;                      -fx-background-radius:12;                      -fx-border-radius:12;                      -fx-border-color:#D0D0D0;">
-
+        <VBox alignment="TOP_CENTER" layoutX="65" layoutY="106.0" prefHeight="574.0" prefWidth="420" spacing="16" style="-fx-background-color:white; -fx-background-radius:12; -fx-border-radius:12; -fx-border-color:#D0D0D0;">
             <padding>
                 <Insets bottom="25" left="25" right="25" top="25" />
             </padding>
 
             <children>
-
                 <Label text="Welcome Back">
                     <font>
                         <Font name="System Bold" size="24" />
@@ -87,30 +79,29 @@
 
                 <PasswordField fx:id="passwordField" prefHeight="38" prefWidth="350" promptText="Enter Password" />
 
-                <Button onAction="#loginButtonOA" prefHeight="42" prefWidth="350" style="-fx-background-color:#4F4F4F;                                -fx-text-fill:white;                                -fx-background-radius:8;" text="LOGIN">
-
+                <Button fx:id="loginButton" onAction="#loginButtonOA" prefHeight="42" prefWidth="350" style="-fx-background-color:#4F4F4F; -fx-text-fill:white; -fx-background-radius:8;" text="LOGIN">
                     <font>
                         <Font name="System Bold" size="13" />
                     </font>
-
                 </Button>
+
+                <!-- MESSAGE LABEL: injected into controller -->
+                <Label fx:id="messageLabel" text="" style="-fx-text-fill: red;" prefWidth="350" wrapText="true" />
 
                 <Separator prefWidth="350" />
 
                 <Label style="-fx-text-fill:gray;" text="Don't have an account?" />
 
-                <Button onAction="#createNewAccountOA" prefHeight="40" prefWidth="350" style="-fx-background-color:white;                                -fx-border-color:#4F4F4F;                                -fx-border-radius:8;                                -fx-background-radius:8;" text="Create New Account">
-
+                <Button onAction="#createNewAccountOA" prefHeight="40" prefWidth="350" style="-fx-background-color:white; -fx-border-color:#4F4F4F; -fx-border-radius:8; -fx-background-radius:8;" text="Create New Account">
                     <font>
                         <Font name="System Bold" size="12" />
                     </font>
-
                 </Button>
 
             </children>
-
         </VBox>
 
     </children>
 
 </AnchorPane>
+

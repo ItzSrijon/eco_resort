@@ -1,80 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" prefHeight="539.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.RegisterGymManagerController">
+<AnchorPane fx:id="mainPane" prefHeight="620.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.RegisterGymMemberController">
+
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="682.0" style="-fx-background-color: gray;" text="Register New Gym Member ">
+
+      <!-- Header -->
+
+      <Label alignment="CENTER" prefHeight="70" prefWidth="750" style="-fx-background-color:#4F4F4F;                       -fx-text-fill:white;" text="Register New Gym Member">
+
          <font>
-            <Font name="System Bold" size="16.0" />
+            <Font name="System Bold" size="22" />
          </font>
+
       </Label>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="417.0" layoutY="98.0" mnemonicParsing="false" onAction="#loadGuestOA" prefHeight="26.0" prefWidth="99.0" text="Load Guest" wrapText="true">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <GridPane layoutX="55.0" layoutY="92.0" prefHeight="154.0" prefWidth="307.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.20001220703125" minWidth="10.0" prefWidth="95.8" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.99998474121094" minWidth="10.0" prefWidth="211.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Guest ID:">
+
+      <!-- Main Card -->
+
+      <VBox layoutX="60" layoutY="95" prefWidth="630" spacing="18" style="-fx-background-color:white;                      -fx-background-radius:10;                      -fx-border-radius:10;                      -fx-border-color:#D3D3D3;">
+
+         <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+         </padding>
+
+         <!-- Guest Information -->
+
+         <Label text="Guest Information">
+            <font>
+               <Font name="System Bold" size="16" />
+            </font>
+         </Label>
+
+         <GridPane hgap="12" vgap="12">
+
+            <Label text="Guest ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+            <TextField fx:id="guestIdTF" prefWidth="240" promptText="Enter Guest ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Button onAction="#loadGuestOA" prefWidth="120" text="Load Guest" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+            <Label text="Guest Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+            <TextField fx:id="guestNameTF" editable="false" prefWidth="240" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Phone Number:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+
+            <TextField fx:id="phoneTF" editable="false" prefWidth="240" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Email Address:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+            <TextField fx:id="emailTF" editable="false" prefWidth="240" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+
+         </GridPane>
+
+         <Separator />
+
+         <!-- Membership Information -->
+
+         <Label text="Membership Information">
+            <font>
+               <Font name="System Bold" size="16" />
+            </font>
+         </Label>
+
+         <GridPane hgap="15" vgap="12">
+
+            <Label text="Package:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+            <ComboBox fx:id="packageCB" prefWidth="160" promptText="Package" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label text="Duration:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+            <ComboBox fx:id="durationCB" prefWidth="150" promptText="Days" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+            <Label text="Total Fee:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+            <TextField fx:id="feeTF" editable="false" promptText="Auto Calculated" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+
+         </GridPane>
+
+         <Separator />
+
+         <!-- Buttons -->
+
+         <HBox alignment="CENTER" spacing="25">
+
+            <Button onAction="#registerMemberOA" prefHeight="40" prefWidth="170" style="-fx-background-color:#2E7D32;                                -fx-text-fill:white;                                -fx-background-radius:8;" text="Register Member">
+
                <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextField fx:id="guestIDTF" prefHeight="26.0" prefWidth="250.0" GridPane.columnIndex="1" />
-            <Label text="Guest name:" GridPane.rowIndex="1">
+                  <Font name="System Bold" size="12" />
+               </font>
+
+            </Button>
+
+            <Button onAction="#backToDashboardOA" prefHeight="40" prefWidth="170" style="-fx-background-color:#616161;                                -fx-text-fill:white;                                -fx-background-radius:8;" text="Back to Dashboard">
+
                <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextField fx:id="guestNameTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Phone Number:" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextField fx:id="phoneNumberTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Email Address:" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextField fx:id="emailAddressTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-         </children>
-      </GridPane>
-      <Label layoutX="55.0" layoutY="276.0" text="Membership package:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-      <ComboBox fx:id="membershipPackageCB" layoutX="186.0" layoutY="271.0" prefHeight="26.0" prefWidth="117.0" />
-      <Label layoutX="322.0" layoutY="276.0" text="Membership Duration:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-      <ComboBox fx:id="membershipDurationCB" layoutX="457.0" layoutY="271.0" prefHeight="26.0" prefWidth="117.0" />
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="380.0" mnemonicParsing="false" onAction="#registerMemberOA" prefHeight="43.0" prefWidth="127.0" text="Register Member" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="347.0" layoutY="380.0" mnemonicParsing="false" onAction="#backToDashboardOA" prefHeight="43.0" prefWidth="127.0" text="Back to Dashboard" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
+                  <Font name="System Bold" size="12" />
+               </font>
+
+            </Button>
+
+         </HBox>
+
+      </VBox>
+
    </children>
+
 </AnchorPane>

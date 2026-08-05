@@ -1,23 +1,33 @@
 package com.summer.section1.group7.eco_resort.Srijon.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Reservation implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private String reservationId;
-    private int guestId;
+    private String guestId;
+    private String roomType;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
+    private String status;
 
-
-
-    private String roomNo;
-    private LocalDate checkIn;
-
-    public LocalDate getCheckOut() {
-        return checkOut;
-    }
-
-    public void setCheckOut(LocalDate checkOut) {
-        this.checkOut = checkOut;
+    public Reservation(String reservationId,
+                       String guestId,
+                       String roomType,
+                       LocalDate checkInDate,
+                       LocalDate checkOutDate,
+                       String status) {
+        this.reservationId = reservationId;
+        this.guestId = guestId;
+        this.roomType = roomType;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.status = status;
     }
 
     public String getReservationId() {
@@ -28,28 +38,36 @@ public class Reservation implements Serializable {
         this.reservationId = reservationId;
     }
 
-    public int getGuestId() {
+    public String getGuestId() {
         return guestId;
     }
 
-    public void setGuestId(int guestId) {
+    public void setGuestId(String guestId) {
         this.guestId = guestId;
     }
 
-    public String getRoomNo() {
-        return roomNo;
+    public String getRoomType() {
+        return roomType;
     }
 
-    public void setRoomNo(String roomNo) {
-        this.roomNo = roomNo;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
-    public LocalDate getCheckIn() {
-        return checkIn;
+    public LocalDate getCheckInDate() {
+        return checkInDate;
     }
 
-    public void setCheckIn(LocalDate checkIn) {
-        this.checkIn = checkIn;
+    public void setCheckInDate(LocalDate checkInDate) {
+        this.checkInDate = checkInDate;
+    }
+
+    public LocalDate getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public void setCheckOutDate(LocalDate checkOutDate) {
+        this.checkOutDate = checkOutDate;
     }
 
     public String getStatus() {
@@ -60,19 +78,8 @@ public class Reservation implements Serializable {
         this.status = status;
     }
 
-    private LocalDate checkOut;
-
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "reservationId='" + reservationId + '\'' +
-                ", guestId=" + guestId +
-                ", roomNo='" + roomNo + '\'' +
-                ", checkIn=" + checkIn +
-                ", checkOut=" + checkOut +
-                ", status='" + status + '\'' +
-                '}';
+    // helpful method for cancel goal
+    public void cancel() {
+        this.status = "Cancelled";
     }
-
-    private String status;
 }
