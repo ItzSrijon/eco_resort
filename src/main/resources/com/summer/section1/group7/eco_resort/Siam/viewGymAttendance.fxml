@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane"
+            prefHeight="620.0"
+            prefWidth="750.0"
+            style="-fx-background-color:#ECEFF1;"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer.section1.group7.eco_resort.Siam.ViewAttendanceController">
+
+    <children>
+
+        <!-- Header -->
+
+        <Label alignment="CENTER"
+               prefHeight="60"
+               prefWidth="750"
+               text="View Gym Attendance"
+               style="-fx-background-color:#263238;
+                      -fx-text-fill:white;">
+
+            <font>
+                <Font name="System Bold" size="22"/>
+            </font>
+
+        </Label>
+
+        <!-- Main Card -->
+
+        <VBox layoutX="30"
+              layoutY="80"
+              prefWidth="690"
+              prefHeight="510"
+              spacing="18"
+              style="-fx-background-color:white;
+                     -fx-background-radius:15;
+                     -fx-border-radius:15;
+                     -fx-border-color:#CFD8DC;">
+
+            <padding>
+                <Insets top="20"
+                        right="20"
+                        bottom="20"
+                        left="20"/>
+            </padding>
+
+            <children>
+
+                <!-- Search Section -->
+
+                <GridPane hgap="12" vgap="12">
+
+                    <columnConstraints>
+                        <ColumnConstraints/>
+                        <ColumnConstraints/>
+                        <ColumnConstraints/>
+                        <ColumnConstraints/>
+                    </columnConstraints>
+
+                    <Label text="Guest ID:"
+                           GridPane.columnIndex="0"
+                           GridPane.rowIndex="0"/>
+
+                    <TextField fx:id="guestIdTF"
+                               prefWidth="170"
+                               promptText="Enter Guest ID"
+                               GridPane.columnIndex="1"
+                               GridPane.rowIndex="0"/>
+
+                    <Button text="Search by ID"
+                            prefWidth="130"
+                            onAction="#searchAttendanceOA"
+                            GridPane.columnIndex="2"
+                            GridPane.rowIndex="0"
+                            style="-fx-background-color:#1565C0;
+                                   -fx-text-fill:white;
+                                   -fx-background-radius:10;"/>
+
+                    <Button text="Load Today's Attendance"
+                            prefWidth="180"
+                            onAction="#loadTodayAttendanceOA"
+                            GridPane.columnIndex="3"
+                            GridPane.rowIndex="0"
+                            style="-fx-background-color:#2E7D32;
+                                   -fx-text-fill:white;
+                                   -fx-background-radius:10;"/>
+
+                </GridPane>
+
+                <Separator/>
+
+                <!-- Attendance Table -->
+
+                <TableView fx:id="attendanceTV"
+                           prefHeight="300">
+
+                    <columns>
+
+                        <TableColumn fx:id="guestIdTC"
+                                     text="Guest ID"
+                                     prefWidth="90"/>
+
+                        <TableColumn fx:id="guestNameTC"
+                                     text="Guest Name"
+                                     prefWidth="170"/>
+
+                        <TableColumn fx:id="attendanceDateTC"
+                                     text="Attendance Date"
+                                     prefWidth="135"/>
+
+                        <TableColumn fx:id="checkInTimeTC"
+                                     text="Check In Time"
+                                     prefWidth="130"/>
+
+                        <TableColumn fx:id="attendanceStatusTC"
+                                     text="Status"
+                                     prefWidth="120"/>
+
+                    </columns>
+
+                </TableView>
+                <Separator/>
+
+                <!-- Summary Section -->
+
+                <HBox alignment="CENTER_LEFT" spacing="15">
+
+                    <Label fx:id="totalDaysLabel"
+                           text=""
+                           visible="false">
+
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+
+                    </Label>
+
+                    <Label fx:id="todayAttendanceLabel"
+                           text=""
+                           visible="false">
+
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+
+                    </Label>
+
+                </HBox>
+
+                <Separator/>
+
+                <HBox alignment="CENTER">
+
+                    <Button
+                            text="Back to Attendance"
+                            prefWidth="200"
+                            prefHeight="45"
+                            onAction="#backOA"
+                            style="-fx-background-color:#C62828;
+                                   -fx-text-fill:white;
+                                   -fx-background-radius:10;">
+
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+
+                    </Button>
+
+                </HBox>
+
+            </children>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>
