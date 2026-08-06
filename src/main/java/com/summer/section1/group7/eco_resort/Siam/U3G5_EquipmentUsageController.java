@@ -62,17 +62,14 @@ public class U3G5_EquipmentUsageController {
         }
 
         try {
-
-            ObjectOutputStream oos =
-                    new ObjectOutputStream(
-                            new FileOutputStream(file));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
 
             oos.writeObject(new Equipment("Treadmill",15));
-            oos.writeObject(new Equipment("Exercise Bike",10));
-            oos.writeObject(new Equipment("Bench Press",8));
+            oos.writeObject(new Equipment("Exercise Bike",15));
+            oos.writeObject(new Equipment("Bench Press",10));
             oos.writeObject(new Equipment("Dumbbell Set",20));
-            oos.writeObject(new Equipment("Elliptical Machine",6));
-            oos.writeObject(new Equipment("Rowing Machine",5));
+            oos.writeObject(new Equipment("Elliptical Machine",10));
+            oos.writeObject(new Equipment("Rowing Machine",10));
 
             oos.close();
 
