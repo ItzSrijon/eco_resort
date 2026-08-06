@@ -15,8 +15,6 @@
 
     <children>
 
-        <!-- Header -->
-
         <Label alignment="CENTER"
                prefHeight="60"
                prefWidth="750"
@@ -30,12 +28,10 @@
 
         </Label>
 
-        <!-- Main Card -->
-
         <VBox layoutX="30"
               layoutY="80"
               prefWidth="690"
-              prefHeight="510"
+              prefHeight="520"
               spacing="18"
               style="-fx-background-color:white;
                      -fx-background-radius:15;
@@ -51,7 +47,7 @@
 
             <children>
 
-                <!-- Search Section -->
+                <!-- Search -->
 
                 <GridPane hgap="12" vgap="12">
 
@@ -63,20 +59,17 @@
                     </columnConstraints>
 
                     <Label text="Guest ID:"
-                           GridPane.columnIndex="0"
-                           GridPane.rowIndex="0"/>
+                           GridPane.columnIndex="0"/>
 
                     <TextField fx:id="guestIdTF"
-                               prefWidth="170"
                                promptText="Enter Guest ID"
-                               GridPane.columnIndex="1"
-                               GridPane.rowIndex="0"/>
+                               prefWidth="170"
+                               GridPane.columnIndex="1"/>
 
                     <Button text="Search by ID"
                             prefWidth="130"
                             onAction="#searchAttendanceOA"
                             GridPane.columnIndex="2"
-                            GridPane.rowIndex="0"
                             style="-fx-background-color:#1565C0;
                                    -fx-text-fill:white;
                                    -fx-background-radius:10;"/>
@@ -85,7 +78,6 @@
                             prefWidth="180"
                             onAction="#loadTodayAttendanceOA"
                             GridPane.columnIndex="3"
-                            GridPane.rowIndex="0"
                             style="-fx-background-color:#2E7D32;
                                    -fx-text-fill:white;
                                    -fx-background-radius:10;"/>
@@ -94,7 +86,7 @@
 
                 <Separator/>
 
-                <!-- Attendance Table -->
+                <!-- Table -->
 
                 <TableView fx:id="attendanceTV"
                            prefHeight="300">
@@ -124,15 +116,15 @@
                     </columns>
 
                 </TableView>
+
                 <Separator/>
 
-                <!-- Summary Section -->
+                <!-- Summary -->
 
-                <HBox alignment="CENTER_LEFT" spacing="15">
+                <VBox spacing="5">
 
                     <Label fx:id="totalDaysLabel"
-                           text=""
-                           visible="false">
+                           text="">
 
                         <font>
                             <Font name="System Bold" size="13"/>
@@ -141,8 +133,7 @@
                     </Label>
 
                     <Label fx:id="todayAttendanceLabel"
-                           text=""
-                           visible="false">
+                           text="">
 
                         <font>
                             <Font name="System Bold" size="13"/>
@@ -150,15 +141,14 @@
 
                     </Label>
 
-                </HBox>
+                </VBox>
 
                 <Separator/>
 
                 <HBox alignment="CENTER">
 
-                    <Button
-                            text="Back to Attendance"
-                            prefWidth="200"
+                    <Button text="Back to Attendance"
+                            prefWidth="180"
                             prefHeight="45"
                             onAction="#backOA"
                             style="-fx-background-color:#C62828;

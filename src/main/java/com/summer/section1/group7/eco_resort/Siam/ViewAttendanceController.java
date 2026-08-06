@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.io.EOFException;
 import java.io.FileInputStream;
@@ -16,79 +17,49 @@ import java.io.ObjectInputStream;
 import java.time.LocalDate;
 
 public class ViewAttendanceController {
-
     @FXML
     private TableColumn<Attendance, String> guestNameTC;
-
     @FXML
     private TableView<Attendance> attendanceTV;
-
     @FXML
     private Label todayAttendanceLabel;
-
     @FXML
     private Label totalDaysLabel;
-
     @FXML
     private TableColumn<Attendance, String> guestIdTC;
-
     @FXML
     private TableColumn<Attendance, String> attendanceStatusTC;
-
     @FXML
     private AnchorPane mainPane;
-
     @FXML
     private TableColumn<Attendance, String> checkInTimeTC;
-
     @FXML
     private TextField guestIdTF;
-
     @FXML
     private TableColumn<Attendance, LocalDate> attendanceDateTC;
-
-    private ObservableList<Attendance> attendanceList =
-            FXCollections.observableArrayList();
+    private ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-
-        guestIdTC.setCellValueFactory(
-                new PropertyValueFactory<>("guestId"));
-
-        guestNameTC.setCellValueFactory(
-                new PropertyValueFactory<>("guestName"));
-
-        attendanceDateTC.setCellValueFactory(
-                new PropertyValueFactory<>("attendanceDate"));
-
-        checkInTimeTC.setCellValueFactory(
-                new PropertyValueFactory<>("checkInTime"));
-
-        attendanceStatusTC.setCellValueFactory(
-                new PropertyValueFactory<>("attendanceStatus"));
+        guestIdTC.setCellValueFactory(new PropertyValueFactory<>("guestId"));
+        guestNameTC.setCellValueFactory(new PropertyValueFactory<>("guestName"));
+        attendanceDateTC.setCellValueFactory(new PropertyValueFactory<>("attendanceDate"));
+        checkInTimeTC.setCellValueFactory(new PropertyValueFactory<>("checkInTime"));
+        attendanceStatusTC.setCellValueFactory(new PropertyValueFactory<>("attendanceStatus"));
         totalDaysLabel.setVisible(false);
         todayAttendanceLabel.setVisible(false);
 
     }
-
     @FXML
     public void searchAttendanceOA(ActionEvent actionEvent) {
 
         attendanceTV.getItems().clear();
         attendanceList.clear();
-
         totalDaysLabel.setVisible(false);
         todayAttendanceLabel.setVisible(false);
-
         if (guestIdTF.getText().trim().isEmpty()) {
 
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Please enter Guest ID."
-            );
+            showAlert(Alert.AlertType.ERROR, "Error", null, "Please enter Guest ID.");
             return;
         }
 
@@ -100,21 +71,15 @@ public class ViewAttendanceController {
             ObjectInputStream ois = new ObjectInputStream(fis);
 
             while (true) {
-
                 try {
-
                     Attendance attendance = (Attendance) ois.readObject();
 
-                    if (attendance.getGuestId().equalsIgnoreCase(
-                            guestIdTF.getText().trim())) {
-
+                    if (attendance.getGuestId().equalsIgnoreCase(guestIdTF.getText().trim())) {
                         attendanceList.add(attendance);
                         count++;
 
                     }
-
                 } catch (EOFException e) {
-
                     ois.close();
                     break;
 
@@ -126,18 +91,12 @@ public class ViewAttendanceController {
 
             if (count == 0) {
 
-                showAlert(
-                        Alert.AlertType.INFORMATION,
-                        "Not Found",
-                        null,
-                        "No attendance record found."
-                );
+                showAlert(Alert.AlertType.INFORMATION, "Not Found", null,
+                        "No attendance record found.");
 
             } else {
-
-                totalDaysLabel.setVisible(true);
                 totalDaysLabel.setText("Total Days Attended : " + count);
-
+                totalDaysLabel.setVisible(true);
             }
 
         } catch (Exception e) {
@@ -153,25 +112,21 @@ public class ViewAttendanceController {
 
         attendanceTV.getItems().clear();
         attendanceList.clear();
-
         totalDaysLabel.setVisible(false);
         todayAttendanceLabel.setVisible(false);
 
         int count = 0;
 
         try {
-
             FileInputStream fis = new FileInputStream("attendance.bin");
             ObjectInputStream ois = new ObjectInputStream(fis);
 
             while (true) {
 
                 try {
-
                     Attendance attendance = (Attendance) ois.readObject();
 
                     if (attendance.getAttendanceDate().equals(LocalDate.now())) {
-
                         attendanceList.add(attendance);
                         count++;
 
@@ -188,8 +143,8 @@ public class ViewAttendanceController {
 
             attendanceTV.setItems(attendanceList);
 
-            todayAttendanceLabel.setVisible(true);
             todayAttendanceLabel.setText("Today's Total Attendance : " + count);
+            todayAttendanceLabel.setVisible(true);
 
         } catch (Exception e) {
 
@@ -212,24 +167,16 @@ public class ViewAttendanceController {
             mainPane.getChildren().setAll(node);
 
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
-
     }
 
-    private void showAlert(Alert.AlertType type,
-                           String title,
-                           String header,
-                           String message) {
+    private void showAlert(Alert.AlertType type, String title, String header, String message) {
 
         Alert alert = new Alert(type);
-
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(message);
-
         alert.showAndWait();
 
     }
