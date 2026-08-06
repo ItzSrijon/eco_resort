@@ -18,6 +18,9 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Login");
         stage.setScene(scene);
+
+        SceneSwitcher.stage = stage;   // <-- ADD THIS LINE
+
         stage.show();
     }
 

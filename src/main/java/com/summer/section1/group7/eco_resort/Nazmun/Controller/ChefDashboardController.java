@@ -1,82 +1,63 @@
 package com.summer.section1.group7.eco_resort.Nazmun.Controller;
 
+import com.summer.section1.group7.eco_resort.SceneSwitcher;
+import com.summer.section1.group7.eco_resort.User;
+import com.summer.section1.group7.eco_resort.UserManager;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
-import java.io.IOException;
+public class ChefDashboardController {
 
-public class ChefDashboardController
-{
-    @javafx.fxml.FXML
-    private Label loginErrorLabel;
+    @FXML
+    private Label welcomeLabel;
 
-    @javafx.fxml.FXML
+    @FXML
     public void initialize() {
-    }
-
-    @javafx.fxml.FXML
-    public void ecoMealPlanningButtonOA(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void foodWasteLogButtonOA(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void foodQualityButtonOA(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void logoutButtonOA(ActionEvent actionEvent) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(
-                    "/com/summer/section1/group7/eco_resort/Login.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        User loggedInUser = UserManager.getLoggedInUser();
+        if (loggedInUser != null) {
+            welcomeLabel.setText("Welcome, " + loggedInUser.getName() + " !!!");
         }
     }
 
-    @javafx.fxml.FXML
-    public void kitchenStaffButtonOA(ActionEvent actionEvent) {
+    @FXML
+    public void menuManagementButtonOA(ActionEvent event) {
+        SceneSwitcher.switchTo("Nazmun/ChefManageMenu2.fxml");
     }
 
-    @javafx.fxml.FXML
-    public void menuManagementButtonOA(ActionEvent actionEvent) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(
-                    "/com/summer/section1/group7/eco_resort/Nazmun/ChefManageMenu2.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            loginErrorLabel.setText("Failed to open Menu Management.");
-            e.printStackTrace();
-        }
+    @FXML
+    public void dailyPreparationButtonOA(ActionEvent event) {
+        SceneSwitcher.switchTo("Nazmun/ChefOverseeDailyPreparation3.fxml");
     }
 
-    @javafx.fxml.FXML
-    public void kitchenInventoryButtonOA(ActionEvent actionEvent) {
+    @FXML
+    public void kitchenStaffButtonOA(ActionEvent event) {
+        SceneSwitcher.switchTo("Nazmun/ChefManageKitchenStaff4.fxml");
     }
 
-    @javafx.fxml.FXML
-    public void dailyPreparationButtonOA(ActionEvent actionEvent) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(
-                    "/com/summer/section1/group7/eco_resort/Nazmun/ChefOverseeDailyPreparation3.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            loginErrorLabel.setText("Failed to open Daily Preparation.");
-            e.printStackTrace();
-        }
+    @FXML
+    public void kitchenInventoryButtonOA(ActionEvent event) {
+        SceneSwitcher.switchTo("Nazmun/ChefManageKitchenInventory5.fxml");
+    }
+
+    @FXML
+    public void foodQualityButtonOA(ActionEvent event) {
+        SceneSwitcher.switchTo("Nazmun/ChefInspectFoodQuality6.fxml");
+    }
+
+    @FXML
+    public void profitAnalysisButtonOA(ActionEvent event) {
+        SceneSwitcher.switchTo("Nazmun/ChefProfitAnalysis7.fxml");
+    }
+
+    @FXML
+    public void foodWasteButtonOA(ActionEvent event) {
+        SceneSwitcher.switchTo("Nazmun/ChefRecordFoodWaste8.fxml");
+    }
+
+    @FXML
+    public void logoutButtonOA(ActionEvent event) {
+        UserManager.setLoggedInUser(null);
+        SceneSwitcher.switchTo("Login.fxml");
     }
 }

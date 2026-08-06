@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ManageFoodBeverageController
+public class ManageMenuApprovalController
 {
     @javafx.fxml.FXML
     private TableColumn<FoodBeverageItem, Double> priceTC;
