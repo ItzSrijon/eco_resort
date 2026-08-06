@@ -1,37 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ManageKitchenStaffController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ChefManageKitchenStaffController">
 
-    <Label layoutX="270.0" layoutY="20.0" text="Kitchen Staff Management">
-        <font><javafx.scene.text.Font name="System Bold" size="22.0" /></font>
+    <Label layoutX="320.0" layoutY="20.0" text="Kitchen Staff Management">
+        <font>
+            <Font name="System Bold" size="20.0" />
+        </font>
     </Label>
 
-    <TableView fx:id="kitchenStaffTableView" layoutX="30.0" layoutY="80.0" prefHeight="290.0" prefWidth="790.0">
+    <!-- Staff TableView -->
+    <TableView fx:id="kitchenStaffTableView" layoutX="30.0" layoutY="60.0" prefHeight="220.0" prefWidth="840.0">
         <columns>
-            <TableColumn fx:id="staffNameTC" prefWidth="200.0" text="Name" />
-            <TableColumn fx:id="roleTC" prefWidth="180.0" text="Role" />
-            <TableColumn fx:id="shiftTC" prefWidth="180.0" text="Shift" />
-            <TableColumn fx:id="statusTC" prefWidth="180.0" text="Status" />
+            <TableColumn fx:id="staffIdTC" prefWidth="80.0" text="Staff ID" />
+            <TableColumn fx:id="staffNameTC" prefWidth="140.0" text="Name" />
+            <TableColumn fx:id="staffRoleTC" prefWidth="120.0" text="Role" />
+            <TableColumn fx:id="staffShiftTC" prefWidth="120.0" text="Shift Timing" />
+            <TableColumn fx:id="staffStatusTC" prefWidth="110.0" text="Status" />
+            <TableColumn fx:id="staffTaskTC" prefWidth="140.0" text="Current Task" />
+            <TableColumn fx:id="staffTimeSlotTC" prefWidth="120.0" text="Time Slot" />
         </columns>
     </TableView>
 
-    <Label layoutX="30.0" layoutY="390.0" text="Task Description" />
-    <TextField fx:id="taskDescriptionTF" layoutX="170.0" layoutY="386.0" prefWidth="220.0" />
+    <!-- Add New Staff Section -->
+    <Label layoutX="30.0" layoutY="300.0" text="Add New Staff">
+        <font>
+            <Font name="System Bold" size="14.0" />
+        </font>
+    </Label>
 
-    <Label layoutX="410.0" layoutY="390.0" text="Time Slot" />
-    <TextField fx:id="timeSlotTF" layoutX="490.0" layoutY="386.0" prefWidth="140.0" />
+    <VBox layoutX="30.0" layoutY="330.0" prefWidth="840.0" spacing="10.0">
+        <padding>
+            <Insets bottom="10.0" left="0.0" right="0.0" top="0.0" />
+        </padding>
 
-    <Button layoutX="30.0" layoutY="430.0" onAction="#assignDailyTaskButtonOA" text="Assign Task" />
+        <HBox spacing="10.0">
+            <TextField fx:id="staffNameTF" prefWidth="180.0" promptText="Name" />
+            <ComboBox fx:id="staffRoleCB" prefWidth="150.0" promptText="Role" />
+            <TextField fx:id="staffShiftTF" prefWidth="150.0" promptText="Shift Timing" />
+            <ComboBox fx:id="staffStatusCB" prefWidth="130.0" promptText="Status" />
+            <Button fx:id="addStaffButtonOA" onAction="#addStaffButtonOA" text="Add Staff" />
+        </HBox>
 
-    <Label fx:id="shiftConflictLabel" layoutX="30.0" layoutY="470.0" textFill="RED" />
+        <Label fx:id="addStaffMessageLabel" textFill="RED" />
+    </VBox>
 
-    <Button layoutX="30.0" layoutY="590.0" onAction="#backButtonOA" text="Back" />
+    <!-- Assign Task Section -->
+    <Label layoutX="30.0" layoutY="430.0" text="Assign Task to Selected Staff">
+        <font>
+            <Font name="System Bold" size="14.0" />
+        </font>
+    </Label>
+
+    <VBox layoutX="30.0" layoutY="460.0" prefWidth="840.0" spacing="10.0">
+        <padding>
+            <Insets bottom="10.0" left="0.0" right="0.0" top="0.0" />
+        </padding>
+
+        <HBox spacing="10.0">
+            <TextField fx:id="taskDescriptionTF" prefWidth="260.0" promptText="Task Description" />
+            <TextField fx:id="taskTimeSlotTF" prefWidth="150.0" promptText="Time Slot (e.g. 10:00-12:00)" />
+            <Button fx:id="assignTaskButtonOA" onAction="#assignTaskButtonOA" text="Assign Task" />
+        </HBox>
+
+        <Label fx:id="assignTaskMessageLabel" textFill="RED" />
+    </VBox>
+
+    <Button fx:id="backButtonOA" layoutX="30.0" layoutY="580.0" onAction="#backButtonOA" text="Back to Dashboard" />
 
 </AnchorPane>

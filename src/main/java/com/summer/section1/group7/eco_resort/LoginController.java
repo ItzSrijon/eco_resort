@@ -27,7 +27,7 @@ public class LoginController {
     @javafx.fxml.FXML
     private Label messageLabel;
     @javafx.fxml.FXML
-    private Button goToSignupButton;
+    private Button loginButton1;
 
     @javafx.fxml.FXML
     public void initialize() {
@@ -42,7 +42,7 @@ public class LoginController {
                 "Chef");
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void handleLogin(ActionEvent actionEvent) {
         String username = usernameField.getText() == null ? "" : usernameField.getText().trim();
         String password = passwordField.getText() == null ? "" : passwordField.getText();
@@ -125,10 +125,11 @@ public class LoginController {
 
     @javafx.fxml.FXML
     public void createNewAccountOA(ActionEvent actionEvent) {
+
         handleGoToSignup(actionEvent);
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void handleGoToSignup(ActionEvent actionEvent) {
         try {
             URL url = getClass().getResource("/com/summer/section1/group7/eco_resort/SignUp.fxml");
@@ -155,5 +156,10 @@ public class LoginController {
             // fallback: print to console so you still see feedback during debugging
             System.out.println("MESSAGE: " + text);
         }
+    }
+
+    @javafx.fxml.FXML
+    public void createGuestAccountButton(ActionEvent actionEvent) {
+        handleGoToSignup(actionEvent);
     }
 }

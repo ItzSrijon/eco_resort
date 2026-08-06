@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-public class ManageEcoMealPlanningController
+public class ManageProfitAnalysisController
 {
     @javafx.fxml.FXML
     private CheckBox certifiedOrganicCheckB;
