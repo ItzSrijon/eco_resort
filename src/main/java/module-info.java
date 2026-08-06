@@ -2,8 +2,9 @@ module com.summer.section1.group7.eco_resort {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens com.summer.section1.group7.eco_resort to javafx.fxml;
+    // core app package (export if other modules need it)
     exports com.summer.section1.group7.eco_resort;
+    opens com.summer.section1.group7.eco_resort to javafx.fxml;
 
     // Nazmun
     exports com.summer.section1.group7.eco_resort.Nazmun.Controller;
