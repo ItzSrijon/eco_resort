@@ -86,7 +86,7 @@
                 </Button>
 
                 <!-- MESSAGE LABEL: injected into controller -->
-                <Label fx:id="messageLabel" text="" style="-fx-text-fill: red;" prefWidth="350" wrapText="true" />
+                <Label fx:id="messageLabel" prefWidth="350" style="-fx-text-fill: red;" text="" wrapText="true" />
 
                 <Separator prefWidth="350" />
 
@@ -97,6 +97,11 @@
                         <Font name="System Bold" size="12" />
                     </font>
                 </Button>
+            <Button fx:id="loginButton1" layoutX="45.0" layoutY="385.0" onAction="#createGuestAccountButton" prefHeight="42" prefWidth="350" style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-background-radius: 8;" text="Create Guest Account">
+               <font>
+                  <Font name="System Bold" size="13" />
+               </font>
+            </Button>
 
             </children>
         </VBox>
@@ -104,4 +109,3 @@
     </children>
 
 </AnchorPane>
-
