@@ -1,63 +1,48 @@
 package com.summer.section1.group7.eco_resort.Piya.model;
 
-public class SecurityOfficer extends User {
+import com.summer.section1.group7.eco_resort.User;
 
-    private final int employeeId;
+import java.io.Serializable;
+import java.time.LocalDate;
 
-    public SecurityOfficer(int userId,
-                           String fullName,
+public class SecurityOfficer extends User implements Serializable {
+
+    public SecurityOfficer(String userId,
+                           String username,
+                           String name,
                            String phoneNumber,
                            String email,
+                           String gender,
                            String password,
-                           int employeeId) {
+                           LocalDate dob) {
 
-        super(userId, fullName, phoneNumber, email, password);
-        this.employeeId = employeeId;
-    }
-
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void viewTodayCheckIns() {
-
-        System.out.println("Displaying today's check-in list.");
-
-    }
-
-    public void recordCheckIn() {
-
-        System.out.println("Guest check-in recorded.");
+        super(
+                userId,
+                username,
+                name,
+                phoneNumber,
+                email,
+                gender,
+                password,
+                "Security Officer",
+                dob,
+                "Active"
+        );
 
     }
 
-    public void recordCheckOut() {
+    @Override
+    public String toString() {
 
-        System.out.println("Guest check-out recorded.");
-
-    }
-
-    public void reportIncident() {
-
-        System.out.println("Incident reported successfully.");
-
-    }
-
-    public void viewIncidentHistory() {
-
-        System.out.println("Displaying incident history.");
-
-    }
-
-    public void searchCheckInRecords() {
-
-        System.out.println("Searching check-in records.");
-
-    }
-
-    public void manageLostFound() {
-
-        System.out.println("Managing lost and found items.");
+        return "SecurityOfficer{" +
+                "userId='" + getUserId() + '\'' +
+                ", username='" + getUsername() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", phoneNumber='" + getPhoneNumber() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", gender='" + getGender() + '\'' +
+                ", dob=" + getDob() +
+                '}';
 
     }
 

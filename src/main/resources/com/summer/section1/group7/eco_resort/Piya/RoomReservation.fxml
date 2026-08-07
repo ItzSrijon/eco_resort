@@ -8,14 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.BookRoomController">
    <children>
       <Label layoutX="17.0" layoutY="75.0" text="Room Type :" />
       <ComboBox fx:id="roomTypeCB" layoutX="91.0" layoutY="71.0" prefWidth="150.0" />
       <DatePicker fx:id="checkOutDP" layoutX="419.0" layoutY="114.0" />
       <Button layoutX="486.0" layoutY="336.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="35.0" prefWidth="67.0" text="Back" />
-      <Button layoutX="265.0" layoutY="180.0" mnemonicParsing="false" onAction="#bookButtonOA" prefHeight="35.0" prefWidth="78.0" text="Book Room">
+      <Button layoutX="354.0" layoutY="183.0" mnemonicParsing="false" onAction="#bookRoomButtonOA" prefHeight="35.0" prefWidth="127.0" text="Book Room">
          <effect>
             <DropShadow />
          </effect>
@@ -31,5 +30,10 @@
       </Label>
       <DatePicker fx:id="checkInDP" layoutX="379.0" layoutY="71.0" />
       <ComboBox fx:id="guestCountCB" layoutX="130.0" layoutY="122.0" prefWidth="150.0" />
+      <Button layoutX="130.0" layoutY="183.0" mnemonicParsing="false" onAction="#checkRoomAvailableButtonOA" prefHeight="35.0" prefWidth="150.0" text="Check Room Availibility">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

@@ -106,7 +106,8 @@ public class SignUpController {
                 gender,
                 password,
                 role,
-                dob
+                dob,
+                "Active"
         );
 
         UserManager.addUser(newUser);

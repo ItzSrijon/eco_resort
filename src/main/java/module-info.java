@@ -20,7 +20,6 @@ module com.summer.section1.group7.eco_resort {
     exports com.summer.section1.group7.eco_resort.Piya.model;
     opens com.summer.section1.group7.eco_resort.Piya.model to javafx.fxml;
 
-    exports com.summer.section1.group7.eco_resort.Piya.repository;
 
     // Siam
     exports com.summer.section1.group7.eco_resort.Siam;

@@ -1,104 +1,117 @@
 package com.summer.section1.group7.eco_resort.Piya.controller;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import java.io.IOException;
 
+import com.summer.section1.group7.eco_resort.Piya.model.AppendableObjectOutputStream;
 import com.summer.section1.group7.eco_resort.Piya.model.Guest;
-import com.summer.section1.group7.eco_resort.Piya.repository.GuestRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 public class GuestRegistrationController {
 
-    @FXML
-    private TextField userIdTF;
+    @FXML private TextField guestIdTF;
+    @FXML private TextField usernameTF;
+    @FXML private TextField nameTF;
+    @FXML private TextField phoneNumberTF;
+    @FXML private TextField emailTF;
+    @FXML private PasswordField passwordTF;
+    @FXML private ComboBox<String> genderCB;
+    @FXML private DatePicker dobDP;
+    @FXML private Label messageLabel;
 
     @FXML
-    private TextField fullNameTF;
+    public void initialize() {
+        genderCB.getItems().addAll("Male","Female","Other");
+    }
 
     @FXML
-    private TextField phoneTF;
+    public void registerButtonOA(ActionEvent event) {
 
-    @FXML
-    private TextField emailTF;
+        messageLabel.setText("");
 
-    @FXML
-    private PasswordField passwordPF;
+        if(guestIdTF.getText().isEmpty() ||
+                usernameTF.getText().isEmpty() ||
+                nameTF.getText().isEmpty() ||
+                phoneNumberTF.getText().isEmpty() ||
+                emailTF.getText().isEmpty() ||
+                passwordTF.getText().isEmpty() ||
+                genderCB.getValue()==null ||
+                dobDP.getValue()==null){
 
-    @FXML
-    private Label messageLabel;
-
-    private final GuestRepository guestRepository = new GuestRepository();
-
-    @FXML
-    public void registerButtonOA(ActionEvent actionEvent) {
-
-        String idText = userIdTF.getText();
-        String fullName = fullNameTF.getText();
-        String phone = phoneTF.getText();
-        String email = emailTF.getText();
-        String password = passwordPF.getText();
-
-        if (idText.isEmpty() || fullName.isEmpty() || phone.isEmpty() || email.isEmpty() || password.isEmpty()) {
-
-            messageLabel.setText("Please fill out all the fields.");
+            messageLabel.setText("Please fill up all fields.");
             return;
         }
 
-        int userId;
-
-        try {
-
-            userId = Integer.parseInt(idText);
-
+        if(!phoneNumberTF.getText().matches("\\d{11}")){
+            messageLabel.setText("Phone number must contain 11 digits.");
+            return;
         }
 
-        catch (NumberFormatException e) {
-
-            messageLabel.setText("User ID must be a number.");
+        if(!emailTF.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
+            messageLabel.setText("Invalid email address.");
             return;
-
         }
 
         Guest guest = new Guest(
-                userId,
-                fullName,
-                phone,
-                email,
-                password
+                guestIdTF.getText(),
+                usernameTF.getText(),
+                nameTF.getText(),
+                phoneNumberTF.getText(),
+                emailTF.getText(),
+                genderCB.getValue(),
+                passwordTF.getText(),
+                dobDP.getValue()
         );
 
-        guestRepository.addGuest(guest);
+        File file = new File("User.bin");
 
-        messageLabel.setText("Guest Registered Successfully.");
+        try{
 
-        userIdTF.clear();
-        fullNameTF.clear();
-        phoneTF.clear();
-        emailTF.clear();
-        passwordPF.clear();
+            FileOutputStream fos;
+            ObjectOutputStream oos;
 
+            if(file.exists()){
+                fos = new FileOutputStream(file,true);
+                oos = new AppendableObjectOutputStream(fos);
+            }
+            else{
+                fos = new FileOutputStream(file);
+                oos = new ObjectOutputStream(fos);
+            }
+
+            oos.writeObject(guest);
+            oos.close();
+
+            messageLabel.setText("Guest registered successfully.");
+
+            clearFields();
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            messageLabel.setText("Registration failed.");
+        }
     }
 
     @FXML
-    public void loginButtonOA(ActionEvent actionEvent) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/summer/section1/group7/eco_resort/Piya/guestLogin.fxml"));
-
-        Scene scene = new Scene(loader.load());
-
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-        stage.setScene(scene);
-
-        stage.show();
-
+    public void clearButtonOA(ActionEvent event) {
+        clearFields();
+        messageLabel.setText("");
     }
 
+    private void clearFields() {
+
+        guestIdTF.clear();
+        usernameTF.clear();
+        nameTF.clear();
+        phoneNumberTF.clear();
+        emailTF.clear();
+        passwordTF.clear();
+
+        genderCB.setValue(null);
+        dobDP.setValue(null);
+    }
 }

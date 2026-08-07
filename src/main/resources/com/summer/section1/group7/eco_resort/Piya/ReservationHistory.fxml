@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="520.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.ReservationHistoryController">
+
+
+    <children>
+
+
+        <Label layoutX="250.0" layoutY="20.0" text="Reservation History">
+
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+
+        </Label>
+
+
+
+        <!-- Room Booking Section -->
+
+        <Label layoutX="40.0" layoutY="70.0" text="Room Bookings">
+
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+
+        </Label>
+
+
+        <TableView fx:id="roomBookingTV" layoutX="47.0" layoutY="104.0" prefHeight="149.0" prefWidth="633.0">
+
+
+            <columns>
+
+                <TableColumn fx:id="roomIdTC" prefWidth="100" text="Room ID" />
+
+
+                <TableColumn fx:id="roomTypeTC" prefWidth="130" text="Room Type" />
+
+
+                <TableColumn fx:id="checkInTC" prefWidth="130" text="Check In" />
+
+
+                <TableColumn fx:id="checkOutTC" prefWidth="130" text="Check Out" />
+
+
+                <TableColumn fx:id="roomStatusTC" prefWidth="142.0" text="Status" />
+
+            </columns>
+
+        </TableView>
+
+
+
+
+        <!-- Activity Booking Section -->
+
+
+        <Label layoutX="50.0" layoutY="294.0" text="Activity Registrations">
+
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+
+        </Label>
+
+
+
+        <TableView fx:id="activityBookingTV" layoutX="63.0" layoutY="333.0" prefHeight="109.0" prefWidth="565.0">
+
+
+            <columns>
+
+
+                <TableColumn fx:id="activityNameTC" prefWidth="200" text="Activity" />
+
+
+                <TableColumn fx:id="scheduleTC" prefWidth="150" text="Schedule" />
+
+
+                <TableColumn fx:id="activityStatusTC" prefWidth="150" text="Status" />
+
+
+            </columns>
+
+
+        </TableView>
+
+
+
+        <Button layoutX="301.0" layoutY="466.0" onAction="#backButtonOA" prefWidth="90.0" text="Back" />
+
+
+    </children>
+
+</AnchorPane>

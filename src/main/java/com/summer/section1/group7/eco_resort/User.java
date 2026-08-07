@@ -5,10 +5,10 @@ import java.time.LocalDate;
 
 public class User implements Serializable {
 
-    private String userId,username,name,phoneNumber,email,gender,password,role;
+    private String userId, username, name, phoneNumber, email, gender, password, role, status;
     private LocalDate dob;
 
-    public User(String userId, String username, String name, String phoneNumber, String email, String gender, String password, String role, LocalDate dob) {
+    public User(String userId, String username, String name, String phoneNumber, String email, String gender, String password, String role, LocalDate dob,String status) {
         this.userId = userId;
         this.username = username;
         this.name = name;
@@ -18,6 +18,7 @@ public class User implements Serializable {
         this.password = password;
         this.role = role;
         this.dob = dob;
+        this.status = status;
     }
 
     public String getUserId() {
@@ -90,6 +91,13 @@ public class User implements Serializable {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
+    }
+    public String getStatus(){
+        return status;
+    }
+
+    public void setStatus(String status){
+        this.status=status;
     }
 
     @Override

@@ -10,15 +10,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.*;
 
-public class BookRoomController {
+public class RoomReservationController {
 
     @FXML
-    private DatePicker checkInDP, checkOutDP;
+    private DatePicker checkInDP;
+
+    @FXML
+    private DatePicker checkOutDP;
 
     @FXML
     private ComboBox<Integer> guestCountCB;
@@ -29,17 +34,19 @@ public class BookRoomController {
     @FXML
     private Label messageLabel;
 
+
     private Room selectedRoom;
+
     private User currentUser;
 
 
-    public void setCurrentUser(User user){
-        this.currentUser=user;
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
     }
 
 
     @FXML
-    public void initialize(){
+    public void initialize() {
 
         roomTypeCB.getItems().addAll(
                 "Single",
@@ -55,64 +62,73 @@ public class BookRoomController {
 
 
     @FXML
-    public void checkRoomAvailableButtonOA(ActionEvent event){
+    public void checkRoomAvailableButtonOA(ActionEvent actionEvent) {
 
-        selectedRoom=null;
+        messageLabel.setText("");
+        selectedRoom = null;
 
-        if(roomTypeCB.getValue()==null ||
-                guestCountCB.getValue()==null){
+
+        if(roomTypeCB.getValue() == null){
 
             messageLabel.setText(
-                    "Select room type and guest number."
+                    "Please select room type."
             );
+
             return;
         }
 
 
-        File file=new File("Room.bin");
+        File file = new File("Room.bin");
 
 
         if(!file.exists()){
 
             messageLabel.setText(
-                    "Room information not found."
+                    "No room data found."
             );
+
             return;
         }
 
 
-        try(ObjectInputStream ois=
+        try(ObjectInputStream ois =
                     new ObjectInputStream(
-                            new FileInputStream(file))){
+                            new FileInputStream(file)
+                    )){
+
 
             while(true){
 
                 try{
 
-                    Room room=(Room)ois.readObject();
+                    Room room =
+                            (Room) ois.readObject();
 
 
                     if(room.getRoomType()
                             .equals(roomTypeCB.getValue())
                             &&
                             room.getAvailability()
-                                    .equalsIgnoreCase("Available")
-                            &&
-                            room.getCapacity()
-                                    >= guestCountCB.getValue()){
+                                    .equalsIgnoreCase("Available")){
 
-                        selectedRoom=room;
+
+                        selectedRoom = room;
                         break;
+
                     }
+
 
                 }
                 catch(EOFException e){
+
                     break;
+
                 }
+
             }
 
 
-            if(selectedRoom==null){
+            if(selectedRoom == null){
 
                 messageLabel.setText(
                         "No room available."
@@ -127,69 +143,84 @@ public class BookRoomController {
 
             }
 
+
         }
         catch(Exception e){
 
             e.printStackTrace();
 
-            messageLabel.setText(
-                    "Unable to check availability."
-            );
         }
+
     }
 
 
 
     @FXML
-    public void bookRoomButtonOA(ActionEvent event){
+    public void bookRoomButtonOA(ActionEvent actionEvent) {
 
-        if(checkInDP.getValue()==null ||
-                checkOutDP.getValue()==null ||
-                roomTypeCB.getValue()==null ||
-                guestCountCB.getValue()==null){
+
+        messageLabel.setText("");
+
+
+        if(checkInDP.getValue() == null
+                ||
+                checkOutDP.getValue() == null
+                ||
+                roomTypeCB.getValue() == null){
+
 
             messageLabel.setText(
                     "Please fill all fields."
             );
+
             return;
+
         }
+
 
 
         if(!checkOutDP.getValue()
                 .isAfter(checkInDP.getValue())){
 
+
             messageLabel.setText(
                     "Invalid booking dates."
             );
+
             return;
+
         }
 
 
-        if(selectedRoom==null){
+
+        if(selectedRoom == null){
 
             messageLabel.setText(
-                    "Check room availability first."
+                    "Please check room availability first."
             );
+
             return;
+
         }
 
 
-        if(currentUser==null){
+
+        if(currentUser == null){
 
             messageLabel.setText(
-                    "User session not found."
+                    "User not logged in."
             );
+
             return;
+
         }
 
 
-        String reservationId=
-                "RES"+System.currentTimeMillis();
 
-
-        RoomReservation reservation=
+        // Reservation ID will be generated by receptionist later
+        RoomReservation reservation =
                 new RoomReservation(
-                        reservationId,
+                        null,
                         checkInDP.getValue(),
                         checkOutDP.getValue(),
                         "Pending",
@@ -198,52 +229,62 @@ public class BookRoomController {
                 );
 
 
-        saveReservation(reservation);
 
+        File file =
+                new File("RoomReservation.bin");
 
-        messageLabel.setText(
-                "Room booked successfully.\nID: "
-                        +reservationId
-        );
-
-
-        checkInDP.setValue(null);
-        checkOutDP.setValue(null);
-        roomTypeCB.setValue(null);
-        guestCountCB.setValue(null);
-
-        selectedRoom=null;
-    }
-
-
-
-    private void saveReservation(RoomReservation reservation){
-
-        File file=new File("RoomReservation.bin");
 
 
         try{
+
 
             FileOutputStream fos;
             ObjectOutputStream oos;
 
 
+
             if(file.exists()){
 
-                fos=new FileOutputStream(file,true);
-                oos=new AppendableObjectOutputStream(fos);
+
+                fos = new FileOutputStream(
+                        file,
+                        true
+                );
+
+
+                oos =
+                        new AppendableObjectOutputStream(
+                                fos
+                        );
+
 
             }
             else{
 
-                fos=new FileOutputStream(file);
-                oos=new ObjectOutputStream(fos);
+
+                fos =
+                        new FileOutputStream(file);
+
+
+                oos =
+                        new ObjectOutputStream(
+                                fos
+                        );
 
             }
 
 
+
             oos.writeObject(reservation);
+
             oos.close();
+
+
+
+            messageLabel.setText(
+                    "Room booking request sent."
+            );
+
 
         }
         catch(Exception e){
@@ -253,41 +294,46 @@ public class BookRoomController {
             messageLabel.setText(
                     "Failed to save reservation."
             );
+
         }
+
     }
 
 
 
     @FXML
-    public void backButtonOA(ActionEvent event){
+    public void backButtonOA(ActionEvent actionEvent) {
+
 
         try{
 
-            FXMLLoader loader=
+
+            FXMLLoader loader =
                     new FXMLLoader(
                             getClass().getResource(
                                     "/com/summer/section1/group7/eco_resort/Piya/GuestDashboard.fxml"
-                            ));
+                            )
+                    );
 
 
-            Scene scene=
-                    new Scene(loader.load());
+            Scene scene =
+                    new Scene(
+                            loader.load()
+                    );
 
 
-            GuestDashboardController controller=
-                    loader.getController();
 
-            controller.setCurrentUser(currentUser);
-
-
-            Stage stage=
-                    (Stage)((Node)event.getSource())
+            Stage stage =
+                    (Stage)((Node)actionEvent.getSource())
                             .getScene()
                             .getWindow();
 
 
+
             stage.setScene(scene);
+
             stage.show();
+
 
         }
         catch(Exception e){
@@ -295,5 +341,7 @@ public class BookRoomController {
             e.printStackTrace();
 
         }
+
     }
+
 }

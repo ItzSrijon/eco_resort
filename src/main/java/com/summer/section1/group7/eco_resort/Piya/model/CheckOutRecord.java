@@ -1,40 +1,97 @@
 package com.summer.section1.group7.eco_resort.Piya.model;
 
+import com.summer.section1.group7.eco_resort.User;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class CheckOutRecord {
-    private final int checkOutId;
+
+public class CheckOutRecord implements Serializable {
+
+
+    private String recordId;
+    private String reservationId;
+
+    private User user;
+    private Room room;
+
+    private LocalDate checkOutDate;
     private String departureTime;
-    private LocalDate date;
 
-    public CheckOutRecord(int checkOutId, String departureTime, LocalDate date) {
-        this.checkOutId = checkOutId;
-        this.departureTime = departureTime;
-        this.date = date;
+    private String status;
+
+
+
+    public CheckOutRecord(String recordId,
+                          String reservationId,
+                          User user,
+                          Room room,
+                          LocalDate checkOutDate,
+                          String departureTime,
+                          String status){
+
+
+        this.recordId=recordId;
+        this.reservationId=reservationId;
+        this.user=user;
+        this.room=room;
+        this.checkOutDate=checkOutDate;
+        this.departureTime=departureTime;
+        this.status=status;
+
     }
 
-    public int getCheckOutId() {
-        return checkOutId;
+
+
+    public String getRecordId(){
+        return recordId;
     }
 
-    public String getDepartureTime() {
+
+    public String getReservationId(){
+        return reservationId;
+    }
+
+
+    public User getUser(){
+        return user;
+    }
+
+
+    public Room getRoom(){
+        return room;
+    }
+
+
+    public String getGuestName(){
+        return user.getName();
+    }
+
+
+    public String getRoomNumber(){
+        return room.getRoomId();
+    }
+
+
+    public LocalDate getCheckOutDate(){
+        return checkOutDate;
+    }
+
+
+    public String getDepartureTime(){
         return departureTime;
     }
 
-    public LocalDate getDate() {
-        return date;
+
+    public String getStatus(){
+        return status;
     }
 
-    public void setDepartureTime(String departureTime) {
-        this.departureTime = departureTime;
+
+    @Override
+    public String toString(){
+
+        return recordId+" "+user.getName()+" "+status;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-    public void recordCheckOut() {
-
-        System.out.println("Check-out recorded successfully.");
-
-    }
 }

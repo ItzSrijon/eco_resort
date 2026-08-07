@@ -1,67 +1,100 @@
 package com.summer.section1.group7.eco_resort.Piya.model;
 
-public class Room {
+import java.io.Serializable;
 
-    private final int roomId;
+public class Room implements Serializable {
+
+
+
+    private String roomId;
     private String roomType;
-    private double price;
+    private double roomPrice;
     private int capacity;
-    private boolean availability;
+    private String facilities;
+    private String availability;
 
-    public Room(int roomId, String roomType, double price, int capacity, boolean availability) {
+
+    public Room(String roomId,
+                String roomType,
+                double roomPrice,
+                int capacity,
+                String facilities,
+                String availability){
+
         this.roomId = roomId;
         this.roomType = roomType;
-        this.price = price;
+        this.roomPrice = roomPrice;
         this.capacity = capacity;
+        this.facilities = facilities;
         this.availability = availability;
     }
 
-    public int getRoomId() {
+
+    public String getRoomId(){
         return roomId;
     }
 
-    public String getRoomType() {
+
+    public String getRoomType(){
         return roomType;
     }
 
-    public double getPrice() {
-        return price;
-    }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public boolean isAvailability() {
-        return availability;
-    }
-
-    public void setRoomType(String roomType) {
+    public void setRoomType(String roomType){
         this.roomType = roomType;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+
+    public double getRoomPrice(){
+        return roomPrice;
     }
 
-    public void setCapacity(int capacity) {
+
+    public void setRoomPrice(double roomPrice){
+        this.roomPrice = roomPrice;
+    }
+
+
+    public int getCapacity(){
+        return capacity;
+    }
+
+
+    public void setCapacity(int capacity){
         this.capacity = capacity;
     }
 
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
-    }
-    public void viewRoomDetails() {
 
-        System.out.println("Displaying room details.");
-
+    public String getFacilities(){
+        return facilities;
     }
 
-    public void updateAvailability(boolean availability) {
 
+    public void setFacilities(String facilities){
+        this.facilities = facilities;
+    }
+
+
+    public String getAvailability(){
+        return availability;
+    }
+
+
+    public void setAvailability(String availability){
         this.availability = availability;
+    }
 
-        System.out.println("Room availability updated.");
 
+    @Override
+    public String toString(){
+
+        return "Room{" +
+                "roomId='" + roomId + '\'' +
+                ", roomType='" + roomType + '\'' +
+                ", roomPrice=" + roomPrice +
+                ", capacity=" + capacity +
+                ", facilities='" + facilities + '\'' +
+                ", availability='" + availability + '\'' +
+                '}';
     }
 }

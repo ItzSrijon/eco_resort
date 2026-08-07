@@ -1,64 +1,85 @@
 package com.summer.section1.group7.eco_resort.Piya.model;
 
-public class Incident {
-    private final int incidentId;
+import com.summer.section1.group7.eco_resort.User;
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class Incident implements Serializable {
+
+    private String incidentId;
     private String title;
     private String description;
     private String category;
+    private String location;
+    private LocalDate date;
+    private User reportedBy;
     private String status;
 
-    public Incident(int incidentId, String title, String description, String category, String status) {
+
+    public Incident(String incidentId,
+                    String title,
+                    String description,
+                    String category,
+                    String location,
+                    LocalDate date,
+                    User reportedBy,
+                    String status){
+
         this.incidentId = incidentId;
         this.title = title;
         this.description = description;
         this.category = category;
+        this.location = location;
+        this.date = date;
+        this.reportedBy = reportedBy;
         this.status = status;
     }
 
-    public int getIncidentId() {
+
+    public String getIncidentId(){
         return incidentId;
     }
 
-    public String getTitle() {
+
+    public String getTitle(){
         return title;
     }
 
-    public String getDescription() {
+
+    public String getDescription(){
         return description;
     }
 
-    public String getCategory() {
+
+    public String getCategory(){
         return category;
     }
 
-    public String getStatus() {
+
+    public String getLocation(){
+        return location;
+    }
+
+
+    public LocalDate getDate(){
+        return date;
+    }
+
+
+    public User getReportedBy(){
+        return reportedBy;
+    }
+
+
+    public String getStatus(){
         return status;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+
+    @Override
+    public String toString(){
+
+        return incidentId+" "+title+" "+category+" "+status;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    public void reportIncident() {
-
-        System.out.println("Incident reported successfully.");
-
-    }
-
-    public void viewIncidentHistory() {
-
-        System.out.println("Displaying incident history.");
-
-    }
 }

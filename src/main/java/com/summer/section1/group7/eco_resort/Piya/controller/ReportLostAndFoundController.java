@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.time.LocalDate;
 
-public class LostAndFoundController {
+public class ReportLostAndFoundController {
 
     @FXML
     private TextField itemIdTF;
@@ -125,8 +125,7 @@ public class LostAndFoundController {
             if(file.exists()){
 
                 oos = new AppendableObjectOutputStream(
-                                new FileOutputStream(file,true)
-                        );
+                                new FileOutputStream(file,true));
 
             }
             else{
