@@ -11,13 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-
-public class UpdateMembershipStatusController {
+public class U3G2_UpdateMembershipStatusController {
 
     @FXML
     private TextField phoneNumberTF;

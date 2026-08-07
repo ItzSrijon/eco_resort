@@ -1,7 +1,5 @@
 package com.summer.section1.group7.eco_resort.Siam;
 
-import com.summer.section1.group7.eco_resort.User;
-import com.summer.section1.group7.eco_resort.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.*;
 import java.time.LocalDate;
 
-public class ScheduleTrainingSessionController {
+public class U3G3_ScheduleTrainingSessionController {
     @FXML
     private DatePicker sessionDateDP;
     @FXML
@@ -135,23 +133,19 @@ public class ScheduleTrainingSessionController {
     }
 
     private void showAlert(Alert.AlertType type, String title,String message) {
-
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
     }
     private void clearGuestInfo() {
-
         guestNameTF.clear();
         phoneNumberTF.clear();
-
     }
     @FXML
     public void backToDashboardOA(ActionEvent actionEvent) {
 
         try {
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
             Node node = loader.load();
             mainPane.getChildren().setAll(node);

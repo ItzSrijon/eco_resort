@@ -10,10 +10,9 @@ import javafx.scene.layout.AnchorPane;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.io.*;
 import java.time.LocalDate;
 
-public class RegisterGymMemberController {
+public class U3G1_RegisterGymMemberController {
     @FXML
     private AnchorPane mainPane;
     @FXML
