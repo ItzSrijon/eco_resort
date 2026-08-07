@@ -37,7 +37,7 @@ public class AccountantDashboardController
     }
 
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void paymentMethodsOA(ActionEvent actionEvent) {
     }
 
@@ -60,11 +60,18 @@ public class AccountantDashboardController
 
     @javafx.fxml.FXML
     public void financialSummaryOA(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U4G2_FinancialSummary.fxml"));
+            Node node=fxmlLoader.load();
+            mainPane.getChildren().setAll(node);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
-    @javafx.fxml.FXML
-    public void revenueReportOA(ActionEvent actionEvent) {
-    }
+
 
     @javafx.fxml.FXML
     public void recordPaymentOA(ActionEvent actionEvent) {
@@ -100,5 +107,31 @@ public class AccountantDashboardController
         catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    @javafx.fxml.FXML
+    public void pendingPaymentOA(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U4G8_TrackPendingPayment.fxml"));
+            Node node=fxmlLoader.load();
+            mainPane.getChildren().setAll(node);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    @javafx.fxml.FXML
+    public void updatePaymentRecordOA(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U4G7_UpdatePaymentRecord.fxml"));
+            Node node=fxmlLoader.load();
+            mainPane.getChildren().setAll(node);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

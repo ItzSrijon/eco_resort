@@ -235,10 +235,12 @@ public class U4G1_RecordGuestPaymentController {
 
             oos.close();
 
-            showAlert(
-                    Alert.AlertType.INFORMATION,
-                    "Success",
-                    "Payment recorded successfully."
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Payment Recorded Successfully!\n\n"
+                            + "Transaction ID : " + payment.getPaymentId()
+                            + "\nGuest ID : " + payment.getGuestId()
+                            + "\nGuest Name : " + payment.getGuestName()
+                            + "\nAmount : " + payment.getAmount()
+                            + "\nPayment Date : " + payment.getPaymentDate()
             );
 
             clearFields();

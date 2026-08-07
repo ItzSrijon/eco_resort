@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane"
+            prefHeight="620.0"
+            prefWidth="750.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer.section1.group7.eco_resort.Siam.U4G8_TrackPendingPaymentsController">
+
+    <children>
+
+        <Label alignment="CENTER"
+               layoutX="0.0"
+               layoutY="0.0"
+               prefHeight="60.0"
+               prefWidth="750.0"
+               style="-fx-background-color:#263238; -fx-text-fill:white;"
+               text="Track Pending Payments">
+
+            <font>
+                <Font name="System Bold" size="24.0"/>
+            </font>
+
+        </Label>
+
+        <AnchorPane layoutX="25.0"
+                    layoutY="80.0"
+                    prefHeight="450.0"
+                    prefWidth="700.0"
+                    style="-fx-background-color:white; -fx-background-radius:12; -fx-border-color:lightgray; -fx-border-radius:12;">
+
+            <children>
+
+                <TableView fx:id="pendingPaymentTV"
+                           layoutX="20.0"
+                           layoutY="20.0"
+                           prefHeight="390.0"
+                           prefWidth="660.0">
+
+                    <columns>
+
+                        <TableColumn fx:id="guestIdTC"
+                                     prefWidth="110.0"
+                                     text="Guest ID"/>
+
+                        <TableColumn fx:id="guestNameTC"
+                                     prefWidth="170.0"
+                                     text="Guest Name"/>
+
+                        <TableColumn fx:id="totalBillTC"
+                                     prefWidth="120.0"
+                                     text="Total Bill"/>
+
+                        <TableColumn fx:id="totalPaidTC"
+                                     prefWidth="120.0"
+                                     text="Total Paid"/>
+
+                        <TableColumn fx:id="duePaymentTC"
+                                     prefWidth="140.0"
+                                     text="Pending Amount"/>
+
+                    </columns>
+
+                </TableView>
+
+            </children>
+
+        </AnchorPane>
+
+        <Button layoutX="185.0"
+                layoutY="555.0"
+                prefHeight="40.0"
+                prefWidth="170.0"
+                text="Load Pending Payments"
+                onAction="#loadPendingPaymentsOA"
+                style="-fx-background-color:#1976D2; -fx-text-fill:white; -fx-background-radius:8;">
+
+            <font>
+                <Font name="System Bold" size="13.0"/>
+            </font>
+
+        </Button>
+
+        <Button layoutX="395.0"
+                layoutY="555.0"
+                prefHeight="40.0"
+                prefWidth="170.0"
+                text="Back to Dashboard"
+                onAction="#backToDashboardOA"
+                style="-fx-background-color:#616161; -fx-text-fill:white; -fx-background-radius:8;">
+
+            <font>
+                <Font name="System Bold" size="13.0"/>
+            </font>
+
+        </Button>
+
+    </children>
+
+</AnchorPane>

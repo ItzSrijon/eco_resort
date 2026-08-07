@@ -87,7 +87,7 @@
 
                         </Button>
 
-                        <Button onAction="#revenueReportOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Revenue Report" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button onAction="#pendingPaymentOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Pending Payment" GridPane.columnIndex="1" GridPane.rowIndex="3">
 
                             <font>
                                 <Font name="System Bold" size="14" />
@@ -95,7 +95,7 @@
 
                         </Button>
 
-                        <Button onAction="#paymentMethodsOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Payment Methods" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                        <Button onAction="#updatePaymentRecordOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Update Payment Record" GridPane.columnIndex="0" GridPane.rowIndex="3">
 
                             <font>
                                 <Font name="System Bold" size="14" />
@@ -103,7 +103,7 @@
 
                         </Button>
 
-                        <Button onAction="#generateReceiptOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Generate Receipt" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Button onAction="#generateReceiptOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Disburse Employee Salary" GridPane.columnIndex="1" GridPane.rowIndex="2">
 
                             <font>
                                 <Font name="System Bold" size="14" />
