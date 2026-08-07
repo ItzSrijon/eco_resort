@@ -36,15 +36,12 @@ public class AccountantDashboardController
     public void generateReceiptOA(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
-    public void pendingPaymentsOA(ActionEvent actionEvent) {
-    }
 
     @javafx.fxml.FXML
     public void paymentMethodsOA(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void manageRefundOA(ActionEvent actionEvent) {
     }
 
@@ -73,6 +70,30 @@ public class AccountantDashboardController
     public void recordPaymentOA(ActionEvent actionEvent) {
         try{
             FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U4G1_RecordGuestPayment.fxml"));
+            Node node=fxmlLoader.load();
+            mainPane.getChildren().setAll(node);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @javafx.fxml.FXML
+    public void supplierPaymentsOA(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U4G4_ProcessSupplierPayment.fxml"));
+            Node node=fxmlLoader.load();
+            mainPane.getChildren().setAll(node);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @javafx.fxml.FXML
+    public void generateInvoiceOA(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U4G5_GenerateGuestInvoice.fxml"));
             Node node=fxmlLoader.load();
             mainPane.getChildren().setAll(node);
         }

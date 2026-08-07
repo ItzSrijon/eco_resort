@@ -44,89 +44,45 @@ public class UpdateMembershipStatusController {
     public void searchMemberOA(ActionEvent actionEvent) {
 
         if (guestIDTF.getText().trim().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Error", null, "Please enter Guest ID.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please enter Guest ID.");
             return;
         }
 
-        try {
-            FileInputStream fis = new FileInputStream("gymMember.bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
+        memberList = GymManager.loadMembers();
 
-            while (true) {
-                try {
-                    GymMember gm = (GymMember) ois.readObject();
-                    memberList.add(gm);
-                    if (gm.getGuestId().equalsIgnoreCase(guestIDTF.getText().trim())) {
-                        guestNameTF.setText(gm.getGuestName());
-                        phoneNumberTF.setText(gm.getPhoneNumber());
-                        emailAddressTF.setText(gm.getEmail());
-                        currentStatusTF.setText(gm.getStatus());
-                        showAlert(Alert.AlertType.INFORMATION,
-                                "Success",
-                                null,
-                                "Guest loaded successfully.");
+        GymMember gm = GymManager.findGymMember(guestIDTF.getText().trim());
 
-                        break;
-                    }
-
-                } catch (EOFException e) {
-
-                    ois.close();
-                    return;
-                }
-            }
-
-            if (guestNameTF.getText().isEmpty()) {
-
-                showAlert(Alert.AlertType.ERROR, "Not Found", null, "Gym Member not found.");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void backToDashboardOA(ActionEvent actionEvent) {
-
-        try {
-
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
-
-            Node node = loader.load();
-
-            mainPane.getChildren().setAll(node);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
+        if (gm == null) {
+            clearFields();
+            showAlert(Alert.AlertType.ERROR, "Not Found", "Gym Member not found.");
+            return;
         }
 
+        guestNameTF.setText(gm.getGuestName());
+        phoneNumberTF.setText(gm.getPhoneNumber());
+        emailAddressTF.setText(gm.getEmail());
+        currentStatusTF.setText(gm.getStatus());
+
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Guest loaded successfully.");
+
     }
+
     @FXML
     public void updateStatusOA(ActionEvent actionEvent) {
 
         if (memberList.isEmpty()) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Search member first."
-            );
+            showAlert(Alert.AlertType.ERROR, "Error", "Search member first.");
             return;
         }
 
         if (newStatusCB.getValue() == null) {
-
-            showAlert(Alert.AlertType.ERROR, "Error", null, "Please select a new status.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select a new status.");
             return;
         }
+
         if (currentStatusTF.getText().equalsIgnoreCase(newStatusCB.getValue())) {
 
-            showAlert(Alert.AlertType.ERROR, "Invalid Status", null, "Current status and new status are the same.\nPlease select a different status.");
+            showAlert(Alert.AlertType.ERROR, "Invalid Status", "Current status and new status are the same.");
             return;
         }
 
@@ -135,54 +91,33 @@ public class UpdateMembershipStatusController {
         for (GymMember gm : memberList) {
 
             if (gm.getGuestId().equalsIgnoreCase(guestIDTF.getText().trim())) {
-
                 gm.setStatus(newStatusCB.getValue());
-
                 found = true;
                 break;
             }
-
         }
 
         if (!found) {
-
-            showAlert(Alert.AlertType.ERROR, "Error", null, "Gym Member not found.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Gym Member not found.");
             return;
+
         }
 
-        try {
+        GymManager.saveMembers(memberList);
+        currentStatusTF.setText(newStatusCB.getValue());
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Membership status updated successfully.");
 
-            FileOutputStream fos = new FileOutputStream("gymMember.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            for (GymMember gm : memberList) {
-                oos.writeObject(gm);
-            }
-
-            oos.close();
-
-            currentStatusTF.setText(newStatusCB.getValue());
-
-            showAlert(Alert.AlertType.INFORMATION, "Success", null, "Membership status updated successfully.");
-            clearFields();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        clearFields();
 
     }
-
-    private void showAlert(Alert.AlertType type, String title, String header, String message) {
-
+    private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
-        alert.setHeaderText(header);
         alert.setContentText(message);
         alert.showAndWait();
     }
     @FXML
     private void clearFields() {
-
         guestIDTF.clear();
         guestNameTF.clear();
         phoneNumberTF.clear();
@@ -191,6 +126,16 @@ public class UpdateMembershipStatusController {
         newStatusCB.getSelectionModel().clearSelection();
         newStatusCB.setValue(null);
         memberList.clear();
+    }
+    @FXML
+    public void backToDashboardOA(ActionEvent actionEvent) {
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
+            Node node = loader.load();
+            mainPane.getChildren().setAll(node);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

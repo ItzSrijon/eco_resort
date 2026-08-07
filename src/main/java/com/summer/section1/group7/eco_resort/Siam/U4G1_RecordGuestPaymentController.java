@@ -36,25 +36,9 @@ public class U4G1_RecordGuestPaymentController {
     @FXML
     public void initialize() {
 
-        paymentTypeCB.setItems(
-                FXCollections.observableArrayList(
-                        "Gym",
-                        "Room",
-                        "Restaurant",
-                        "Spa",
-                        "Laundry"
-                )
-        );
+        paymentTypeCB.getItems().addAll("Gym","Room", "Restaurant", "Laundry");
 
-        paymentMethodCB.setItems(
-                FXCollections.observableArrayList(
-                        "Cash",
-                        "Card",
-                        "Bkash",
-                        "Nagad",
-                        "Bank Transfer"
-                )
-        );
+        paymentMethodCB.getItems().addAll("Cash", "Card", "Bkash", "Nagad", "Bank Transfer");
 
         paymentDateTF.setText(LocalDate.now().toString());
 

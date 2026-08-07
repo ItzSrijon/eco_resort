@@ -72,14 +72,14 @@
 
                         </Button>
 
-                        <Button onAction="#pendingPaymentsOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Pending Payments" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button onAction="#supplierPaymentsOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Supplier Payment" GridPane.columnIndex="1" GridPane.rowIndex="1">
 
                             <font>
                                 <Font name="System Bold" size="14" />
                             </font>
 
                         </Button>
-                        <Button onAction="#manageRefundOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Manage Refund" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <Button onAction="#generateInvoiceOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Generate Invoice" GridPane.columnIndex="0" GridPane.rowIndex="2">
 
                             <font>
                                 <Font name="System Bold" size="14" />

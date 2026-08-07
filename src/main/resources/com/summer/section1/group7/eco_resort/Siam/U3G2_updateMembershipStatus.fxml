@@ -50,7 +50,7 @@
 
                 <TextField fx:id="guestIDTF" prefWidth="230" promptText="Enter User ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Button onAction="#searchMemberOA" prefWidth="120" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Button onAction="#searchMemberOA" prefWidth="120" style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-background-radius: 8;" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
                 <Label text="Guest Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 

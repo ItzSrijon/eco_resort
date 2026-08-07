@@ -59,7 +59,7 @@
 
                     <TextField fx:id="guestIdTF" prefWidth="240" promptText="Enter Guest ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                    <Button onAction="#loadGuestOA" prefWidth="120" text="Load Guest" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Button onAction="#loadGuestOA" prefWidth="120" style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-background-radius: 8;" text="Load Guest" GridPane.columnIndex="2" GridPane.rowIndex="0">
 
                         <font>
                             <Font name="System Bold" size="12" />

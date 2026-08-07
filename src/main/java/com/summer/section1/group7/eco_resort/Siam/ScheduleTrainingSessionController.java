@@ -27,89 +27,65 @@ public class ScheduleTrainingSessionController {
     private TextField guestIdTF;
     @FXML
     private AnchorPane mainPane;
-    private User loadedGuest;
+    private GymMember loadedGuest;
     @FXML
     public void initialize() {
 
         sessionTimeCB.getItems().addAll("08:00 AM - 10:00 AM", "10:00 AM - 12:00 PM",
                 "12:00 PM - 02:00 PM", "02:00 PM - 04:00 PM", "04:00 PM - 06:00 PM",
                 "06:00 PM - 08:00 PM", "08:00 PM - 10:00 PM", "09:00 PM - 11:00 PM");
-        trainerCB.getItems().addAll("Ashik Rahman", "Rafi Hossain", "Siam Mahmud", "Tahmid Khan", "Nusrat Jahan", "Maliha Islam");
+        trainerCB.getItems().addAll("Ashik Rahman", "Rafi Hossain", "Siam Mahmud", "Shakib Atulla", "Nusrat Jahan", "Maliha Islam");
     }
-    @FXML
-    public void backToDashboardOA(ActionEvent actionEvent) {
 
-        try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
-            Node node = loader.load();
-            mainPane.getChildren().setAll(node);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     @FXML
     public void loadGuestOA(ActionEvent actionEvent) {
+        if (guestIdTF.getText().trim().isEmpty()) {
 
-        String guestId = guestIdTF.getText().trim();
-        if (guestId.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please enter Guest ID.");
 
-            showAlert(Alert.AlertType.ERROR, "Error", null, "Please enter Guest ID.");
             return;
         }
 
-        loadedGuest = null;
-
-        for (User user : UserManager.getUserList()) {
-
-            if (user.getUserId().equalsIgnoreCase(guestId)
-                    && user.getRole().equalsIgnoreCase("Guest")) {
-
-                loadedGuest = user;
-                break;
-            }
-
-        }
+        loadedGuest = GymManager.findGymMember(guestIdTF.getText().trim());
 
         if (loadedGuest == null) {
 
-            guestNameTF.clear();
-            phoneNumberTF.clear();
+            clearGuestInfo();
 
-            showAlert(Alert.AlertType.ERROR, "Not Found", null, "Guest not found.");
+            showAlert(Alert.AlertType.ERROR, "Not Found", "Gym member not found.");
+
             return;
         }
 
-        guestNameTF.setText(loadedGuest.getName());
+        guestNameTF.setText(loadedGuest.getGuestName());
         phoneNumberTF.setText(loadedGuest.getPhoneNumber());
 
-        showAlert(Alert.AlertType.INFORMATION, "Success", null, "Guest loaded successfully.");
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Gym member loaded successfully.");
 
     }
     @FXML
     public void scheduleSessionOA(ActionEvent actionEvent) {
 
         if (loadedGuest == null) {
-            showAlert(Alert.AlertType.ERROR, "Error", null, "Load guest first.");
+            showAlert(Alert.AlertType.ERROR, "Error",  "Load guest first.");
             return;
         }
 
         if (sessionDateDP.getValue() == null || sessionTimeCB.getValue() == null || trainerCB.getValue() == null) {
 
-            showAlert(Alert.AlertType.ERROR, "Error", null, "Please fill all fields."
-            );
+            showAlert(Alert.AlertType.ERROR, "Error", "Please fill all fields.");
             return;
         }
         if (sessionDateDP.getValue().isBefore(LocalDate.now())) {
 
-            showAlert(Alert.AlertType.ERROR, "Invalid Date", null, "Please select today's date or a future date.");
+            showAlert(Alert.AlertType.ERROR, "Invalid Date", "Please select today's date or a future date.");
             return;
         }
 
         TrainingSession session = new TrainingSession(
-                loadedGuest.getUserId(),
-                loadedGuest.getName(),
+                loadedGuest.getGuestId(),
+                loadedGuest.getGuestName(),
                 loadedGuest.getPhoneNumber(),
                 sessionTimeCB.getValue(),
                 trainerCB.getValue(),
@@ -120,7 +96,6 @@ public class ScheduleTrainingSessionController {
         try {
             FileOutputStream fos;
             ObjectOutputStream oos;
-
             if (file.exists()) {
                 fos = new FileOutputStream(file, true);
                 oos = new AppendableObjectOutputStream(fos);
@@ -132,17 +107,16 @@ public class ScheduleTrainingSessionController {
             oos.writeObject(session);
             oos.close();
 
-            showAlert(Alert.AlertType.INFORMATION, "Session Scheduled", null,
+            showAlert(Alert.AlertType.INFORMATION, "Session Scheduled",
                     "Training Session Successfully Scheduled!\n\n"
-                            + "Guest ID : " + loadedGuest.getUserId()
-                            + "\nGuest : " + loadedGuest.getName()
+                            + "Guest ID : " + loadedGuest.getGuestId()
+                            + "\nGuest : " + loadedGuest.getGuestName()
                             + "\nDate : " + sessionDateDP.getValue()
                             + "\nTime : " + sessionTimeCB.getValue()
                             + "\nTrainer : " + trainerCB.getValue()
             );
 
             clearFields();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -160,12 +134,30 @@ public class ScheduleTrainingSessionController {
         loadedGuest = null;
     }
 
-    private void showAlert(Alert.AlertType type, String title, String header, String message) {
+    private void showAlert(Alert.AlertType type, String title,String message) {
 
         Alert alert = new Alert(type);
         alert.setTitle(title);
-        alert.setHeaderText(header);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    private void clearGuestInfo() {
+
+        guestNameTF.clear();
+        phoneNumberTF.clear();
+
+    }
+    @FXML
+    public void backToDashboardOA(ActionEvent actionEvent) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
+            Node node = loader.load();
+            mainPane.getChildren().setAll(node);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" prefHeight="620.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.AddSupplierController">
+
+    <children>
+
+        <Label alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="60.0" prefWidth="750.0" style="-fx-background-color:#455A64; -fx-text-fill:white;" text="Add Supplier">
+
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+
+        </Label>
+
+        <Label layoutX="80.0" layoutY="100.0" text="Supplier ID">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+
+        <TextField fx:id="supplierIdTF" layoutX="250.0" layoutY="95.0" prefWidth="260.0" />
+
+        <Label layoutX="80.0" layoutY="155.0" text="Supplier Name">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+
+        <TextField fx:id="supplierNameTF" layoutX="250.0" layoutY="150.0" prefWidth="260.0" />
+
+        <Label layoutX="80.0" layoutY="210.0" text="Company Name">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+
+        <TextField fx:id="companyNameTF" layoutX="250.0" layoutY="205.0" prefWidth="260.0" />
+
+        <Label layoutX="80.0" layoutY="265.0" text="Phone Number">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+
+        <TextField fx:id="phoneTF" layoutX="250.0" layoutY="260.0" prefWidth="260.0" />
+
+        <Label layoutX="80.0" layoutY="320.0" text="Email Address">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+
+        <TextField fx:id="emailTF" layoutX="250.0" layoutY="315.0" prefWidth="260.0" />
+
+        <Button layoutX="170.0" layoutY="500.0" onAction="#addSupplierOA" prefHeight="40.0" prefWidth="170.0" style="-fx-background-color: lightblue;" text="Add Supplier">
+
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+
+        </Button>
+
+        <Button layoutX="400.0" layoutY="500.0" onAction="#backToDashboardOA" prefHeight="40.0" prefWidth="170.0" style="-fx-background-color: gray;" text="Back to Dashboard">
+
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+
+        </Button>
+
+    </children>
+
+</AnchorPane>
