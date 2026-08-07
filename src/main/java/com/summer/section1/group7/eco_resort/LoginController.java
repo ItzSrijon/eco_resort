@@ -132,9 +132,25 @@ public class LoginController {
 
     @FXML
     public void createGuestAccountButtonOA(ActionEvent event) {
-        openSignup(event);
-    }
 
+        try {
+            URL url = getClass().getResource(
+                    "/com/summer/section1/group7/eco_resort/Piya/GuestRegistration.fxml");
+            if (url == null) {
+                showMessage("Guest Registration page not found.");
+                return;
+            }
+            Parent root = FXMLLoader.load(url);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            showMessage("Error loading Guest Registration page.");
+            e.printStackTrace();
+        }
+    }
     private void openSignup(ActionEvent event) {
 
         try {
