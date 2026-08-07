@@ -103,7 +103,7 @@
 
                         </Button>
 
-                        <Button onAction="#generateReceiptOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Disburse Employee Salary" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button onAction="#employeeSalaryOA" prefHeight="56" prefWidth="280" style="-fx-background-color:#1565C0;                                        -fx-text-fill:white;                                        -fx-background-radius:12;" text="Disburse Employee Salary" GridPane.columnIndex="1" GridPane.rowIndex="2">
 
                             <font>
                                 <Font name="System Bold" size="14" />

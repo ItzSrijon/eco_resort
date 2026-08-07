@@ -33,19 +33,6 @@ public class AccountantDashboardController
     }
 
     @javafx.fxml.FXML
-    public void generateReceiptOA(ActionEvent actionEvent) {
-    }
-
-
-    @Deprecated
-    public void paymentMethodsOA(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void manageRefundOA(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
     public void backToLoginOA(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(
@@ -133,5 +120,17 @@ public class AccountantDashboardController
             e.printStackTrace();
         }
 
+    }
+
+    @javafx.fxml.FXML
+    public void employeeSalaryOA(ActionEvent actionEvent) {
+        try{
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("U4G6_EmployeeSalary.fxml"));
+            Node node=fxmlLoader.load();
+            mainPane.getChildren().setAll(node);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
