@@ -35,4 +35,5 @@ module com.summer.section1.group7.eco_resort {
     exports com.summer.section1.group7.eco_resort.Srijon.util;
     opens com.summer.section1.group7.eco_resort.Srijon.util to javafx.fxml;
     requires com.github.librepdf.openpdf;
+    requires org.apache.pdfbox;
 }

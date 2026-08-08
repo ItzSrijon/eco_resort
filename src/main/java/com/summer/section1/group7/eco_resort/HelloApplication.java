@@ -11,7 +11,6 @@ import java.net.URL;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        // absolute resource path ensures the FXML is found on the classpath
         URL fxmlUrl = HelloApplication.class.getResource("/com/summer/section1/group7/eco_resort/Login.fxml");
         System.out.println("Login.fxml URL = " + fxmlUrl);
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
@@ -19,7 +18,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Login");
         stage.setScene(scene);
 
-        SceneSwitcher.stage = stage;   // <-- ADD THIS LINE
+        SceneSwitcher.stage = stage;
 
         stage.show();
     }

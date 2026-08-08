@@ -7,28 +7,21 @@ import javafx.scene.control.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class updateRepairStatusController {
+public class closeRequestController {
     @FXML private TextField requestIdField;
-    @FXML private ComboBox<String> statusComboBox;
     @FXML private Label infoLabel;
 
     @FXML
-    public void initialize() {
-        statusComboBox.getItems().addAll("Pending", "In Progress", "Completed");
-    }
-
-    @FXML
-    public void onUpdate() {
+    public void onClose() {
         String id = requestIdField.getText();
-        String status = statusComboBox.getValue();
         String FILE = "maintenance.bin";
         ArrayList<MaintenanceRequest> list = BinaryFileManager.loadList(FILE);
         for (MaintenanceRequest r : list) {
             if (r.getRequestId().equals(id)) {
-                r.setStatus(status);
+                r.setStatus("Closed");
                 try {
                     BinaryFileManager.saveList(FILE, list);
-                    infoLabel.setText("Status updated.");
+                    infoLabel.setText("Request closed.");
                 } catch (IOException e) {
                     infoLabel.setText("Error saving file.");
                 }
