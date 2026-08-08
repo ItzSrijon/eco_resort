@@ -1,468 +1,278 @@
 package com.summer.section1.group7.eco_resort.Piya.controller;
 
-import com.summer.section1.group7.eco_resort.User;
 import com.summer.section1.group7.eco_resort.Piya.model.*;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
 import javafx.scene.Node;
 import javafx.scene.Scene;
-
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.time.LocalDate;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheckOutRecordController {
 
-
-    @FXML
-    private TableView<CheckOutRecord> checkOutTableView;
-
-
-    @FXML
-    private TableColumn<CheckOutRecord,String> recordIdTC,guestNameTC,roomNumberTC,timeTC;
-
-
-    @FXML
-    private TableColumn<CheckOutRecord,LocalDate> checkOutDateTC;
-
-
-    @FXML
-    private ComboBox<User> guestCB;
-
-
-    @FXML
-    private TextField departureTimeTF;
-
-
-    @FXML
-    private Label messageLabel;
-
-
+    @FXML private TableView<CheckOutRecord> checkOutTableView;
+    @FXML private TableColumn<CheckOutRecord,String> recordIdTC;
+    @FXML private TableColumn<CheckOutRecord,String> guestNameTC;
+    @FXML private TableColumn<CheckOutRecord,String> roomNumberTC;
+    @FXML private TableColumn<CheckOutRecord,LocalDate> checkOutDateTC;
+    @FXML private TableColumn<CheckOutRecord,String> timeTC;
+    @FXML private Label messageLabel;
+    @FXML private DatePicker departureDP;
+    @FXML private TextField departureTF;
 
     private ObservableList<CheckOutRecord> recordList =
             FXCollections.observableArrayList();
 
-
-    // Added variable
-    private RoomReservation selectedReservation;
-
-
-
     @FXML
-    public void initialize(){
-
-
+    public void initialize() {
         recordIdTC.setCellValueFactory(
                 new PropertyValueFactory<>("recordId"));
-
-
         guestNameTC.setCellValueFactory(
                 new PropertyValueFactory<>("guestName"));
-
-
         roomNumberTC.setCellValueFactory(
                 new PropertyValueFactory<>("roomNumber"));
-
-
         checkOutDateTC.setCellValueFactory(
                 new PropertyValueFactory<>("checkOutDate"));
-
-
         timeTC.setCellValueFactory(
                 new PropertyValueFactory<>("departureTime"));
 
-
-
         checkOutTableView.setItems(recordList);
-
-
-        loadGuests();
-
         loadCheckOutRecords();
-
     }
 
+    @FXML
+    public void loadCheckOutRecordButtonOA(ActionEvent event) {
+        messageLabel.setText("");
 
+        LocalDate departureDate = departureDP.getValue();
+        String departureTime = departureTF.getText().trim();
 
-
-
-    private void loadGuests(){
-
-
-        File file=new File("User.bin");
-
-
-        if(!file.exists())
+        if (departureDate == null || departureTime.isEmpty()) {
+            messageLabel.setText(
+                    "Enter departure date and time.");
             return;
+        }
 
+        List<RoomReservation> reservations =
+                loadReservations();
 
-        try(ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream(file))){
+        if (reservations.isEmpty()) {
+            messageLabel.setText(
+                    "No reservation data found.");
+            return;
+        }
 
+        int count = 0;
 
-            while(true){
+        for (RoomReservation reservation : reservations) {
 
-                try{
+            if (reservation.getCheckOutDate() == null)
+                continue;
 
-                    User user=(User)ois.readObject();
+            if (!reservation.getCheckOutDate()
+                    .equals(departureDate))
+                continue;
 
+            if (alreadyCheckedOut(
+                    reservation.getReservationId()))
+                continue;
 
-                    if(user.getRole().equals("Guest"))
-                        guestCB.getItems().add(user);
+            Room room = reservation.getRoom();
 
+            if (room == null)
+                continue;
 
-                }
-                catch(EOFException e){
+            room.setAvailability("Available");
+            reservation.setBookingStatus("Completed");
 
+            CheckOutRecord record =
+                    new CheckOutRecord(
+                            "CO" + System.currentTimeMillis() + count,
+                            reservation.getReservationId(),
+                            reservation.getUser(),
+                            room,
+                            departureDate,
+                            departureTime,
+                            "Completed"
+                    );
+
+            saveRecord(record);
+            recordList.add(record);
+            count++;
+        }
+
+        if (count == 0) {
+            messageLabel.setText(
+                    "No guest found for this date.");
+        }
+        else {
+            saveReservations(reservations);
+
+            messageLabel.setText(
+                    count + " guest(s) checked out.");
+
+            departureTF.clear();
+        }
+    }
+
+    private List<RoomReservation> loadReservations() {
+        List<RoomReservation> reservations =
+                new ArrayList<>();
+
+        File file = new File("RoomReservation.bin");
+
+        if (!file.exists())
+            return reservations;
+
+        try (ObjectInputStream ois =
+                     new ObjectInputStream(
+                             new FileInputStream(file))) {
+
+            while (true) {
+                try {
+                    RoomReservation reservation =
+                            (RoomReservation) ois.readObject();
+
+                    reservations.add(reservation);
+
+                } catch (EOFException e) {
                     break;
-
                 }
-
             }
 
-
-        }
-        catch(Exception e){
-
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
 
+        return reservations;
     }
 
+    private void saveReservations(
+            List<RoomReservation> reservations) {
 
+        File file = new File("RoomReservation.bin");
 
+        try (ObjectOutputStream oos =
+                     new ObjectOutputStream(
+                             new FileOutputStream(file))) {
 
+            for (RoomReservation reservation : reservations) {
+                oos.writeObject(reservation);
+            }
 
-    private void loadCheckOutRecords(){
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    private boolean alreadyCheckedOut(
+            String reservationId) {
 
-        File file=new File("CheckOutRecord.bin");
+        for (CheckOutRecord record : recordList) {
 
+            if (record.getReservationId() != null &&
+                    record.getReservationId()
+                            .equals(reservationId)) {
 
-        if(!file.exists())
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void loadCheckOutRecords() {
+
+        File file = new File("CheckOutRecord.bin");
+
+        if (!file.exists())
             return;
 
+        try (ObjectInputStream ois =
+                     new ObjectInputStream(
+                             new FileInputStream(file))) {
 
-
-        try(ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream(file))){
-
-
-            while(true){
-
-                try{
-
-
+            while (true) {
+                try {
                     CheckOutRecord record =
-                            (CheckOutRecord)ois.readObject();
-
+                            (CheckOutRecord) ois.readObject();
 
                     recordList.add(record);
 
-
-                }
-                catch(EOFException e){
-
+                } catch (EOFException e) {
                     break;
-
                 }
-
             }
 
-
-        }
-        catch(Exception e){
-
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
-
     }
 
+    private void saveRecord(CheckOutRecord record) {
 
+        File file = new File("CheckOutRecord.bin");
 
-
-
-    @FXML
-    public void checkOutButtonOA(ActionEvent event){
-
-
-        User guest = guestCB.getValue();
-
-
-        String time =
-                departureTimeTF.getText();
-
-
-
-        if(guest==null || time.isEmpty()){
-
-            messageLabel.setText(
-                    "Select guest and enter departure time.");
-
-            return;
-        }
-
-
-
-
-        Room room=getGuestRoom(guest);
-
-
-
-        if(room==null){
-
-
-            messageLabel.setText(
-                    "Reservation not found.");
-
-            return;
-
-        }
-
-
-
-        room.setAvailability("Available");
-
-
-
-        CheckOutRecord record =
-                new CheckOutRecord(
-
-                        "CO"+System.currentTimeMillis(),
-
-                        selectedReservation.getReservationId(),
-
-                        guest,
-
-                        room,
-
-                        LocalDate.now(),
-
-                        time,
-
-                        "Completed"
-
-                );
-
-
-
-        saveRecord(record);
-
-
-
-        recordList.add(record);
-
-
-
-        messageLabel.setText(
-                "Check-out completed successfully.");
-
-
-
-        departureTimeTF.clear();
-
-    }
-
-
-
-
-
-    private Room getGuestRoom(User guest){
-
-
-        File file=new File("RoomReservation.bin");
-
-
-
-        if(!file.exists())
-            return null;
-
-
-
-        try(ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream(file))){
-
-
-
-            while(true){
-
-
-                try{
-
-
-                    RoomReservation reservation =
-                            (RoomReservation)ois.readObject();
-
-
-
-                    if(reservation.getUser()
-                            .getUserId()
-                            .equals(guest.getUserId())){
-
-
-                        // Store full reservation
-                        selectedReservation = reservation;
-
-
-                        return reservation.getRoom();
-
-                    }
-
-
-                }
-                catch(EOFException e){
-
-                    break;
-
-                }
-
-            }
-
-
-        }
-        catch(Exception e){
-
-            e.printStackTrace();
-
-        }
-
-
-
-        return null;
-
-    }
-
-
-
-
-
-    private void saveRecord(CheckOutRecord record){
-
-
-        try{
-
-
-            File file =
-                    new File("CheckOutRecord.bin");
-
-
-
+        try {
             ObjectOutputStream oos;
 
-
-
-            if(file.exists()){
-
-
-                oos =
-                        new AppendableObjectOutputStream(
-                                new FileOutputStream(file,true));
-
-
+            if (file.exists()) {
+                oos = new AppendableObjectOutputStream(
+                        new FileOutputStream(file, true));
             }
-            else{
-
-
-                oos =
-                        new ObjectOutputStream(
-                                new FileOutputStream(file));
-
-
+            else {
+                oos = new ObjectOutputStream(
+                        new FileOutputStream(file));
             }
-
-
 
             oos.writeObject(record);
-
             oos.close();
 
-
-        }
-        catch(Exception e){
-
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
-
     }
 
-
-
-
-
     @FXML
-    public void refreshButtonOA(ActionEvent event){
-
+    public void refreshButtonOA(ActionEvent event) {
 
         recordList.clear();
-
-
         loadCheckOutRecords();
-
 
         messageLabel.setText(
                 "Records refreshed.");
-
     }
 
-
-
-
-
     @FXML
-    public void backButtonOA(ActionEvent event){
+    public void backButtonOA(ActionEvent event) {
 
-
-        try{
-
-
+        try {
             FXMLLoader loader =
                     new FXMLLoader(
                             getClass().getResource(
                                     "/com/summer/section1/group7/eco_resort/Piya/SecurityDashboard.fxml"));
 
-
-
-            Scene scene =
-                    new Scene(loader.load());
-
-
+            Scene scene = new Scene(loader.load());
 
             Stage stage =
                     (Stage)((Node)event.getSource())
                             .getScene()
                             .getWindow();
 
-
-
             stage.setScene(scene);
-
             stage.show();
 
-
-        }
-        catch(Exception e){
-
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
-
     }
-
 }

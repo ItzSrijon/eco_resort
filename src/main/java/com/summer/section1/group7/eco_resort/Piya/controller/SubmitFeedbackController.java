@@ -31,16 +31,13 @@ public class SubmitFeedbackController {
 
 
     @FXML
-    private TextArea commentsTA;
-
-
-    @FXML
     private Label messageLabel;
 
 
 
     private User currentUser;
-
+    @FXML
+    private TextArea feedbackTA;
 
 
     public void setCurrentUser(User user){
@@ -75,7 +72,7 @@ public class SubmitFeedbackController {
 
 
         if(ratingCB.getValue()==null ||
-                commentsTA.getText().isEmpty()){
+                feedbackTA.getText().isEmpty()){
 
 
             messageLabel.setText(
@@ -106,7 +103,7 @@ public class SubmitFeedbackController {
         Feedback feedback =
                 new Feedback(
                         ratingCB.getValue(),
-                        commentsTA.getText(),
+                        feedbackTA.getText(),
                         currentUser
                 );
 
@@ -193,7 +190,7 @@ public class SubmitFeedbackController {
 
             ratingCB.setValue(null);
 
-            commentsTA.clear();
+            feedbackTA.clear();
 
 
 

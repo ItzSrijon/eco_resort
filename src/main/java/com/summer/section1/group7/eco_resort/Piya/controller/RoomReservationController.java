@@ -17,7 +17,8 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
-public class RoomReservationController {
+public class RoomReservationController implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @FXML
     private DatePicker checkInDP;

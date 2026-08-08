@@ -5,13 +5,25 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.SearchReservationController">
+<AnchorPane prefHeight="455.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.SearchReservationController">
    <children>
-      <TableView fx:id="searchReservationTV" layoutX="22.0" layoutY="176.0" prefHeight="152.0" prefWidth="600.0">
+      <HBox layoutX="2.0" layoutY="2.0" prefHeight="58.0" prefWidth="649.0" style="-fx-background-color: black;" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="14.0" prefHeight="34.0" prefWidth="207.0" text="Search Reservation" textAlignment="CENTER" textFill="#b89756">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <VBox layoutX="9.0" layoutY="63.0" prefHeight="362.0" prefWidth="633.0" style="-fx-background-color: black;" />
+      <Label fx:id="messageLabel" layoutX="347.0" layoutY="355.0" prefHeight="34.0" prefWidth="255.0" />
+      <TableView fx:id="searchReservationTV" layoutX="35.0" layoutY="174.0" prefHeight="152.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="guestNameTC" prefWidth="89.0" text="Guest Name" />
           <TableColumn fx:id="reservationIdTC" prefWidth="108.0" text="Reservation ID" />
@@ -21,15 +33,35 @@
             <TableColumn fx:id="bookingStatusTC" minWidth="0.0" prefWidth="96.5" text="BookingStatus" />
         </columns>
       </TableView>
-      <Button layoutX="318.0" layoutY="131.0" mnemonicParsing="false" onAction="#searchButtonOA" text="Search" />
-      <Label layoutX="46.0" layoutY="88.0" text="Enter Reservation ID / Name to search :" />
-      <TextField fx:id="searchTF" layoutX="269.0" layoutY="84.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="14.0" prefHeight="34.0" prefWidth="207.0" text="Search Reservation" textAlignment="CENTER">
+      <Label layoutX="46.0" layoutY="91.0" text="Enter Reservation ID / Name to search :" textFill="#ba8935" />
+      <Button layoutX="321.0" layoutY="125.0" mnemonicParsing="false" onAction="#searchButtonOA" text="Search">
+         <effect>
+            <DropShadow height="0.0" radius="6.2075" spread="0.5" width="26.83">
+               <input>
+                  <InnerShadow />
+               </input>
+               <color>
+                  <Color red="0.7960526347160339" green="0.6368421316146851" blue="0.4422514736652374" />
+               </color>
+            </DropShadow>
+         </effect>
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TextField fx:id="searchTF" layoutX="273.0" layoutY="87.0" promptText="Enter Valid Credential" />
+      <Button layoutX="46.0" layoutY="360.0" mnemonicParsing="false" onAction="#backButtonOA" text="Back">
+         <font>
+            <Font name="System Bold" size="12.0" />
          </font>
-      </Label>
-      <Button layoutX="26.0" layoutY="351.0" mnemonicParsing="false" onAction="#backButtonOA" text="Back" />
-      <Label fx:id="messageLabel" layoutX="347.0" layoutY="355.0" prefHeight="34.0" prefWidth="255.0" />
+         <effect>
+            <DropShadow spread="0.31">
+               <input>
+                  <InnerShadow />
+               </input>
+               <color>
+                  <Color red="0.8289473652839661" green="0.7450932264328003" blue="0.5641447305679321" />
+               </color>
+            </DropShadow>
+         </effect></Button>
    </children>
 </AnchorPane>

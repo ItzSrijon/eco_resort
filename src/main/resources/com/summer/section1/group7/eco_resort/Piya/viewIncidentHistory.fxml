@@ -4,13 +4,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.ViewIncidentsController">
    <children>
-      <Label layoutX="45.0" layoutY="41.0" text="Incident List" />
-      <TableView fx:id="incidentTableView" layoutX="70.0" layoutY="75.0" prefHeight="200.0" prefWidth="550.0">
+      <HBox prefHeight="69.0" prefWidth="689.0" style="-fx-background-color: black;" />
+      <Label layoutX="272.0" layoutY="14.0" prefHeight="27.0" prefWidth="206.0" text="View Incidents" textFill="#d199ce">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="269.0" layoutY="41.0" text="Check Incident Record !!" textFill="#b47bb3" />
+      <VBox layoutX="11.0" layoutY="79.0" prefHeight="360.0" prefWidth="655.0" style="-fx-background-color: black;">
+         <children>
+            <Label fx:id="messageLabel" prefHeight="37.0" prefWidth="253.0" />
+         </children>
+      </VBox>
+      <TableView fx:id="incidentTableView" layoutX="59.0" layoutY="100.0" prefHeight="200.0" prefWidth="550.0">
         <columns>
           <TableColumn fx:id="incidentIdTC" prefWidth="109.0" text="Incident ID" />
           <TableColumn fx:id="incidentTypeTC" prefWidth="107.0" text="Incident Type" />
@@ -18,14 +34,41 @@
             <TableColumn fx:id="reportingDateTC" prefWidth="101.0" text="Date" />
             <TableColumn fx:id="statusTC" prefWidth="98.5" text="Status" />
         </columns>
+         <effect>
+            <DropShadow spread="0.43">
+               <color>
+                  <Color red="0.7763158082962036" green="0.564266562461853" blue="0.7727816104888916" />
+               </color>
+            </DropShadow>
+         </effect>
       </TableView>
-      <Button layoutX="248.0" layoutY="291.0" mnemonicParsing="false" onAction="#refreshButtonOA" prefHeight="37.0" prefWidth="86.0" text="Refresh" />
-      <Label layoutX="272.0" layoutY="14.0" text="View Incidents">
+      <Button layoutX="57.0" layoutY="339.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="37.0" prefWidth="86.0" text="Back">
+         <effect>
+            <DropShadow>
+               <input>
+                  <InnerShadow />
+               </input>
+               <color>
+                  <Color red="0.7039473652839661" green="0.41063597798347473" blue="0.6599506735801697" />
+               </color>
+            </DropShadow>
+         </effect>
          <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="messageLabel" layoutX="367.0" layoutY="309.0" prefHeight="59.0" prefWidth="253.0" />
-      <Button layoutX="45.0" layoutY="291.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="37.0" prefWidth="86.0" text="Back" />
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="523.0" layoutY="339.0" mnemonicParsing="false" onAction="#refreshButtonOA" prefHeight="37.0" prefWidth="86.0" text="Refresh">
+         <effect>
+            <DropShadow>
+               <input>
+                  <InnerShadow />
+               </input>
+               <color>
+                  <Color red="0.875" green="0.5144675970077515" blue="0.7848668694496155" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

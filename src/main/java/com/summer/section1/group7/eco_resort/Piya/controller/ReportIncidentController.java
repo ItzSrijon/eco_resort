@@ -17,29 +17,24 @@ import java.time.LocalDate;
 
 public class ReportIncidentController {
 
-    @FXML
-    private TextField titleTF, locationTF;
-
-    @FXML
-    private TextArea descriptionTA;
-
-    @FXML
-    private ComboBox<String> incidentTypeCB;
-
-    @FXML
-    private Label messageLabel;
+    @FXML private TextField titleTF;
+    @FXML private TextField locationTF;
+    @FXML private TextArea descriptionTA;
+    @FXML private ComboBox<String> incidentTypeCB;
+    @FXML private Label messageLabel;
 
     private User currentUser;
 
-
-    public void setCurrentUser(User user){
+    public void setCurrentUser(User user) {
         this.currentUser = user;
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
 
     @FXML
-    public void initialize(){
-
+    public void initialize() {
         incidentTypeCB.getItems().addAll(
                 "Unauthorized Access",
                 "Emergency",
@@ -47,39 +42,28 @@ public class ReportIncidentController {
                 "Theft",
                 "Other"
         );
-
     }
 
-
-
     @FXML
-    public void submitButtonOA(ActionEvent event){
+    public void submitButtonOA(ActionEvent event) {
 
-        String title = titleTF.getText();
-        String location = locationTF.getText();
-        String description = descriptionTA.getText();
+        String title = titleTF.getText().trim();
+        String location = locationTF.getText().trim();
+        String description = descriptionTA.getText().trim();
         String type = incidentTypeCB.getValue();
 
+        // Event-5: Validate report fields
+        if (title.isEmpty() || location.isEmpty()
+                || description.isEmpty() || type == null) {
 
-        if(title.isEmpty() ||
-                location.isEmpty() ||
-                description.isEmpty() ||
-                type == null){
-
-            messageLabel.setText(
-                    "Please fill all fields."
-            );
-
+            messageLabel.setText("Please fill all fields.");
             return;
         }
 
-
-
+        // Event-7: Generate incident ID
         String id = "IN" + System.currentTimeMillis();
 
-
         Incident incident = new Incident(
-
                 id,
                 title,
                 description,
@@ -88,142 +72,82 @@ public class ReportIncidentController {
                 LocalDate.now(),
                 currentUser,
                 "Pending"
-
         );
 
+        // Event-6: Save incident record
+        if (saveIncident(incident)) {
 
+            // Event-8: Display report status
+            messageLabel.setText(
+                    "Incident reported successfully.\nID: " + id
+            );
 
-        saveIncident(incident);
-
-
-
-        messageLabel.setText(
-                "Incident reported successfully.\nID: " + id
-        );
-
-
-
-        clearFields();
-
+            clearFields();
+        }
     }
 
+    private boolean saveIncident(Incident incident) {
 
+        File file = new File("Incident.bin");
 
-
-    private void saveIncident(Incident incident){
-
-
-        try{
-
-            File file = new File("Incident.bin");
-
-
+        try {
             ObjectOutputStream oos;
 
-
-            if(file.exists()){
-
+            if (file.exists() && file.length() > 0) {
                 oos = new AppendableObjectOutputStream(
-                        new FileOutputStream(file,true)
+                        new FileOutputStream(file, true)
                 );
-
-            }
-            else{
-
+            } else {
                 oos = new ObjectOutputStream(
                         new FileOutputStream(file)
                 );
-
             }
 
-
-
             oos.writeObject(incident);
-
             oos.close();
 
+            return true;
 
-        }
-        catch(Exception e){
-
+        } catch (IOException e) {
             e.printStackTrace();
-
-            messageLabel.setText(
-                    "Unable to save incident."
-            );
-
+            messageLabel.setText("Unable to save incident.");
+            return false;
         }
-
     }
 
-
-
-
-
-    private void clearFields(){
-
+    private void clearFields() {
         titleTF.clear();
-
         locationTF.clear();
-
         descriptionTA.clear();
-
         incidentTypeCB.setValue(null);
-
     }
-
-
-
-
 
     @FXML
-    public void backButtonOA(ActionEvent event){
+    public void backButtonOA(ActionEvent event) {
 
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/summer/section1/group7/eco_resort/Piya/SecurityDashboard.fxml"
+                    )
+            );
 
-        try{
-
-
-            FXMLLoader loader =
-                    new FXMLLoader(
-                            getClass().getResource(
-                                    "/com/summer/section1/group7/eco_resort/Piya/SecurityDashboard.fxml"
-                            )
-                    );
-
-
-
-            Scene scene =
-                    new Scene(loader.load());
-
-
+            Scene scene = new Scene(loader.load());
 
             SecurityDashboardController controller =
                     loader.getController();
 
-
             controller.setCurrentUser(currentUser);
 
-
-
-            Stage stage =
-                    (Stage)((Node)event.getSource())
-                            .getScene()
-                            .getWindow();
-
-
+            Stage stage = (Stage) ((Node) event.getSource())
+                    .getScene().getWindow();
 
             stage.setScene(scene);
-
             stage.show();
 
-
-        }
-        catch(Exception e){
-
+        } catch (Exception e) {
             e.printStackTrace();
-
+            messageLabel.setText("Unable to return to dashboard.");
         }
-
     }
-
 }

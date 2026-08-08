@@ -5,15 +5,63 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="427.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.SearchCheckInRecordsController">
+<AnchorPane prefHeight="535.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.SearchCheckInRecordsController">
    <children>
-      <TextField fx:id="searchTF" layoutX="271.0" layoutY="85.0" />
-      <Button layoutX="454.0" layoutY="85.0" mnemonicParsing="false" onAction="#searchButtonOA" text="Search" />
-      <TableView fx:id="checkInRecordTV" layoutX="41.0" layoutY="143.0" prefHeight="200.0" prefWidth="537.0">
+      <HBox layoutY="6.0" prefHeight="53.0" prefWidth="673.0" style="-fx-background-color: black;" />
+      <Label layoutX="228.0" layoutY="14.0" text="Search CheckIn Records" textFill="#b8c3f0">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <VBox layoutX="17.0" layoutY="62.0" prefHeight="481.0" prefWidth="639.0" style="-fx-background-color: black;" />
+      <Button layoutX="456.0" layoutY="382.0" mnemonicParsing="false" onAction="#refreshButtonOA" prefHeight="31.0" prefWidth="99.0" text="Refresh">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <DropShadow height="1.0" radius="6.6725" spread="0.51" width="27.69">
+               <color>
+                  <Color red="0.1614583283662796" green="0.3791438341140747" blue="0.6118420958518982" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button layoutX="70.0" layoutY="388.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="17.0" prefWidth="99.0" text="Back">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <DropShadow spread="0.51">
+               <color>
+                  <Color red="0.07550560683012009" green="0.28117385506629944" blue="0.4868420958518982" />
+               </color>
+            </DropShadow>
+         </effect></Button>
+      <Button layoutX="461.0" layoutY="104.0" mnemonicParsing="false" onAction="#searchButtonOA" text="Search">
+         <effect>
+            <DropShadow spread="0.46">
+               <color>
+                  <Color red="0.04038742557168007" green="0.1828307807445526" blue="0.44736841320991516" />
+               </color>
+            </DropShadow>
+         </effect></Button>
+      <Label layoutX="68.0" layoutY="108.0" text="Enter Guest Name or Reservation ID :" textFill="#577794" />
+      <TextField fx:id="searchTF" layoutX="275.0" layoutY="104.0" promptText="Enter Valid credentials">
+         <effect>
+            <DropShadow spread="0.37">
+               <color>
+                  <Color red="0.3352978825569153" green="0.493268758058548" blue="0.8092105388641357" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
+      <TableView fx:id="checkInRecordTV" layoutX="68.0" layoutY="157.0" prefHeight="200.0" prefWidth="537.0" style="-fx-border-color: #577794;">
         <columns>
           <TableColumn fx:id="guestNameTC" prefWidth="122.5" text="Guest Name" />
           <TableColumn fx:id="reservationIdTC" prefWidth="102.5" text="Reservation ID" />
@@ -21,13 +69,14 @@
             <TableColumn fx:id="checkInDateTC" prefWidth="104.5" text="Check-In Date" />
             <TableColumn fx:id="arrivalTimeTC" prefWidth="101.5" text="Arrival Time" />
         </columns>
+         <effect>
+            <DropShadow height="25.37" radius="8.5425" spread="0.63" width="10.8">
+               <color>
+                  <Color red="0.11863426119089127" green="0.3633776903152466" blue="0.625" />
+               </color>
+            </DropShadow>
+         </effect>
       </TableView>
-      <Label layoutX="54.0" layoutY="89.0" text="Enter Guest Name or Reservation ID :" />
-      <Label layoutX="199.0" layoutY="24.0" text="Search CheckIn Records">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <Button layoutX="41.0" layoutY="359.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="42.0" prefWidth="83.0" text="Back" />
+      <Label fx:id="messageLabel" layoutX="214.0" layoutY="503.0" prefHeight="17.0" prefWidth="268.0" />
    </children>
 </AnchorPane>

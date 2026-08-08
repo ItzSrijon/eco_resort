@@ -35,8 +35,8 @@ public class LoginController {
                 "Receptionist",
                 "Maintenance Officer",
                 "Gym Manager",
-                "Accountant",
                 "Guest",
+                "Accountant",
                 "Security Officer",
                 "Manager",
                 "Chef"
@@ -135,7 +135,7 @@ public class LoginController {
 
         try {
             URL url = getClass().getResource(
-                    "/com/summer/section1/group7/eco_resort/Piya/GuestRegistration.fxml");
+                    "/com/summer/section1/group7/eco_resort/Piya/guestRegistration.fxml");
             if (url == null) {
                 showMessage("Guest Registration page not found.");
                 return;

@@ -137,7 +137,7 @@ public class CheckInManagementController {
 
             FXMLLoader loader=
                     new FXMLLoader(getClass().getResource(
-                            "/com/summer/section1/group7/eco_resort/Piya/SecurityOfficerDashboard.fxml"));
+                            "/com/summer/section1/group7/eco_resort/Piya/securityDashboard.fxml"));
 
             Scene scene=new Scene(loader.load());
 

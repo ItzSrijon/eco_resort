@@ -42,13 +42,10 @@ public class SearchCheckInRecordsController {
     private TextField searchTF;
 
 
-    @FXML
-    private Label messageLabel;
-
-
     private ObservableList<CheckInRecord> recordList =
             FXCollections.observableArrayList();
-
+    @FXML
+    private Label messageLabel;
 
 
     @FXML
@@ -208,4 +205,44 @@ public class SearchCheckInRecordsController {
 
     }
 
+    @FXML
+    public void refreshButtonOA(ActionEvent actionEvent) {
+        searchTF.clear();
+        recordList.clear();
+
+        File file = new File("CheckInRecord.bin");
+
+        if (!file.exists()) {
+            messageLabel.setText("No check-in records found.");
+            return;
+        }
+
+        try (ObjectInputStream ois =
+                     new ObjectInputStream(
+                             new FileInputStream(file))) {
+
+            while (true) {
+                try {
+                    CheckInRecord record =
+                            (CheckInRecord) ois.readObject();
+
+                    recordList.add(record);
+
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+
+            if (recordList.isEmpty()) {
+                messageLabel.setText("No check-in records found.");
+            } else {
+                messageLabel.setText("Records refreshed successfully.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            messageLabel.setText("Error refreshing records.");
+        }
+
+    }
 }

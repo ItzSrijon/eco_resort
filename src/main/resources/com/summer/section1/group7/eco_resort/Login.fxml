@@ -39,7 +39,7 @@
         </VBox>
 
         <!-- Login Card -->
-        <VBox alignment="TOP_CENTER" layoutX="65" layoutY="106.0" prefHeight="574.0" prefWidth="420" spacing="16" style="-fx-background-color:white; -fx-background-radius:12; -fx-border-radius:12; -fx-border-color:#D0D0D0;">
+        <VBox alignment="TOP_CENTER" layoutX="65.0" layoutY="106.0" prefHeight="574.0" prefWidth="420" spacing="16" style="-fx-background-color:white; -fx-background-radius:12; -fx-border-radius:12; -fx-border-color:#D0D0D0;">
             <padding>
                 <Insets bottom="25" left="25" right="25" top="25" />
             </padding>

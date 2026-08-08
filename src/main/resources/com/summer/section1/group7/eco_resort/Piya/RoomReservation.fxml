@@ -5,35 +5,79 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.BookRoomController">
    <children>
-      <Label layoutX="17.0" layoutY="75.0" text="Room Type :" />
-      <ComboBox fx:id="roomTypeCB" layoutX="91.0" layoutY="71.0" prefWidth="150.0" />
-      <DatePicker fx:id="checkOutDP" layoutX="419.0" layoutY="114.0" />
-      <Button layoutX="486.0" layoutY="336.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="35.0" prefWidth="67.0" text="Back" />
-      <Button layoutX="354.0" layoutY="183.0" mnemonicParsing="false" onAction="#bookRoomButtonOA" prefHeight="35.0" prefWidth="127.0" text="Book Room">
-         <effect>
-            <DropShadow />
-         </effect>
-      </Button>
-      <Label layoutX="312.0" layoutY="118.0" text="Check-Out Date :" />
-      <Label fx:id="messageLabel" layoutX="114.0" layoutY="236.0" prefHeight="68.0" prefWidth="407.0" />
-      <Label layoutX="17.0" layoutY="126.0" text="Number Of Guests :" />
-      <Label layoutX="277.0" layoutY="75.0" text="Check-In Date :" />
+      <HBox layoutX="-4.0" prefHeight="57.0" prefWidth="639.0" style="-fx-background-color: Grey;" />
       <Label alignment="CENTER" layoutX="185.0" layoutY="14.0" text="Book Your Room !!!!">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <DatePicker fx:id="checkInDP" layoutX="379.0" layoutY="71.0" />
-      <ComboBox fx:id="guestCountCB" layoutX="130.0" layoutY="122.0" prefWidth="150.0" />
-      <Button layoutX="130.0" layoutY="183.0" mnemonicParsing="false" onAction="#checkRoomAvailableButtonOA" prefHeight="35.0" prefWidth="150.0" text="Check Room Availibility">
+      <VBox layoutX="18.0" layoutY="63.0" prefHeight="323.0" prefWidth="584.0" style="-fx-background-color: Grey;" />
+      <Label layoutX="69.0" layoutY="95.0" text="Room Type :" />
+      <ComboBox fx:id="roomTypeCB" layoutX="154.0" layoutY="91.0" prefWidth="150.0">
+         <effect>
+            <DropShadow radius="14.3725" width="38.49">
+               <color>
+                  <Color red="0.06578947603702545" green="0.012792397290468216" blue="0.012792397290468216" />
+               </color>
+            </DropShadow>
+         </effect></ComboBox>
+      <DatePicker fx:id="checkOutDP" layoutX="451.0" layoutY="133.0" prefHeight="25.0" prefWidth="144.0">
+         <effect>
+            <DropShadow radius="8.907499999999999" width="16.63" />
+         </effect></DatePicker>
+      <Button layoutX="69.0" layoutY="337.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="35.0" prefWidth="67.0" text="Back">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <input>
+                  <InnerShadow />
+               </input>
+            </DropShadow>
+         </effect></Button>
+      <Label fx:id="messageLabel" layoutX="321.0" layoutY="304.0" prefHeight="27.0" prefWidth="200.0" />
+      <Button layoutX="353.0" layoutY="200.0" mnemonicParsing="false" onAction="#bookRoomButtonOA" prefHeight="35.0" prefWidth="127.0" text="Book Room">
+         <effect>
+            <DropShadow>
+               <input>
+                  <InnerShadow />
+               </input></DropShadow>
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="353.0" layoutY="137.0" text="Check-Out Date :" />
+      <Label layoutX="58.0" layoutY="140.0" text="Number Of Guests :" />
+      <Label layoutX="335.0" layoutY="95.0" text="Check-In Date :" />
+      <DatePicker fx:id="checkInDP" layoutX="431.0" layoutY="91.0" prefHeight="25.0" prefWidth="150.0">
          <effect>
             <DropShadow />
+         </effect></DatePicker>
+      <ComboBox fx:id="guestCountCB" layoutX="173.0" layoutY="136.0" prefWidth="150.0">
+         <effect>
+            <DropShadow radius="14.0075" width="37.03" />
+         </effect></ComboBox>
+      <Button layoutX="136.0" layoutY="200.0" mnemonicParsing="false" onAction="#checkRoomAvailableButtonOA" prefHeight="35.0" prefWidth="150.0" text="Check Room Availibility">
+         <effect>
+            <DropShadow>
+               <input>
+                  <InnerShadow />
+               </input></DropShadow>
          </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>

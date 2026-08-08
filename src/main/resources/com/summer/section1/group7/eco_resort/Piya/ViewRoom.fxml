@@ -7,117 +7,67 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="414.0" prefWidth="663.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.ViewRoomController">
+<AnchorPane prefHeight="414.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.ViewRoomController">
 
     <children>
 
-        <Label layoutX="150.0"
-               layoutY="14.0"
-               prefHeight="25.0"
-               prefWidth="250.0"
-               text="View Room Details">
+        <Label layoutX="150.0" layoutY="14.0" prefHeight="25.0" prefWidth="250.0" text="View Room Details">
             <font>
-                <Font name="System Bold" size="16.0"/>
+                <Font name="System Bold" size="16.0" />
             </font>
         </Label>
 
 
-        <Label layoutX="28.0"
-               layoutY="72.0"
-               text="Select Room Type :"/>
+        <Label layoutX="28.0" layoutY="72.0" text="Select Room Type :" />
 
-        <ComboBox fx:id="roomTypeCB"
-                  layoutX="140.0"
-                  layoutY="68.0"
-                  prefWidth="150.0"/>
+        <ComboBox fx:id="roomTypeCB" layoutX="140.0" layoutY="68.0" prefWidth="150.0" />
 
 
-        <Button layoutX="330.0"
-                layoutY="68.0"
-                mnemonicParsing="false"
-                onAction="#refreshButtonOA"
-                text="Refresh"/>
+        <Button layoutX="330.0" layoutY="68.0" mnemonicParsing="false" onAction="#refreshButtonOA" text="Refresh" />
 
 
-        <Button layoutX="430.0"
-                layoutY="68.0"
-                mnemonicParsing="false"
-                onAction="#backButtonOA"
-                prefWidth="70.0"
-                text="Back"/>
+        <Button layoutX="430.0" layoutY="68.0" mnemonicParsing="false" onAction="#backButtonOA" prefWidth="70.0" text="Back" />
 
 
 
         <!-- Room Price -->
 
-        <Label layoutX="28.0"
-               layoutY="130.0"
-               text="Room Price :"/>
+        <Label layoutX="28.0" layoutY="130.0" text="Room Price :" />
 
-        <Label fx:id="priceLabel"
-               layoutX="110.0"
-               layoutY="130.0"
-               prefWidth="80.0"/>
+        <Label fx:id="priceLabel" layoutX="110.0" layoutY="130.0" prefWidth="80.0" />
 
 
 
         <!-- Capacity -->
 
-        <Label layoutX="220.0"
-               layoutY="130.0"
-               text="Capacity :"/>
+        <Label layoutX="333.0" layoutY="130.0" text="Capacity :" />
 
-        <Label fx:id="capacityLabel"
-               layoutX="285.0"
-               layoutY="130.0"
-               prefWidth="60.0"/>
+        <Label fx:id="capacityLabel" layoutX="285.0" layoutY="130.0" prefWidth="60.0" />
 
 
 
         <!-- Facilities -->
 
-        <Label layoutX="380.0"
-               layoutY="130.0"
-               text="Facilities :"/>
+        <Label layoutX="345.0" layoutY="170.0" text="Facilities :" />
 
-        <Label fx:id="facilitiesLabel"
-               layoutX="450.0"
-               layoutY="130.0"
-               prefWidth="170.0"/>
+        <Label fx:id="facilitiesLabel" layoutX="450.0" layoutY="130.0" prefWidth="170.0" />
 
 
 
         <!-- Availability -->
 
-        <Label layoutX="28.0"
-               layoutY="170.0"
-               text="Availability :"/>
+        <Label layoutX="28.0" layoutY="170.0" text="Availability :" />
 
-        <Label fx:id="availabilityLabel"
-               layoutX="110.0"
-               layoutY="170.0"
-               prefWidth="120.0"/>
+        <Label fx:id="availabilityLabel" layoutX="110.0" layoutY="170.0" prefHeight="25.0" prefWidth="179.0" />
 
 
 
         <!-- Room Description -->
 
-        <Label layoutX="28.0"
-               layoutY="215.0"
-               text="Room Description:"
-               style="-fx-font-weight: bold;"/>
+        <Label layoutX="28.0" layoutY="215.0" style="-fx-font-weight: bold;" text="Room Description:" />
 
 
-        <TextArea fx:id="roomDescriptionTA"
-                  layoutX="28.0"
-                  layoutY="240.0"
-                  prefHeight="130.0"
-                  prefWidth="560.0"
-                  editable="false"
-                  wrapText="true"/>
+        <TextArea fx:id="roomDescriptionTA" editable="false" layoutX="28.0" layoutY="240.0" prefHeight="130.0" prefWidth="560.0" wrapText="true" />
 
     </children>
 
