@@ -14,17 +14,12 @@ public class SupplierManager {
 
         try {
 
-            ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream(file));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 
             while (true) {
 
                 try {
-
-                    Supplier supplier =
-                            (Supplier) ois.readObject();
-
+                    Supplier supplier = (Supplier) ois.readObject();
                     if (supplier.getSupplierId().equalsIgnoreCase(supplierId.trim())) {
 
                         ois.close();
@@ -67,17 +62,14 @@ public class SupplierManager {
 
         try {
 
-            ObjectInputStream ois =
-                    new ObjectInputStream(new FileInputStream(file));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 
             while (true) {
 
                 try {
-
                     Supplier s = (Supplier) ois.readObject();
 
-                    int id = Integer.parseInt(
-                            s.getSupplierId().substring(2));
+                    int id = Integer.parseInt(s.getSupplierId().substring(2));
 
                     if (id > max) {
                         max = id;
@@ -88,7 +80,6 @@ public class SupplierManager {
                 }
 
             }
-
             ois.close();
 
         } catch (Exception e) {

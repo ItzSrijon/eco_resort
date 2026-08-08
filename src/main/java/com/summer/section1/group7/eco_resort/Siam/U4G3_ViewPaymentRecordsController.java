@@ -21,36 +21,25 @@ public class U4G3_ViewPaymentRecordsController {
 
     @FXML
     private AnchorPane mainPane;
-
     @FXML
     private DatePicker fromDateDP;
-
     @FXML
     private DatePicker toDateDP;
-
     @FXML
     private TableView<Payment> paymentTV;
-
     @FXML
     private TableColumn<Payment,String> paymentIdTC;
-
     @FXML
     private TableColumn<Payment,String> guestIdTC;
-
     @FXML
     private TableColumn<Payment,String> guestNameTC;
-
     @FXML
     private TableColumn<Payment,Double> amountTC;
-
     @FXML
     private TableColumn<Payment,String> paymentMethodTC;
-
     @FXML
     private TableColumn<Payment,LocalDate> paymentDateTC;
-
-    ObservableList<Payment> paymentList =
-            FXCollections.observableArrayList();
+    ObservableList<Payment> paymentList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -69,10 +58,7 @@ public class U4G3_ViewPaymentRecordsController {
         paymentList.clear();
 
         try {
-
-            ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream("payment.bin"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("payment.bin"));
 
             while (true) {
 
@@ -80,17 +66,13 @@ public class U4G3_ViewPaymentRecordsController {
 
                     Payment p = (Payment) ois.readObject();
 
-                    // Date filter
-                    if (fromDateDP.getValue() != null &&
-                            p.getPaymentDate().isBefore(fromDateDP.getValue())) {
+                    if (fromDateDP.getValue() != null && p.getPaymentDate().isBefore(fromDateDP.getValue())) {
                         continue;
                     }
 
-                    if (toDateDP.getValue() != null &&
-                            p.getPaymentDate().isAfter(toDateDP.getValue())) {
+                    if (toDateDP.getValue() != null && p.getPaymentDate().isAfter(toDateDP.getValue())) {
                         continue;
                     }
-
                     paymentList.add(p);
 
                 }
@@ -98,7 +80,6 @@ public class U4G3_ViewPaymentRecordsController {
                 catch (EOFException e) {
 
                     break;
-
                 }
 
             }
@@ -122,11 +103,8 @@ public class U4G3_ViewPaymentRecordsController {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         }
@@ -136,7 +114,5 @@ public class U4G3_ViewPaymentRecordsController {
             e.printStackTrace();
 
         }
-
     }
-
 }

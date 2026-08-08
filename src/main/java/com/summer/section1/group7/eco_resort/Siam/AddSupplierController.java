@@ -39,11 +39,8 @@ public class AddSupplierController {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("U4G4_ProcessSupplierPayment.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("U4G4_ProcessSupplierPayment.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         }
@@ -58,36 +55,24 @@ public class AddSupplierController {
     @FXML
     public void addSupplierOA(ActionEvent actionEvent) {
 
-        if (supplierNameTF.getText().trim().isEmpty()
-                || companyNameTF.getText().trim().isEmpty()
-                || phoneTF.getText().trim().isEmpty()
-                || emailTF.getText().trim().isEmpty()) {
-
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Please fill all fields.");
-
+        if (supplierNameTF.getText().trim().isEmpty() || companyNameTF.getText().trim().isEmpty() || phoneTF.getText().trim().isEmpty() || emailTF.getText().trim().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please fill all fields.");
             return;
 
         }
 
         Supplier supplier = new Supplier(
-
                 supplierIdTF.getText(),
                 supplierNameTF.getText().trim(),
                 companyNameTF.getText().trim(),
                 phoneTF.getText().trim(),
-                emailTF.getText().trim()
-
-        );
+                emailTF.getText().trim());
 
         File file = new File("supplier.bin");
 
         try {
-
             FileOutputStream fos;
             ObjectOutputStream oos;
-
             if (file.exists()) {
 
                 fos = new FileOutputStream(file, true);
@@ -96,7 +81,6 @@ public class AddSupplierController {
             }
 
             else {
-
                 fos = new FileOutputStream(file);
                 oos = new ObjectOutputStream(fos);
 
@@ -104,17 +88,13 @@ public class AddSupplierController {
 
             oos.writeObject(supplier);
             oos.close();
-
-            showAlert(Alert.AlertType.INFORMATION,
-                    "Success",
-                    "Supplier added successfully.");
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Supplier added successfully.");
 
             clearFields();
 
         }
 
         catch (Exception e) {
-
             e.printStackTrace();
 
         }
@@ -123,7 +103,6 @@ public class AddSupplierController {
     private void clearFields() {
 
         supplierIdTF.setText(SupplierManager.generateSupplierId());
-
         supplierNameTF.clear();
         companyNameTF.clear();
         phoneTF.clear();
@@ -131,17 +110,11 @@ public class AddSupplierController {
 
     }
 
-    private void showAlert(Alert.AlertType type,
-                           String title,
-                           String message) {
+    private void showAlert(Alert.AlertType type, String title, String message) {
 
         Alert alert = new Alert(type);
-
         alert.setTitle(title);
         alert.setContentText(message);
-
         alert.showAndWait();
-
     }
-
 }

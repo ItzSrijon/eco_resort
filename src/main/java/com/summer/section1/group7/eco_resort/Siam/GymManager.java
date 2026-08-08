@@ -36,7 +36,6 @@ public class GymManager {
             while (true) {
 
                 try {
-
                     memberList.add((GymMember) ois.readObject());
 
                 } catch (EOFException e) {
@@ -61,14 +60,11 @@ public class GymManager {
 
         try {
 
-            ObjectOutputStream oos =
-                    new ObjectOutputStream(
-                            new FileOutputStream("gymMember.bin"));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("gymMember.bin"));
 
             for (GymMember gm : memberList) {
 
                 oos.writeObject(gm);
-
             }
 
             oos.close();
@@ -80,6 +76,5 @@ public class GymManager {
             e.printStackTrace();
 
         }
-
     }
 }
