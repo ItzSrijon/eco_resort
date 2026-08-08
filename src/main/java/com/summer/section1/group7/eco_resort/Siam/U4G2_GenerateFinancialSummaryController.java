@@ -45,35 +45,20 @@ public class U4G2_GenerateFinancialSummaryController {
     @FXML
     public void generateReportOA(ActionEvent actionEvent) {
 
-        if (guestPaymentTF.getText().trim().isEmpty()
-                || supplierPaymentTF.getText().trim().isEmpty()
-                || employeeSalaryTF.getText().trim().isEmpty()
-                || transactionTF.getText().trim().isEmpty()) {
+        if (guestPaymentTF.getText().trim().isEmpty() || supplierPaymentTF.getText().trim().isEmpty() || employeeSalaryTF.getText().trim().isEmpty() || transactionTF.getText().trim().isEmpty()) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Please fill all fields.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please fill all fields.");
 
             return;
 
         }
 
-        double guestPayment =
-                Double.parseDouble(guestPaymentTF.getText());
-
-        double supplierPayment =
-                Double.parseDouble(supplierPaymentTF.getText());
-
-        double employeeSalary =
-                Double.parseDouble(employeeSalaryTF.getText());
-
-        int totalTransaction =
-                Integer.parseInt(transactionTF.getText());
-
+        double guestPayment = Double.parseDouble(guestPaymentTF.getText());
+        double supplierPayment = Double.parseDouble(supplierPaymentTF.getText());
+        double employeeSalary = Double.parseDouble(employeeSalaryTF.getText());
+        int totalTransaction = Integer.parseInt(transactionTF.getText());
         double income = guestPayment;
-
         double expense = supplierPayment + employeeSalary;
-
         double profit = income - expense;
 
         incomeTF.setText(String.valueOf(income));
@@ -90,9 +75,7 @@ public class U4G2_GenerateFinancialSummaryController {
                 totalTransaction
         );
 
-        showAlert(Alert.AlertType.INFORMATION,
-                "Success",
-                "Financial Summary Generated.");
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Financial Summary Generated.");
 
     }
 
@@ -101,9 +84,7 @@ public class U4G2_GenerateFinancialSummaryController {
 
         if (summary == null) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Generate report first.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Generate report first.");
 
             return;
 
@@ -133,10 +114,7 @@ public class U4G2_GenerateFinancialSummaryController {
             oos.writeObject(summary);
 
             oos.close();
-
-            showAlert(Alert.AlertType.INFORMATION,
-                    "Success",
-                    "Report saved successfully.");
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Report saved successfully.");
 
         }
 
@@ -153,11 +131,8 @@ public class U4G2_GenerateFinancialSummaryController {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("financialSummaryTableView.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("financialSummaryTableView.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         }
@@ -175,11 +150,8 @@ public class U4G2_GenerateFinancialSummaryController {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         }
@@ -192,16 +164,11 @@ public class U4G2_GenerateFinancialSummaryController {
 
     }
 
-    private void showAlert(Alert.AlertType type,
-                           String title,
-                           String message) {
+    private void showAlert(Alert.AlertType type, String title, String message) {
 
         Alert alert = new Alert(type);
-
         alert.setTitle(title);
-        alert.setHeaderText(null);
         alert.setContentText(message);
-
         alert.showAndWait();
 
     }

@@ -6,49 +6,32 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import javafx.collections.ObservableList;
 
 public class U3G7_AssignFitnessPackageController {
-
     @FXML
     private TextField phoneTF;
-
     @FXML
     private TextField startDateTF;
-
     @FXML
     private TextField currentPackageTF;
-
     @FXML
     private TextField guestNameTF;
-
     @FXML
     private TextField expiryDateTF;
-
     @FXML
     private ComboBox<String> newFitnessPackageCB;
-
     @FXML
     private TextField guestIdTF;
-
     @FXML
     private AnchorPane mainPane;
-
     private GymMember loadedMember;
-
-    private ArrayList<GymMember> memberList = new ArrayList<>();
 
     @FXML
     public void initialize() {
-
-        newFitnessPackageCB.getItems().addAll(
-                "Basic",
-                "Premium",
-                "VIP"
-        );
+        newFitnessPackageCB.getItems().addAll("Basic", "Premium", "VIP");
 
     }
 
@@ -65,79 +48,30 @@ public class U3G7_AssignFitnessPackageController {
 
         newFitnessPackageCB.getSelectionModel().clearSelection();
 
-        memberList.clear();
-
         if (guestIdTF.getText().trim().isEmpty()) {
 
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Please enter Guest ID."
+            showAlert(Alert.AlertType.ERROR, "Error", "Please enter Guest ID."
             );
+
             return;
         }
 
-        try {
+        loadedMember = GymManager.findGymMember(guestIdTF.getText().trim()
+        );
 
-            FileInputStream fis = new FileInputStream("gymMember.bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
+        if (loadedMember == null) {
+            showAlert(Alert.AlertType.ERROR, "Not Found", "Gym member not found.");
 
-            while (true) {
-
-                try {
-
-                    GymMember gm = (GymMember) ois.readObject();
-
-                    memberList.add(gm);
-
-                    if (gm.getGuestId().equalsIgnoreCase(
-                            guestIdTF.getText().trim())) {
-
-                        loadedMember = gm;
-
-                        guestNameTF.setText(gm.getGuestName());
-                        phoneTF.setText(gm.getPhoneNumber());
-                        currentPackageTF.setText(gm.getPackageName());
-
-                        startDateTF.setText(
-                                gm.getRegistrationDate().toString());
-
-                        expiryDateTF.setText(
-                                gm.getRegistrationDate()
-                                        .plusMonths(gm.getDuration())
-                                        .toString());
-
-                        break;
-
-                    }
-
-                } catch (EOFException e) {
-
-                    break;
-
-                }
-
-            }
-
-            ois.close();
-
-            if (loadedMember == null) {
-
-                showAlert(
-                        Alert.AlertType.ERROR,
-                        "Not Found",
-                        null,
-                        "Gym member not found."
-                );
-
-            }
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
+            return;
         }
+
+        guestNameTF.setText(loadedMember.getGuestName());
+        phoneTF.setText(loadedMember.getPhoneNumber());
+        currentPackageTF.setText(loadedMember.getPackageName());
+
+        startDateTF.setText(loadedMember.getRegistrationDate().toString());
+
+        expiryDateTF.setText(loadedMember.getRegistrationDate().plusMonths(loadedMember.getDuration()).toString());
 
     }
 
@@ -146,75 +80,67 @@ public class U3G7_AssignFitnessPackageController {
 
         if (loadedMember == null) {
 
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Search a gym member first."
-            );
+            showAlert(Alert.AlertType.ERROR, "Error", "Search a gym member first.");
+
             return;
         }
 
         if (newFitnessPackageCB.getValue() == null) {
 
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Please select a fitness package."
-            );
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select a fitness package.");
+
             return;
         }
 
-        if (loadedMember.getPackageName().equalsIgnoreCase(newFitnessPackageCB.getValue())) {
+        String newPackage = newFitnessPackageCB.getValue();
 
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Invalid Package",
-                    null,
-                    "This member already has the selected package."
-            );
+        if (loadedMember.getPackageName().equalsIgnoreCase(newPackage)) {
+
+            showAlert(Alert.AlertType.ERROR, "Invalid Package", "This member already has the selected package.");
+
             return;
         }
 
         LocalDate startDate = LocalDate.now();
-        LocalDate expiryDate = startDate.plusMonths(loadedMember.getDuration());
+
+        loadedMember.setPackageName(newPackage);
+        loadedMember.setRegistrationDate(startDate);
+
+        ObservableList<GymMember> memberList = GymManager.loadMembers();
 
         for (GymMember gm : memberList) {
 
-            if (gm.getGuestId().equalsIgnoreCase(guestIdTF.getText().trim())) {
-
-                gm.setPackageName(newFitnessPackageCB.getValue());
+            if (gm.getGuestId().equalsIgnoreCase(loadedMember.getGuestId())) {
+                gm.setPackageName(newPackage);
                 gm.setRegistrationDate(startDate);
-                loadedMember = gm;
 
                 break;
             }
-
         }
+        GymManager.saveMembers(memberList);
+
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Fitness package assigned successfully."
+        );
+
+        clearFields();
+    }
+    private void showAlert(Alert.AlertType type, String title, String message) {
+
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    @FXML
+    public void backButtonOA(ActionEvent actionEvent) {
 
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
+            Node node = loader.load();
+            mainPane.getChildren().setAll(node);
 
-            FileOutputStream fos = new FileOutputStream("gymMember.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            for (GymMember gm : memberList) {
-                oos.writeObject(gm);
-            }
-
-            oos.close();
-
-            showAlert(
-                    Alert.AlertType.INFORMATION,
-                    "Success",
-                    null,
-                    "Fitness package assigned successfully."
-            );
-            clearFields();
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
 
     }
@@ -226,44 +152,8 @@ public class U3G7_AssignFitnessPackageController {
         currentPackageTF.clear();
         startDateTF.clear();
         expiryDateTF.clear();
-
         newFitnessPackageCB.getSelectionModel().clearSelection();
 
         loadedMember = null;
-        memberList.clear();
-
-    }
-    private void showAlert(Alert.AlertType type,
-                            String title,
-                            String header,
-                            String message) {
-
-        Alert alert = new Alert(type);
-
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(message);
-
-        alert.showAndWait();
-
-    }
-    @FXML
-    public void backButtonOA(ActionEvent actionEvent) {
-
-        try {
-
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
-
-            Node node = loader.load();
-
-            mainPane.getChildren().setAll(node);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
     }
 }

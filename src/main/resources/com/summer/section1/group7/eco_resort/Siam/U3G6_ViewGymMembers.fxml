@@ -51,7 +51,7 @@
 
                     <ComboBox fx:id="memberStatusCB" prefWidth="170" promptText="Select Status" GridPane.columnIndex="1" />
 
-                    <Button onAction="#loadMembersOA" prefWidth="130" style="-fx-background-color:#1565C0;                                    -fx-text-fill:white;                                    -fx-background-radius:10;                                    -fx-cursor:hand;" text="View Members" GridPane.columnIndex="2" />
+                    <Button onAction="#viewMembersOA" prefWidth="130" style="-fx-background-color:#1565C0;                                    -fx-text-fill:white;                                    -fx-background-radius:10;                                    -fx-cursor:hand;" text="View Members" GridPane.columnIndex="2" />
                <columnConstraints>
                   <ColumnConstraints />
                   <ColumnConstraints />

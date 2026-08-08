@@ -37,9 +37,7 @@ public class U4G1_RecordGuestPaymentController {
     public void initialize() {
 
         paymentTypeCB.getItems().addAll("Gym","Room", "Restaurant", "Laundry");
-
         paymentMethodCB.getItems().addAll("Cash", "Card", "Bkash", "Nagad", "Bank Transfer");
-
         paymentDateTF.setText(LocalDate.now().toString());
 
     }
@@ -55,9 +53,7 @@ public class U4G1_RecordGuestPaymentController {
 
         if (guestId.isEmpty()) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Please enter Guest ID.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please enter Guest ID.");
 
             return;
         }
@@ -66,8 +62,7 @@ public class U4G1_RecordGuestPaymentController {
 
         for (User user : UserManager.getUserList()) {
 
-            if (user.getUserId().equalsIgnoreCase(guestId)
-                    && user.getRole().equalsIgnoreCase("Guest")) {
+            if (user.getUserId().equalsIgnoreCase(guestId) && user.getRole().equalsIgnoreCase("Guest")) {
 
                 loadedGuest = user;
                 break;
@@ -76,22 +71,16 @@ public class U4G1_RecordGuestPaymentController {
 
         if (loadedGuest == null) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Guest not found.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Guest not found.");
 
             return;
         }
 
         guestNameTF.setText(loadedGuest.getName());
         paymentDateTF.setText(LocalDate.now().toString());
-
-        // এখন Gym Member খুঁজবে
         try {
 
-            ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream("gymMember.bin"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("gymMember.bin"));
 
             while (true) {
 
@@ -117,20 +106,14 @@ public class U4G1_RecordGuestPaymentController {
             e.printStackTrace();
         }
 
-        showAlert(Alert.AlertType.INFORMATION,
-                "Success",
-                "Guest loaded successfully.");
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Guest loaded successfully.");
     }
     @FXML
     public void recordPaymentOA(ActionEvent actionEvent) {
 
         if (guestNameTF.getText().isEmpty()) {
 
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Error",
-                    "Please search a guest first."
-            );
+            showAlert(Alert.AlertType.ERROR, "Error", "Please search a guest first.");
 
             return;
 
@@ -138,11 +121,7 @@ public class U4G1_RecordGuestPaymentController {
 
         if (paymentTypeCB.getValue() == null) {
 
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Error",
-                    "Please select payment type."
-            );
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select payment type.");
 
             return;
 
@@ -150,14 +129,9 @@ public class U4G1_RecordGuestPaymentController {
 
         if (paymentMethodCB.getValue() == null) {
 
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Error",
-                    "Please select payment method."
-            );
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select payment method.");
 
             return;
-
         }
 
         double amount;
@@ -166,11 +140,7 @@ public class U4G1_RecordGuestPaymentController {
 
             if (loadedGymMember == null) {
 
-                showAlert(
-                        Alert.AlertType.ERROR,
-                        "Error",
-                        "This guest is not a gym member."
-                );
+                showAlert(Alert.AlertType.ERROR, "Error", "This guest is not a gym member.");
 
                 return;
 
@@ -187,10 +157,7 @@ public class U4G1_RecordGuestPaymentController {
 
             if (amountTF.getText().isEmpty()) {
 
-                showAlert(
-                        Alert.AlertType.ERROR,
-                        "Error",
-                        "Please enter amount."
+                showAlert(Alert.AlertType.ERROR, "Error", "Please enter amount."
                 );
 
                 return;
@@ -198,7 +165,6 @@ public class U4G1_RecordGuestPaymentController {
             }
 
             amount = Double.parseDouble(amountTF.getText());
-
         }
 
         Payment payment = new Payment(
@@ -219,15 +185,13 @@ public class U4G1_RecordGuestPaymentController {
 
             if (file.exists()) {
 
-                oos = new AppendableObjectOutputStream(
-                        new FileOutputStream(file, true));
+                oos = new AppendableObjectOutputStream(new FileOutputStream(file, true));
 
             }
 
             else {
 
-                oos = new ObjectOutputStream(
-                        new FileOutputStream(file));
+                oos = new ObjectOutputStream(new FileOutputStream(file));
 
             }
 
@@ -255,45 +219,14 @@ public class U4G1_RecordGuestPaymentController {
 
     }
 
-    private void clearFields() {
 
-        guestIdTF.clear();
-        guestNameTF.clear();
-        amountTF.clear();
-
-        paymentTypeCB.getSelectionModel().clearSelection();
-        paymentMethodCB.getSelectionModel().clearSelection();
-
-        paymentDateTF.setText(LocalDate.now().toString());
-
-        amountTF.setEditable(true);
-
-        loadedGymMember = null;
-
-    }
-    private void showAlert(Alert.AlertType type,
-                           String title,
-                           String message) {
-
-        Alert alert = new Alert(type);
-
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-
-        alert.showAndWait();
-
-    }
     @FXML
     public void backButtonOA(ActionEvent actionEvent) {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         }
@@ -301,9 +234,7 @@ public class U4G1_RecordGuestPaymentController {
         catch (Exception e) {
 
             e.printStackTrace();
-
         }
-
     }
 
     @FXML
@@ -317,10 +248,7 @@ public class U4G1_RecordGuestPaymentController {
 
             if (loadedGymMember != null) {
 
-                amountTF.setText(
-                        String.valueOf(
-                                loadedGymMember.getTotalFee()
-                        )
+                amountTF.setText(String.valueOf(loadedGymMember.getTotalFee())
                 );
 
                 amountTF.setEditable(false);
@@ -334,6 +262,26 @@ public class U4G1_RecordGuestPaymentController {
             amountTF.setEditable(true);
 
         }
+
+    }
+    private void clearFields() {
+
+        guestIdTF.clear();
+        guestNameTF.clear();
+        amountTF.clear();
+        paymentTypeCB.getSelectionModel().clearSelection();
+        paymentMethodCB.getSelectionModel().clearSelection();
+        paymentDateTF.setText(LocalDate.now().toString());
+        amountTF.setEditable(true);
+        loadedGymMember = null;
+
+    }
+    private void showAlert(Alert.AlertType type, String title, String message) {
+
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
 
     }
 }

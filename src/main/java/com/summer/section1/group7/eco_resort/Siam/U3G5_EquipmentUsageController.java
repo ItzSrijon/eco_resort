@@ -42,10 +42,7 @@ public class U3G5_EquipmentUsageController {
     @FXML
     public void initialize() {
 
-        durationCB.getItems().addAll(
-                "30 Minutes",
-                "1 Hour",
-                "2 Hours"
+        durationCB.getItems().addAll("30 Minutes", "1 Hour", "2 Hours"
         );
         createEquipmentFile();
 
@@ -88,141 +85,49 @@ public class U3G5_EquipmentUsageController {
         equipmentCB.getItems().clear();
 
         try {
-
-            ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream("equipment.bin"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("equipment.bin"));
 
             while (true){
-
                 try{
-
-                    Equipment equipment =
-                            (Equipment) ois.readObject();
-
+                    Equipment equipment = (Equipment) ois.readObject();
                     equipmentCB.getItems().add(equipment);
 
                 }
-
                 catch (EOFException e){
-
                     break;
-
                 }
-
             }
-
             ois.close();
-
         }
 
         catch (Exception e){
-
             e.printStackTrace();
 
         }
 
     }
 
-    private void clearFields(){
-
-        memberIdTF.clear();
-        memberNameTF.clear();
-        availableQtyTF.clear();
-        equipmentStatusTF.clear();
-        startTimeTF.clear();
-        endTimeTF.clear();
-
-        equipmentCB.getSelectionModel().clearSelection();
-        durationCB.getSelectionModel().clearSelection();
-
-        loadedMember = null;
-
-    }
-
-    private void showAlert(Alert.AlertType type,
-                           String title,
-                           String header,
-                           String message){
-
-        Alert alert = new Alert(type);
-
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(message);
-
-        alert.showAndWait();
-
-    }
     @FXML
     public void searchButtonOA(ActionEvent actionEvent) {
-
         loadedMember = null;
         memberNameTF.clear();
+        String memberId = memberIdTF.getText().trim();
 
-        if (memberIdTF.getText().trim().isEmpty()) {
-
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Please enter Member ID.");
+        if (memberId.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please enter Member ID."
+            );
 
             return;
         }
-
-        try {
-
-            ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream("gymMember.bin"));
-
-            while (true) {
-
-                try {
-
-                    GymMember member =
-                            (GymMember) ois.readObject();
-
-                    if (member.getGuestId().equalsIgnoreCase(
-                            memberIdTF.getText().trim())) {
-
-                        loadedMember = member;
-
-                        memberNameTF.setText(
-                                member.getGuestName());
-
-                        break;
-                    }
-
-                }
-
-                catch (EOFException e) {
-
-                    break;
-
-                }
-
-            }
-
-            ois.close();
-
-            if (loadedMember == null) {
-
-                showAlert(Alert.AlertType.ERROR,
-                        "Not Found",
-                        null,
-                        "Member not found.");
-
-            }
-
+        loadedMember = GymManager.findGymMember(memberId);
+        if (loadedMember == null) {
+            showAlert(Alert.AlertType.ERROR, "Not Found", "Gym member not found.");
+            return;
         }
+        memberNameTF.setText(loadedMember.getGuestName());
 
-        catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Gym member loaded successfully."
+        );
     }
 
     @FXML
@@ -236,7 +141,6 @@ public class U3G5_EquipmentUsageController {
         }
 
         Equipment equipment = equipmentCB.getValue();
-
         int totalQuantity = equipment.getQuantity();
 
         int activeUsage = 0;
@@ -253,22 +157,14 @@ public class U3G5_EquipmentUsageController {
 
             }
 
-            ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream(file));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 
             while (true) {
 
                 try {
+                    EquipmentUsage usage = (EquipmentUsage) ois.readObject();
 
-                    EquipmentUsage usage =
-                            (EquipmentUsage) ois.readObject();
-
-                    if (usage.getEquipmentName().equals(
-                            equipment.getEquipmentName())
-                            &&
-                            usage.getUsageDate().equals(LocalDate.now())
-                            &&
+                    if (usage.getEquipmentName().equals(equipment.getEquipmentName()) && usage.getUsageDate().equals(LocalDate.now()) &&
                             usage.getEndTime().isAfter(LocalTime.now())) {
 
                         activeUsage++;
@@ -276,39 +172,28 @@ public class U3G5_EquipmentUsageController {
                     }
 
                 }
-
                 catch (EOFException e) {
 
                     break;
-
                 }
 
             }
-
             ois.close();
-
         }
 
         catch (Exception e) {
-
             e.printStackTrace();
 
         }
 
         int available = totalQuantity - activeUsage;
-
         availableQtyTF.setText(String.valueOf(available));
 
         if (available > 0) {
-
             equipmentStatusTF.setText("Available");
-
         }
-
         else {
-
             equipmentStatusTF.setText("Unavailable");
-
         }
 
     }
@@ -316,51 +201,34 @@ public class U3G5_EquipmentUsageController {
     public void assignEquipmentOA(ActionEvent actionEvent) {
 
         if (loadedMember == null) {
-
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Please load a member first.");
-
+            showAlert(Alert.AlertType.ERROR, "Error", "Please load a member first.");
             return;
         }
 
         if (equipmentCB.getValue() == null) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Please select equipment.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select equipment.");
 
             return;
         }
 
         if (durationCB.getValue() == null) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Please select duration.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select duration.");
 
             return;
         }
 
         if (availableQtyTF.getText().isEmpty()) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Please select equipment.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select equipment.");
 
             return;
         }
 
         if (Integer.parseInt(availableQtyTF.getText()) <= 0) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Unavailable",
-                    null,
-                    "Equipment is currently unavailable.");
+            showAlert(Alert.AlertType.ERROR, "Unavailable", "Equipment is currently unavailable.");
 
             return;
         }
@@ -383,52 +251,37 @@ public class U3G5_EquipmentUsageController {
 
         }
 
-        DateTimeFormatter formatter =
-                DateTimeFormatter.ofPattern("hh:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
 
         startTimeTF.setText(startTime.format(formatter));
         endTimeTF.setText(endTime.format(formatter));
 
-        EquipmentUsage usage =
-                new EquipmentUsage(
-
+        EquipmentUsage usage = new EquipmentUsage(
                         loadedMember.getGuestId(),
                         loadedMember.getGuestName(),
                         equipmentCB.getValue().getEquipmentName(),
                         durationCB.getValue(),
                         LocalDate.now(),
                         startTime,
-                        endTime
-                );
+                        endTime);
 
         try {
 
             File file = new File("equipmentUsage.bin");
-
             ObjectOutputStream oos;
 
             if (file.exists()) {
 
-                oos = new AppendableObjectOutputStream(
-                        new FileOutputStream(file, true));
-
+                oos = new AppendableObjectOutputStream(new FileOutputStream(file, true));
             }
 
             else {
-
-                oos = new ObjectOutputStream(
-                        new FileOutputStream(file));
+                oos = new ObjectOutputStream(new FileOutputStream(file));
 
             }
-
             oos.writeObject(usage);
-
             oos.close();
-
-            showAlert(
-                    Alert.AlertType.INFORMATION,
-                    "Success",
-                    null,
+            showAlert(Alert.AlertType.INFORMATION, "Success",
                     "Equipment Usage Recorded Successfully.\n\n"
                             + "Member ID : " + loadedMember.getGuestId()
                             + "\nMember Name : " + loadedMember.getGuestName()
@@ -438,13 +291,11 @@ public class U3G5_EquipmentUsageController {
             );
 
             clearFields();
-
             loadEquipment();
 
         }
 
         catch (Exception e) {
-
             e.printStackTrace();
 
         }
@@ -455,23 +306,37 @@ public class U3G5_EquipmentUsageController {
     public void backToDashboardOA(ActionEvent actionEvent) {
 
         try {
-
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         }
-
         catch (Exception e) {
-
             e.printStackTrace();
 
         }
+    }
+    private void clearFields(){
+
+        memberIdTF.clear();
+        memberNameTF.clear();
+        availableQtyTF.clear();
+        equipmentStatusTF.clear();
+        startTimeTF.clear();
+        endTimeTF.clear();
+        equipmentCB.getSelectionModel().clearSelection();
+        durationCB.getSelectionModel().clearSelection();
+        loadedMember = null;
 
     }
 
+    private void showAlert(Alert.AlertType type, String title,String message){
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+
+    }
 }
 

@@ -34,21 +34,7 @@ public class U4G5_GenerateGuestInvoiceController {
 
     }
 
-    @FXML
-    public void backToDashboardOA(ActionEvent actionEvent) {
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
-            Node node = loader.load();
-            mainPane.getChildren().setAll(node);
-
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-
-        }
-
-    }
 
     @FXML
     public void loadGuestOA(ActionEvent actionEvent) {
@@ -148,6 +134,21 @@ public class U4G5_GenerateGuestInvoiceController {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    @FXML
+    public void backToDashboardOA(ActionEvent actionEvent) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
+            Node node = loader.load();
+            mainPane.getChildren().setAll(node);
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
     }
 
 }
