@@ -1,39 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ManageSafetyInspectionController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ConductSafetyInspectionController">
 
-    <Label layoutX="230.0" layoutY="20.0" text="Safety Inspection and Risk Management">
-        <font><javafx.scene.text.Font name="System Bold" size="20.0" /></font>
+    <Label layoutX="300.0" layoutY="20.0" text="Safety Inspection">
+        <font>
+            <Font name="System Bold" size="20.0" />
+        </font>
     </Label>
 
-    <Label layoutX="30.0" layoutY="80.0" text="Select Area" />
-    <ComboBox fx:id="areaCB" layoutX="130.0" layoutY="76.0" prefWidth="200.0" />
+    <Label layoutX="30.0" layoutY="60.0" text="Add Area to Checklist">
+        <font>
+            <Font name="System Bold" size="14.0" />
+        </font>
+    </Label>
 
-    <Label layoutX="30.0" layoutY="120.0" text="Checklist Items" />
-    <ListView fx:id="checklistListView" layoutX="30.0" layoutY="145.0" prefHeight="180.0" prefWidth="740.0" />
+    <VBox layoutX="30.0" layoutY="90.0" prefWidth="840.0" spacing="10.0">
+        <padding>
+            <Insets bottom="10.0" left="0.0" right="0.0" top="0.0" />
+        </padding>
+        <HBox spacing="10.0">
+            <ComboBox fx:id="areaCB" prefWidth="220.0" promptText="Area" />
+            <Button fx:id="addAreaButtonOA" onAction="#addAreaButtonOA" text="Add Area" />
+        </HBox>
+    </VBox>
 
-    <CheckBox fx:id="passCheckB" layoutX="30.0" layoutY="340.0" text="Mark as Pass" />
-    <CheckBox fx:id="failCheckB" layoutX="200.0" layoutY="340.0" text="Mark as Fail" />
+    <TableView fx:id="inspectionTableView" layoutX="30.0" layoutY="190.0" prefHeight="220.0" prefWidth="840.0">
+        <columns>
+            <TableColumn fx:id="areaIdTC" prefWidth="90.0" text="Area ID" />
+            <TableColumn fx:id="areaNameTC" prefWidth="220.0" text="Area Name" />
+            <TableColumn fx:id="statusTC" prefWidth="140.0" text="Status" />
+            <TableColumn fx:id="deadlineTC" prefWidth="180.0" text="Deadline (if Fail)" />
+        </columns>
+    </TableView>
 
-    <Label layoutX="30.0" layoutY="380.0" text="Notes" />
-    <TextArea fx:id="inspectionNotesTF" layoutX="30.0" layoutY="405.0" prefHeight="70.0" prefWidth="740.0" />
+    <Label layoutX="30.0" layoutY="430.0" text="Mark Selected Area">
+        <font>
+            <Font name="System Bold" size="14.0" />
+        </font>
+    </Label>
 
-    <Label layoutX="30.0" layoutY="495.0" text="Fix Deadline" />
-    <DatePicker fx:id="deadlineDP" layoutX="130.0" layoutY="491.0" prefWidth="160.0" />
+    <VBox layoutX="30.0" layoutY="460.0" prefWidth="840.0" spacing="10.0">
+        <padding>
+            <Insets bottom="10.0" left="0.0" right="0.0" top="0.0" />
+        </padding>
+        <HBox spacing="10.0">
+            <DatePicker fx:id="deadlineDP" prefWidth="160.0" promptText="Deadline (if Fail)" />
+            <Button fx:id="passButtonOA" onAction="#passButtonOA" text="Pass" />
+            <Button fx:id="failButtonOA" onAction="#failButtonOA" text="Fail" />
+        </HBox>
+    </VBox>
 
-    <Button layoutX="320.0" layoutY="490.0" onAction="#saveInspectionButtonOA" text="Save Inspection Report" />
+    <Label fx:id="summaryLabel" layoutX="30.0" layoutY="560.0" text="Passed: 0   Failed: 0   Pending: 0">
+        <font>
+            <Font name="System Bold" size="13.0" />
+        </font>
+    </Label>
 
-    <Label fx:id="inspectionStatusLabel" layoutX="30.0" layoutY="535.0" />
-
-    <Button layoutX="30.0" layoutY="590.0" onAction="#backButtonOA" text="Back" />
+    <Button fx:id="backButtonOA" layoutX="30.0" layoutY="600.0" onAction="#backButtonOA" text="Back to Dashboard" />
 
 </AnchorPane>

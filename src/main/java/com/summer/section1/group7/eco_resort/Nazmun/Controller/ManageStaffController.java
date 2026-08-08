@@ -7,10 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ChefManageKitchenStaffController
+public class ManageStaffController
 {
     @javafx.fxml.FXML
-    private TableView<StaffMember> kitchenStaffTableView;
+    private TableView<StaffMember> staffTableView;
     @javafx.fxml.FXML
     private TableColumn<StaffMember, String> staffIdTC;
     @javafx.fxml.FXML
@@ -22,21 +22,13 @@ public class ChefManageKitchenStaffController
     @javafx.fxml.FXML
     private TableColumn<StaffMember, String> staffStatusTC;
     @javafx.fxml.FXML
-    private TableColumn<StaffMember, String> staffTaskTC;
-    @javafx.fxml.FXML
-    private TableColumn<StaffMember, String> staffTimeSlotTC;
-    @javafx.fxml.FXML
     private TextField staffNameTF;
     @javafx.fxml.FXML
     private ComboBox<String> staffRoleCB;
     @javafx.fxml.FXML
     private TextField staffShiftTF;
     @javafx.fxml.FXML
-    private ComboBox<String> staffStatusCB;
-    @javafx.fxml.FXML
-    private TextField taskDescriptionTF;
-    @javafx.fxml.FXML
-    private TextField taskTimeSlotTF;
+    private TextField newShiftTF;
 
     @javafx.fxml.FXML
     public void initialize() {
@@ -45,13 +37,10 @@ public class ChefManageKitchenStaffController
         staffRoleTC.setCellValueFactory(new PropertyValueFactory<>("role"));
         staffShiftTC.setCellValueFactory(new PropertyValueFactory<>("shiftTiming"));
         staffStatusTC.setCellValueFactory(new PropertyValueFactory<>("status"));
-        staffTaskTC.setCellValueFactory(new PropertyValueFactory<>("currentTask"));
-        staffTimeSlotTC.setCellValueFactory(new PropertyValueFactory<>("taskTimeSlot"));
 
-        staffRoleCB.getItems().addAll("Cook", "Sous Chef", "Kitchen Helper", "Baker", "Dishwasher");
-        staffStatusCB.getItems().addAll("Available", "On Shift", "Off Duty");
+        staffRoleCB.getItems().addAll("Manager", "Receptionist", "Housekeeping", "Security", "Maintenance");
 
-        kitchenStaffTableView.getItems().addAll(StaffManager.getStaffList());
+        staffTableView.getItems().addAll(StaffManager.getStaffList());
     }
 
     @javafx.fxml.FXML
@@ -59,57 +48,46 @@ public class ChefManageKitchenStaffController
         String name = staffNameTF.getText();
         String role = staffRoleCB.getValue();
         String shift = staffShiftTF.getText();
-        String status = staffStatusCB.getValue();
 
-        if (role == null || status == null) {
+        if (role == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please select role and status.");
+            alert.setContentText("Please select a role.");
             alert.showAndWait();
             return;
         }
 
         String staffId = StaffManager.generateStaffId();
-        StaffMember s = new StaffMember(staffId, name, role, shift, status);
+        StaffMember s = new StaffMember(staffId, name, role, shift, "Available");
 
-        kitchenStaffTableView.getItems().add(s);
+        staffTableView.getItems().add(s);
         StaffManager.getStaffList().add(s);
         StaffManager.saveToFile();
 
         staffNameTF.setText("");
         staffRoleCB.setValue(null);
         staffShiftTF.setText("");
-        staffStatusCB.setValue(null);
     }
 
     @javafx.fxml.FXML
-    public void assignTaskButtonOA(ActionEvent actionEvent) {
-        StaffMember selected = kitchenStaffTableView.getSelectionModel().getSelectedItem();
+    public void updateShiftButtonOA(ActionEvent actionEvent) {
+        StaffMember selected = staffTableView.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please select a staff member.");
+            alert.setContentText("Please select a staff member first.");
             alert.showAndWait();
             return;
         }
 
-        if (!StaffManager.isAvailable(selected)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(selected.getName() + " is Off Duty. Pick another staff member.");
-            alert.showAndWait();
-            return;
-        }
-
-        selected.setCurrentTask(taskDescriptionTF.getText());
-        selected.setTaskTimeSlot(taskTimeSlotTF.getText());
+        selected.setShiftTiming(newShiftTF.getText());
         StaffManager.saveToFile();
 
-        kitchenStaffTableView.refresh();
-        taskDescriptionTF.setText("");
-        taskTimeSlotTF.setText("");
+        staffTableView.refresh();
+        newShiftTF.setText("");
     }
 
     @javafx.fxml.FXML
     public void backButtonOA(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("Nazmun/ChefDashboard.fxml");
+        SceneSwitcher.switchTo("Nazmun/ManagerDashboard.fxml");
     }
 }

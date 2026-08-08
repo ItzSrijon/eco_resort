@@ -1,21 +1,74 @@
 package com.summer.section1.group7.eco_resort.Nazmun.Model;
 
-public class MenuItem {
-    private final javafx.beans.property.SimpleStringProperty itemName;
-    private final javafx.beans.property.SimpleStringProperty category;
-    private final javafx.beans.property.SimpleDoubleProperty price;
+import java.io.Serializable;
 
-    public MenuItem(String itemName, String category, double price) {
-        this.itemName = new javafx.beans.property.SimpleStringProperty(itemName);
-        this.category = new javafx.beans.property.SimpleStringProperty(category);
-        this.price = new javafx.beans.property.SimpleDoubleProperty(price);
+public class MenuItem implements Serializable {
+    private String itemId, name, category;
+    private double price;
+    private String approvalStatus = "Pending";
+    private String rejectionReason = "";
+
+    public MenuItem(String itemId, String name, String category, double price) {
+        this.itemId = itemId;
+        this.name = name;
+        this.category = category;
+        this.price = price;
     }
 
-    public String getItemName() { return itemName.get(); }
-    public String getCategory() { return category.get(); }
-    public double getPrice() { return price.get(); }
+    public String getItemId() {
+        return itemId;
+    }
 
-    public javafx.beans.property.SimpleStringProperty itemNameProperty() { return itemName; }
-    public javafx.beans.property.SimpleStringProperty categoryProperty() { return category; }
-    public javafx.beans.property.SimpleDoubleProperty priceProperty() { return price; }
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getApprovalStatus() {
+        return approvalStatus;
+    }
+
+    public void setApprovalStatus(String approvalStatus) {
+        this.approvalStatus = approvalStatus;
+    }
+
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
+    }
+
+    @Override
+    public String toString() {
+        return "MenuItem{" +
+                "itemId='" + itemId + '\'' +
+                ", name='" + name + '\'' +
+                ", approvalStatus='" + approvalStatus + '\'' +
+                '}';
+    }
 }
