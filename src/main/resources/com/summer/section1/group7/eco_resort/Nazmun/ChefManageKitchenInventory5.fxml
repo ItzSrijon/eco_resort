@@ -1,34 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ManageKitchenInventoryController">
+<AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ChefManageKitchenInventoryController">
 
-    <Label layoutX="310.0" layoutY="20.0" text="Kitchen Inventory">
-        <font><javafx.scene.text.Font name="System Bold" size="24.0" /></font>
+    <Label layoutX="300.0" layoutY="20.0" text="Kitchen Inventory">
+        <font>
+            <Font name="System Bold" size="20.0" />
+        </font>
     </Label>
 
-    <TableView fx:id="inventoryTableView" layoutX="30.0" layoutY="80.0" prefHeight="290.0" prefWidth="790.0">
+    <!-- Inventory TableView -->
+    <TableView fx:id="inventoryTableView" layoutX="30.0" layoutY="60.0" prefHeight="300.0" prefWidth="840.0">
         <columns>
-            <TableColumn fx:id="ingredientNameTC" prefWidth="260.0" text="Ingredient Name" />
-            <TableColumn fx:id="quantityTC" prefWidth="260.0" text="Quantity" />
-            <TableColumn fx:id="reorderLevelTC" prefWidth="260.0" text="Reorder Level" />
+            <TableColumn fx:id="itemIdTC" prefWidth="100.0" text="Item ID" />
+            <TableColumn fx:id="itemNameTC" prefWidth="240.0" text="Ingredient Name" />
+            <TableColumn fx:id="itemQuantityTC" prefWidth="180.0" text="Quantity" />
+            <TableColumn fx:id="itemReorderTC" prefWidth="180.0" text="Reorder Level" />
         </columns>
     </TableView>
 
-    <Label layoutX="30.0" layoutY="390.0" text="Requested Quantity" />
-    <TextField fx:id="requestQtyTF" layoutX="180.0" layoutY="386.0" prefWidth="120.0" />
+    <!-- Add New Ingredient Section -->
+    <Label layoutX="30.0" layoutY="380.0" text="Add New Ingredient">
+        <font>
+            <Font name="System Bold" size="14.0" />
+        </font>
+    </Label>
 
-    <Button layoutX="320.0" layoutY="385.0" onAction="#requestRestockButtonOA" text="Request Restock" />
+    <VBox layoutX="30.0" layoutY="410.0" prefWidth="840.0" spacing="10.0">
+        <padding>
+            <Insets bottom="10.0" left="0.0" right="0.0" top="0.0" />
+        </padding>
 
-    <Label fx:id="stockSufficientLabel" layoutX="30.0" layoutY="430.0" />
-    <Label fx:id="invalidQuantityLabel" layoutX="30.0" layoutY="460.0" textFill="RED" />
+        <HBox spacing="10.0">
+            <TextField fx:id="itemNameTF" prefWidth="220.0" promptText="Ingredient Name" />
+            <TextField fx:id="itemQuantityTF" prefWidth="160.0" promptText="Quantity" />
+            <TextField fx:id="itemReorderTF" prefWidth="160.0" promptText="Reorder Level" />
+            <Button fx:id="addItemButtonOA" onAction="#addItemButtonOA" text="Add Ingredient" />
+        </HBox>
 
-    <Button layoutX="30.0" layoutY="590.0" onAction="#backButtonOA" text="Back" />
+        <Label fx:id="addItemMessageLabel" textFill="RED" />
+    </VBox>
+
+    <Button fx:id="backButtonOA" layoutX="30.0" layoutY="490.0" onAction="#backButtonOA" text="Back to Dashboard" />
 
 </AnchorPane>

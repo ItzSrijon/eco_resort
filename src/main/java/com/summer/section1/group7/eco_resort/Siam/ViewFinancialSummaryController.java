@@ -39,58 +39,38 @@ public class ViewFinancialSummaryController {
     @FXML
     public void initialize() {
 
-        guestPaymentTC.setCellValueFactory(
-                new PropertyValueFactory<>("guestPayment"));
-
-        supplierPaymentTC.setCellValueFactory(
-                new PropertyValueFactory<>("supplierPayment"));
-
-        employeeSalaryTC.setCellValueFactory(
-                new PropertyValueFactory<>("employeeSalary"));
-
-        incomeTC.setCellValueFactory(
-                new PropertyValueFactory<>("totalIncome"));
-
-        expenseTC.setCellValueFactory(
-                new PropertyValueFactory<>("totalExpense"));
-
-        profitTC.setCellValueFactory(
-                new PropertyValueFactory<>("profit"));
-
-        transactionTC.setCellValueFactory(
-                new PropertyValueFactory<>("totalTransaction"));
+        guestPaymentTC.setCellValueFactory(new PropertyValueFactory<>("guestPayment"));
+        supplierPaymentTC.setCellValueFactory(new PropertyValueFactory<>("supplierPayment"));
+        employeeSalaryTC.setCellValueFactory(new PropertyValueFactory<>("employeeSalary"));
+        incomeTC.setCellValueFactory(new PropertyValueFactory<>("totalIncome"));
+        expenseTC.setCellValueFactory(new PropertyValueFactory<>("totalExpense"));
+        profitTC.setCellValueFactory(new PropertyValueFactory<>("profit"));
+        transactionTC.setCellValueFactory(new PropertyValueFactory<>("totalTransaction"));
 
     }
 
     @FXML
     public void loadReportOA(ActionEvent actionEvent) {
 
-        ObservableList<FinancialSummary> list =
-                FXCollections.observableArrayList();
+        ObservableList<FinancialSummary> list = FXCollections.observableArrayList();
 
         try {
 
-            ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream("financialSummary.bin"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("financialSummary.bin"));
 
             while (true) {
 
                 try {
 
-                    FinancialSummary summary =
-                            (FinancialSummary) ois.readObject();
-
+                    FinancialSummary summary = (FinancialSummary) ois.readObject();
                     list.add(summary);
 
                 }
 
                 catch (EOFException e) {
-
                     break;
 
                 }
-
             }
 
             ois.close();
@@ -98,7 +78,6 @@ public class ViewFinancialSummaryController {
         }
 
         catch (Exception e) {
-
             e.printStackTrace();
 
         }
@@ -111,22 +90,14 @@ public class ViewFinancialSummaryController {
     public void backOA(ActionEvent actionEvent) {
 
         try {
-
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("U4G2_FinancialSummary.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
-
         }
 
         catch (Exception e) {
-
             e.printStackTrace();
 
         }
-
     }
-
 }

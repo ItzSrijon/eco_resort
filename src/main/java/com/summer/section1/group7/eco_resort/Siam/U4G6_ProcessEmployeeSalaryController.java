@@ -47,9 +47,7 @@ public class U4G6_ProcessEmployeeSalaryController {
 
             employeeNameTF.clear();
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Not Found",
-                    "Employee not found.");
+            showAlert(Alert.AlertType.ERROR, "Not Found", "Employee not found.");
 
             return;
 
@@ -57,9 +55,7 @@ public class U4G6_ProcessEmployeeSalaryController {
 
         employeeNameTF.setText(loadedEmployee.getName());
 
-        showAlert(Alert.AlertType.INFORMATION,
-                "Success",
-                "Employee loaded successfully.");
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Employee loaded successfully.");
 
     }
 
@@ -68,31 +64,23 @@ public class U4G6_ProcessEmployeeSalaryController {
 
         if (loadedEmployee == null) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Search employee first.");
-
+            showAlert(Alert.AlertType.ERROR, "Error", "Search employee first.");
             return;
 
         }
 
         if (salaryTF.getText().trim().isEmpty()) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Enter salary amount.");
-
+            showAlert(Alert.AlertType.ERROR, "Error", "Enter salary amount.");
             return;
 
         }
 
-        SalaryPayment salaryPayment =
-                new SalaryPayment(
+        SalaryPayment salaryPayment = new SalaryPayment(
                         loadedEmployee.getUserId(),
                         loadedEmployee.getName(),
                         Double.parseDouble(salaryTF.getText()),
-                        paymentDateDP.getValue()
-                );
+                        paymentDateDP.getValue());
 
         File file = new File("salary.bin");
 
@@ -116,12 +104,9 @@ public class U4G6_ProcessEmployeeSalaryController {
             }
 
             oos.writeObject(salaryPayment);
-
             oos.close();
 
-            showAlert(Alert.AlertType.INFORMATION,
-                    "Success",
-                    "Salary paid successfully.");
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Salary paid successfully.");
 
             clearFields();
 
@@ -140,11 +125,8 @@ public class U4G6_ProcessEmployeeSalaryController {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         }
@@ -168,16 +150,11 @@ public class U4G6_ProcessEmployeeSalaryController {
 
     }
 
-    private void showAlert(Alert.AlertType type,
-                           String title,
-                           String message) {
+    private void showAlert(Alert.AlertType type, String title, String message) {
 
         Alert alert = new Alert(type);
-
         alert.setTitle(title);
-        alert.setHeaderText(null);
         alert.setContentText(message);
-
         alert.showAndWait();
 
     }

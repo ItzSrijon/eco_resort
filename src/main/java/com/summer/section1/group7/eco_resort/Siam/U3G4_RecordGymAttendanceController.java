@@ -46,15 +46,12 @@ public class U3G4_RecordGymAttendanceController {
     public void initialize() {
         attendanceCB.getItems().addAll("Present", "Absent");
     }
-
     @FXML
     public void searchGuestOA(ActionEvent actionEvent) {
-
         loadedMember = null;
 
         if (guestIdTF.getText().trim().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Error", null, "Please enter Guest ID.");
-
             return;
 
         }
@@ -158,7 +155,6 @@ public class U3G4_RecordGymAttendanceController {
 
     @FXML
     public void backToDashboardOA(ActionEvent actionEvent) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
             Node node = loader.load();

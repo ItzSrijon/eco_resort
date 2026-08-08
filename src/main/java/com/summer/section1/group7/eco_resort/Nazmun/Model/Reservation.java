@@ -1,43 +1,74 @@
 package com.summer.section1.group7.eco_resort.Nazmun.Model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Reservation {
-    private final javafx.beans.property.SimpleStringProperty guestName;
-    private final javafx.beans.property.SimpleStringProperty contact;
-    private final javafx.beans.property.SimpleStringProperty roomType;
-    private final javafx.beans.property.SimpleObjectProperty<LocalDate> checkIn;
-    private final javafx.beans.property.SimpleObjectProperty<LocalDate> checkOut;
-    private final javafx.beans.property.SimpleStringProperty status;
-    private final javafx.beans.property.SimpleDoubleProperty totalBill;
+public class Reservation implements Serializable {
+    private String reservationId, guestName, roomType, status = "Active";
+    private LocalDate checkInDate, checkOutDate;
 
-    public Reservation(String guestName, String contact, String roomType,
-                       LocalDate checkIn, LocalDate checkOut, String status, double totalBill) {
-        this.guestName = new javafx.beans.property.SimpleStringProperty(guestName);
-        this.contact = new javafx.beans.property.SimpleStringProperty(contact);
-        this.roomType = new javafx.beans.property.SimpleStringProperty(roomType);
-        this.checkIn = new javafx.beans.property.SimpleObjectProperty<>(checkIn);
-        this.checkOut = new javafx.beans.property.SimpleObjectProperty<>(checkOut);
-        this.status = new javafx.beans.property.SimpleStringProperty(status);
-        this.totalBill = new javafx.beans.property.SimpleDoubleProperty(totalBill);
+    public Reservation(String reservationId, String guestName, String roomType, LocalDate checkInDate, LocalDate checkOutDate) {
+        this.reservationId = reservationId;
+        this.guestName = guestName;
+        this.roomType = roomType;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
     }
 
-    public String getGuestName() { return guestName.get(); }
-    public String getContact() { return contact.get(); }
-    public String getRoomType() { return roomType.get(); }
-    public LocalDate getCheckIn() { return checkIn.get(); }
-    public LocalDate getCheckOut() { return checkOut.get(); }
-    public String getStatus() { return status.get(); }
-    public double getTotalBill() { return totalBill.get(); }
+    public String getReservationId() {
+        return reservationId;
+    }
 
-    public void setStatus(String status) { this.status.set(status); }
-    public void setTotalBill(double bill) { this.totalBill.set(bill); }
+    public void setReservationId(String reservationId) {
+        this.reservationId = reservationId;
+    }
 
-    public javafx.beans.property.SimpleStringProperty guestNameProperty() { return guestName; }
-    public javafx.beans.property.SimpleStringProperty contactProperty() { return contact; }
-    public javafx.beans.property.SimpleStringProperty roomTypeProperty() { return roomType; }
-    public javafx.beans.property.SimpleObjectProperty<LocalDate> checkInProperty() { return checkIn; }
-    public javafx.beans.property.SimpleObjectProperty<LocalDate> checkOutProperty() { return checkOut; }
-    public javafx.beans.property.SimpleStringProperty statusProperty() { return status; }
-    public javafx.beans.property.SimpleDoubleProperty totalBillProperty() { return totalBill; }
+    public String getGuestName() {
+        return guestName;
+    }
+
+    public void setGuestName(String guestName) {
+        this.guestName = guestName;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public LocalDate getCheckInDate() {
+        return checkInDate;
+    }
+
+    public void setCheckInDate(LocalDate checkInDate) {
+        this.checkInDate = checkInDate;
+    }
+
+    public LocalDate getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public void setCheckOutDate(LocalDate checkOutDate) {
+        this.checkOutDate = checkOutDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "guestName='" + guestName + '\'' +
+                ", roomType='" + roomType + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

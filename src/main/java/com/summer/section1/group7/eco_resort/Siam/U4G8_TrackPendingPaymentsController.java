@@ -47,25 +47,20 @@ public class U4G8_TrackPendingPaymentsController {
     @FXML
     public void loadPendingPaymentsOA(ActionEvent actionEvent) {
 
-        ObservableList<Invoice> pendingList =
-                FXCollections.observableArrayList();
+        ObservableList<Invoice> pendingList = FXCollections.observableArrayList();
 
         try {
 
-            ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream("invoice.bin"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("invoice.bin"));
 
             while (true) {
 
                 try {
-
                     Invoice invoice = (Invoice) ois.readObject();
 
                     if (invoice.getDuePayment() > 0) {
 
                         pendingList.add(invoice);
-
                     }
 
                 }
@@ -89,20 +84,16 @@ public class U4G8_TrackPendingPaymentsController {
         }
 
         pendingPaymentTV.setItems(pendingList);
-        pendingPaymentTV.setItems(pendingList);
 
         if (pendingList.isEmpty()) {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
             alert.setTitle("No Pending Payments");
-            alert.setHeaderText(null);
             alert.setContentText("No pending payments found.");
 
             alert.showAndWait();
 
         }
-
     }
 
     @FXML
@@ -110,13 +101,9 @@ public class U4G8_TrackPendingPaymentsController {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
-
         }
 
         catch (Exception e) {
@@ -126,6 +113,5 @@ public class U4G8_TrackPendingPaymentsController {
         }
 
     }
-
 
 }

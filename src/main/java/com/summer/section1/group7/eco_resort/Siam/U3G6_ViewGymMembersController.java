@@ -15,158 +15,89 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
 public class U3G6_ViewGymMembersController {
-
     @FXML
     private TableColumn<GymMember, String> guestNameTC;
-
     @FXML
     private TableView<GymMember> memberTV;
-
     @FXML
     private TableColumn<GymMember, String> phoneNumberTC;
-
     @FXML
     private ComboBox<String> memberStatusCB;
-
     @FXML
     private TableColumn<GymMember, String> packageTC;
-
     @FXML
     private TableColumn<GymMember, String> memberIdTC;
-
     @FXML
     private TableColumn<GymMember, String> statusTC;
-
     @FXML
     private AnchorPane mainPane;
-
-    private ObservableList<GymMember> memberList =
-            FXCollections.observableArrayList();
+    private ObservableList<GymMember> memberList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
+        memberStatusCB.getItems().addAll("Active", "Expired");
 
-        memberStatusCB.getItems().addAll(
-                "Active",
-                "Expired"
-        );
-
-        memberIdTC.setCellValueFactory(
-                new PropertyValueFactory<>("guestId"));
-
-        guestNameTC.setCellValueFactory(
-                new PropertyValueFactory<>("guestName"));
-
-        phoneNumberTC.setCellValueFactory(
-                new PropertyValueFactory<>("phoneNumber"));
-
-        packageTC.setCellValueFactory(
-                new PropertyValueFactory<>("packageName"));
-
-        statusTC.setCellValueFactory(
-                new PropertyValueFactory<>("status"));
-
+        memberIdTC.setCellValueFactory(new PropertyValueFactory<>("guestId"));
+        guestNameTC.setCellValueFactory(new PropertyValueFactory<>("guestName"));
+        phoneNumberTC.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        packageTC.setCellValueFactory(new PropertyValueFactory<>("packageName"));
+        statusTC.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     @FXML
-    public void loadMembersOA(ActionEvent actionEvent) {
-
+    public void viewMembersOA(ActionEvent actionEvent) {
         memberTV.getItems().clear();
         memberList.clear();
 
         if (memberStatusCB.getValue() == null) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select a membership status.");
 
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Error",
-                    null,
-                    "Please select a membership status."
-            );
             return;
         }
 
+        ObservableList<GymMember> allMembers = GymManager.loadMembers();
+
         int count = 0;
 
-        try {
+        for (GymMember gm : allMembers) {
+            if (gm.getStatus().equalsIgnoreCase(memberStatusCB.getValue())) {
 
-            FileInputStream fis = new FileInputStream("gymMember.bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-
-            while (true) {
-
-                try {
-
-                    GymMember gm = (GymMember) ois.readObject();
-
-                    if (gm.getStatus().equalsIgnoreCase(memberStatusCB.getValue())) {
-
-                        memberList.add(gm);
-                        count++;
-
-                    }
-
-                } catch (EOFException e) {
-
-                    ois.close();
-                    break;
-
-                }
+                memberList.add(gm);
+                count++;
 
             }
 
-            memberTV.setItems(memberList);
+        }
 
-            if (count == 0) {
+        memberTV.setItems(memberList);
 
-                showAlert(
-                        Alert.AlertType.INFORMATION,
-                        "No Data",
-                        null,
-                        "No gym members found with the selected status."
-                );
+        if (count == 0) {
 
-            }
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
+            showAlert(Alert.AlertType.INFORMATION, "No Data", "No gym members found with the selected status.");
 
         }
 
     }
-
     @FXML
     public void backButtonOA(ActionEvent actionEvent) {
 
         try {
-
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("GymManagerDashboard.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
 
     }
 
-    private void showAlert(Alert.AlertType type,
-                           String title,
-                           String header,
-                           String message) {
-
+    private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
-
         alert.setTitle(title);
-        alert.setHeaderText(header);
         alert.setContentText(message);
-
         alert.showAndWait();
 
     }
+
 }

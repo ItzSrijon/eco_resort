@@ -1,37 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ChefOverseeDailyPreparationController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Nazmun.Controller.ChefOverseeDailyPreparationController">
 
-    <Label layoutX="270.0" layoutY="20.0" text="Daily Food Preparation">
-        <font><javafx.scene.text.Font name="System Bold" size="24.0" /></font>
+    <Label layoutX="290.0" layoutY="20.0" text="Daily Preparation">
+        <font>
+            <Font name="System Bold" size="20.0" />
+        </font>
     </Label>
 
-    <TableView fx:id="todaysOrdersTableView" layoutX="30.0" layoutY="80.0" prefHeight="290.0" prefWidth="790.0">
+    <!-- Today's Dishes TableView -->
+    <TableView fx:id="prepTableView" layoutX="30.0" layoutY="60.0" prefHeight="260.0" prefWidth="840.0">
         <columns>
-            <TableColumn fx:id="dishNameTC" prefWidth="220.0" text="Dish Name" />
-            <TableColumn fx:id="quantityTC" prefWidth="150.0" text="Quantity" />
-            <TableColumn fx:id="notesTC" prefWidth="400.0" text="Special Notes" />
+            <TableColumn fx:id="dishIdTC" prefWidth="90.0" text="Dish ID" />
+            <TableColumn fx:id="dishNameTC" prefWidth="200.0" text="Dish Name" />
+            <TableColumn fx:id="quantityTC" prefWidth="110.0" text="Quantity" />
+            <TableColumn fx:id="stationTC" prefWidth="180.0" text="Station" />
+            <TableColumn fx:id="assignedStaffTC" prefWidth="180.0" text="Assigned Staff" />
         </columns>
     </TableView>
 
-    <Label layoutX="30.0" layoutY="390.0" text="Assign Station" />
-    <ComboBox fx:id="stationCB" layoutX="150.0" layoutY="386.0" prefWidth="180.0" />
+    <!-- Add New Dish Section -->
+    <Label layoutX="30.0" layoutY="340.0" text="Add Today's Dish">
+        <font>
+            <Font name="System Bold" size="14.0" />
+        </font>
+    </Label>
 
-    <Label layoutX="360.0" layoutY="390.0" text="Assign Staff" />
-    <ComboBox fx:id="assignedStaffCB" layoutX="470.0" layoutY="386.0" prefWidth="180.0" />
+    <VBox layoutX="30.0" layoutY="370.0" prefWidth="840.0" spacing="10.0">
+        <padding>
+            <Insets bottom="10.0" left="0.0" right="0.0" top="0.0" />
+        </padding>
 
-    <Button layoutX="30.0" layoutY="430.0" onAction="#assignTaskButtonOA" text="Assign Preparation Task" />
+        <HBox spacing="10.0">
+            <TextField fx:id="dishNameTF" prefWidth="220.0" promptText="Dish Name" />
+            <TextField fx:id="quantityTF" prefWidth="140.0" promptText="Quantity" />
+            <Button fx:id="addDishButtonOA" onAction="#addDishButtonOA" text="Add Dish" />
+        </HBox>
 
-    <Label fx:id="unavailabilityIssueLabel" layoutX="30.0" layoutY="470.0" textFill="RED" />
-    <Label fx:id="taskStatusLabel" layoutX="30.0" layoutY="500.0" />
+        <Label fx:id="addDishMessageLabel" textFill="RED" />
+    </VBox>
 
-    <Button layoutX="30.0" layoutY="590.0" onAction="#backButtonOA" text="Back" />
+    <!-- Assign Station and Staff Section -->
+    <Label layoutX="30.0" layoutY="460.0" text="Assign Station and Staff to Selected Dish">
+        <font>
+            <Font name="System Bold" size="14.0" />
+        </font>
+    </Label>
+
+    <VBox layoutX="30.0" layoutY="490.0" prefWidth="840.0" spacing="10.0">
+        <padding>
+            <Insets bottom="10.0" left="0.0" right="0.0" top="0.0" />
+        </padding>
+
+        <HBox spacing="10.0">
+            <ComboBox fx:id="stationCB" prefWidth="200.0" promptText="Kitchen Station" />
+            <ComboBox fx:id="staffCB" prefWidth="200.0" promptText="Staff Member" />
+            <Button fx:id="assignButtonOA" onAction="#assignButtonOA" text="Assign" />
+        </HBox>
+
+        <Label fx:id="assignMessageLabel" textFill="GREEN" />
+    </VBox>
+
+    <Button fx:id="backButtonOA" layoutX="30.0" layoutY="580.0" onAction="#backButtonOA" text="Back to Dashboard" />
 
 </AnchorPane>

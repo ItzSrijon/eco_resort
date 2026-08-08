@@ -32,14 +32,7 @@ public class U4G4_SupplierPaymentController {
     @FXML
     public void initialize() {
 
-        paymentMethodCB.getItems().addAll(
-                "Cash",
-                "Card",
-                "Bkash",
-                "Nagad",
-                "Bank Transfer"
-        );
-
+        paymentMethodCB.getItems().addAll("Cash", "Card", "Bkash", "Nagad", "Bank Transfer");
         paymentDateDP.setValue(LocalDate.now());
 
     }
@@ -49,36 +42,26 @@ public class U4G4_SupplierPaymentController {
 
         if (supplierIdTF.getText().trim().isEmpty()) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Please enter Supplier ID.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please enter Supplier ID.");
 
             return;
 
         }
 
-        loadedSupplier =
-                SupplierManager.findSupplier(
-                        supplierIdTF.getText().trim());
+        loadedSupplier = SupplierManager.findSupplier(supplierIdTF.getText().trim());
 
         if (loadedSupplier == null) {
 
             clearFields();
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Not Found",
-                    "Supplier not found.");
-
+            showAlert(Alert.AlertType.ERROR, "Not Found", "Supplier not found.");
             return;
 
         }
 
-        supplierNameTF.setText(
-                loadedSupplier.getSupplierName());
+        supplierNameTF.setText(loadedSupplier.getSupplierName());
 
-        showAlert(Alert.AlertType.INFORMATION,
-                "Success",
-                "Supplier loaded successfully.");
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Supplier loaded successfully.");
 
     }
 
@@ -87,21 +70,14 @@ public class U4G4_SupplierPaymentController {
 
         if (loadedSupplier == null) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Load supplier first.");
-
+            showAlert(Alert.AlertType.ERROR, "Error", "Load supplier first.");
             return;
 
         }
 
-        if (amountTF.getText().trim().isEmpty()
-                || paymentMethodCB.getValue() == null
-                || paymentDateDP.getValue() == null) {
+        if (amountTF.getText().trim().isEmpty() || paymentMethodCB.getValue() == null || paymentDateDP.getValue() == null) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Please fill all fields.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please fill all fields.");
 
             return;
 
@@ -112,15 +88,10 @@ public class U4G4_SupplierPaymentController {
                 "P-" + System.currentTimeMillis(),
 
                 loadedSupplier.getSupplierId(),
-
                 loadedSupplier.getSupplierName(),
-
                 "Supplier",
-
                 paymentMethodCB.getValue(),
-
                 Double.parseDouble(amountTF.getText()),
-
                 paymentDateDP.getValue()
 
         );
@@ -147,10 +118,7 @@ public class U4G4_SupplierPaymentController {
             oos.writeObject(payment);
             oos.close();
 
-            showAlert(Alert.AlertType.INFORMATION,
-                    "Success",
-                    "Supplier payment recorded successfully.");
-
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Supplier payment recorded successfully.");
             clearFields();
 
         } catch (Exception e) {
@@ -166,11 +134,8 @@ public class U4G4_SupplierPaymentController {
         supplierIdTF.clear();
         supplierNameTF.clear();
         amountTF.clear();
-
         paymentMethodCB.getSelectionModel().clearSelection();
-
         paymentDateDP.setValue(LocalDate.now());
-
         loadedSupplier = null;
 
     }
@@ -178,12 +143,8 @@ public class U4G4_SupplierPaymentController {
     public void addSupplierOA(ActionEvent actionEvent) {
 
         try {
-
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("AddSupplier.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddSupplier.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         }
@@ -196,15 +157,11 @@ public class U4G4_SupplierPaymentController {
 
     }
 
-    private void showAlert(Alert.AlertType type,
-                           String title,
-                           String message) {
+    private void showAlert(Alert.AlertType type, String title, String message) {
 
         Alert alert = new Alert(type);
-
         alert.setTitle(title);
         alert.setContentText(message);
-
         alert.showAndWait();
 
     }
@@ -213,11 +170,8 @@ public class U4G4_SupplierPaymentController {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         } catch (Exception e) {
@@ -225,6 +179,5 @@ public class U4G4_SupplierPaymentController {
             e.printStackTrace();
 
         }
-
     }
 }

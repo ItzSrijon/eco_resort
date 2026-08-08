@@ -42,18 +42,14 @@ public class U4G7_UpdatePaymentRecordController {
 
         if (transactionIdTF.getText().trim().isEmpty()) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Please enter Transaction ID.");
-
+            showAlert(Alert.AlertType.ERROR, "Error", "Please enter Transaction ID.");
             return;
 
         }
 
         try {
 
-            ObjectInputStream ois =
-                    new ObjectInputStream(new FileInputStream("payment.bin"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("payment.bin"));
 
             while (true) {
 
@@ -67,7 +63,6 @@ public class U4G7_UpdatePaymentRecordController {
                         break;
 
                     }
-
                 }
 
                 catch (EOFException e) {
@@ -75,7 +70,6 @@ public class U4G7_UpdatePaymentRecordController {
                     break;
 
                 }
-
             }
 
             ois.close();
@@ -90,10 +84,7 @@ public class U4G7_UpdatePaymentRecordController {
 
         if (selectedPayment == null) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Not Found",
-                    "Transaction not found.");
-
+            showAlert(Alert.AlertType.ERROR, "Not Found", "Transaction not found.");
             return;
 
         }
@@ -103,9 +94,7 @@ public class U4G7_UpdatePaymentRecordController {
         amountTF.setText(String.valueOf(selectedPayment.getAmount()));
         paymentDateDP.setValue(selectedPayment.getPaymentDate());
 
-        showAlert(Alert.AlertType.INFORMATION,
-                "Success",
-                "Payment loaded successfully.");
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Payment loaded successfully.");
 
     }
 
@@ -114,10 +103,7 @@ public class U4G7_UpdatePaymentRecordController {
 
         if (selectedPayment == null) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Search payment first.");
-
+            showAlert(Alert.AlertType.ERROR, "Error", "Search payment first.");
             return;
 
         }
@@ -126,15 +112,13 @@ public class U4G7_UpdatePaymentRecordController {
 
         try {
 
-            ObjectInputStream ois =
-                    new ObjectInputStream(new FileInputStream("payment.bin"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("payment.bin"));
 
             while (true) {
 
                 try {
 
                     Payment payment = (Payment) ois.readObject();
-
                     if (payment.getPaymentId().equals(selectedPayment.getPaymentId())) {
 
                         payment.setAmount(Double.parseDouble(amountTF.getText()));
@@ -166,11 +150,9 @@ public class U4G7_UpdatePaymentRecordController {
 
         try {
 
-            ObjectOutputStream oos =
-                    new ObjectOutputStream(new FileOutputStream("payment.bin"));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("payment.bin"));
 
             for (Payment payment : paymentList) {
-
                 oos.writeObject(payment);
 
             }
@@ -185,9 +167,7 @@ public class U4G7_UpdatePaymentRecordController {
 
         }
 
-        showAlert(Alert.AlertType.INFORMATION,
-                "Success",
-                "Payment updated successfully.");
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Payment updated successfully.");
 
     }
 
@@ -196,13 +176,9 @@ public class U4G7_UpdatePaymentRecordController {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountantDashboard.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
-
         }
 
         catch (Exception e) {
@@ -213,16 +189,11 @@ public class U4G7_UpdatePaymentRecordController {
 
     }
 
-    private void showAlert(Alert.AlertType type,
-                           String title,
-                           String message) {
+    private void showAlert(Alert.AlertType type, String title, String message) {
 
         Alert alert = new Alert(type);
-
         alert.setTitle(title);
-        alert.setHeaderText(null);
         alert.setContentText(message);
-
         alert.showAndWait();
 
     }

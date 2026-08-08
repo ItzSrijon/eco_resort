@@ -40,7 +40,6 @@ public class ViewInvoiceController {
         totalBillTC.setCellValueFactory(new PropertyValueFactory<>("totalBill"));
         totalPaidTC.setCellValueFactory(new PropertyValueFactory<>("totalPaid"));
         duePaymentTC.setCellValueFactory(new PropertyValueFactory<>("duePayment"));
-
     }
 
     @FXML
@@ -50,25 +49,20 @@ public class ViewInvoiceController {
 
         try {
 
-            ObjectInputStream ois =
-                    new ObjectInputStream(new FileInputStream("invoice.bin"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("invoice.bin"));
 
             while (true) {
 
                 try {
 
                     Invoice invoice = (Invoice) ois.readObject();
-
                     list.add(invoice);
 
                 }
 
                 catch (EOFException e) {
-
                     break;
-
                 }
-
             }
 
             ois.close();
@@ -90,11 +84,8 @@ public class ViewInvoiceController {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("U4G5_GenerateGuestInvoice.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("U4G5_GenerateGuestInvoice.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         }

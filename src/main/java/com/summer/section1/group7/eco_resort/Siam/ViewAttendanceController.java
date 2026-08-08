@@ -59,7 +59,7 @@ public class ViewAttendanceController {
         todayAttendanceLabel.setVisible(false);
         if (guestIdTF.getText().trim().isEmpty()) {
 
-            showAlert(Alert.AlertType.ERROR, "Error", null, "Please enter Guest ID.");
+            showAlert(Alert.AlertType.ERROR, "Error","Please enter Guest ID.");
             return;
         }
 
@@ -91,8 +91,7 @@ public class ViewAttendanceController {
 
             if (count == 0) {
 
-                showAlert(Alert.AlertType.INFORMATION, "Not Found", null,
-                        "No attendance record found.");
+                showAlert(Alert.AlertType.INFORMATION, "Not Found", "No attendance record found.");
 
             } else {
                 totalDaysLabel.setText("Total Days Attended : " + count);
@@ -104,7 +103,6 @@ public class ViewAttendanceController {
             e.printStackTrace();
 
         }
-
     }
 
     @FXML
@@ -159,11 +157,8 @@ public class ViewAttendanceController {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("U3G4_RecordGymAttendance.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("U3G4_RecordGymAttendance.fxml"));
             Node node = loader.load();
-
             mainPane.getChildren().setAll(node);
 
         } catch (Exception e) {
@@ -171,11 +166,10 @@ public class ViewAttendanceController {
         }
     }
 
-    private void showAlert(Alert.AlertType type, String title, String header, String message) {
+    private void showAlert(Alert.AlertType type, String title, String message) {
 
         Alert alert = new Alert(type);
         alert.setTitle(title);
-        alert.setHeaderText(header);
         alert.setContentText(message);
         alert.showAndWait();
 

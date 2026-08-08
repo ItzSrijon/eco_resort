@@ -57,19 +57,14 @@ public class U3G8_GymActivitySummaryController {
         summaryList.clear();
 
         if (fromDateDP.getValue() == null || toDateDP.getValue() == null) {
-
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "Please select both dates.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select both dates.");
 
             return;
         }
 
         if (fromDateDP.getValue().isAfter(toDateDP.getValue())) {
 
-            showAlert(Alert.AlertType.ERROR,
-                    "Error",
-                    "From Date cannot be after To Date.");
+            showAlert(Alert.AlertType.ERROR, "Error", "From Date cannot be after To Date.");
 
             return;
         }
@@ -91,59 +86,25 @@ public class U3G8_GymActivitySummaryController {
         int elliptical = 0;
 
         ArrayList<String> activeMemberList = new ArrayList<>();
+        ObservableList<GymMember> memberList = GymManager.loadMembers();
+
+        for (GymMember member : memberList) {
+
+            totalMembers++;
+            totalRevenue += member.getTotalFee();
+
+        }
 
         try {
 
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("gymMember.bin"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("attendance.bin"));
 
             while (true) {
 
                 try {
+                    Attendance attendance = (Attendance) ois.readObject();
 
-                    GymMember member =
-                            (GymMember) ois.readObject();
-
-                    totalMembers++;
-                    totalRevenue += member.getTotalFee();
-
-                }
-
-                catch (EOFException e) {
-
-                    break;
-
-                }
-
-            }
-
-            ois.close();
-
-        }
-
-        catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
-        // Attendance
-
-        try {
-
-            ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream("attendance.bin"));
-
-            while (true) {
-
-                try {
-
-                    Attendance attendance =
-                            (Attendance) ois.readObject();
-
-                    if (!attendance.getAttendanceDate().isBefore(fromDate)
-                            &&
-                            !attendance.getAttendanceDate().isAfter(toDate)) {
+                    if (!attendance.getAttendanceDate().isBefore(fromDate) && !attendance.getAttendanceDate().isAfter(toDate)) {
 
                         totalAttendance++;
 
@@ -152,9 +113,7 @@ public class U3G8_GymActivitySummaryController {
                             activeMemberList.add(attendance.getGuestId());
 
                         }
-
                     }
-
                 }
 
                 catch (EOFException e) {
@@ -177,24 +136,18 @@ public class U3G8_GymActivitySummaryController {
 
         activeMembers = activeMemberList.size();
 
-        // Equipment Usage
 
         try {
 
-            ObjectInputStream ois =
-                    new ObjectInputStream(
-                            new FileInputStream("equipmentUsage.bin"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("equipmentUsage.bin"));
 
             while (true) {
 
                 try {
 
-                    EquipmentUsage usage =
-                            (EquipmentUsage) ois.readObject();
+                    EquipmentUsage usage = (EquipmentUsage) ois.readObject();
 
-                    if (!usage.getUsageDate().isBefore(fromDate)
-                            &&
-                            !usage.getUsageDate().isAfter(toDate)) {
+                    if (!usage.getUsageDate().isBefore(fromDate) && !usage.getUsageDate().isAfter(toDate)) {
 
                         totalEquipmentUsage++;
 
@@ -205,31 +158,26 @@ public class U3G8_GymActivitySummaryController {
                         }
 
                         else if (usage.getEquipmentName().equals("Rowing Machine")) {
-
                             rowing++;
 
                         }
 
                         else if (usage.getEquipmentName().equals("Exercise Bike")) {
-
                             bike++;
 
                         }
 
                         else if (usage.getEquipmentName().equals("Bench Press")) {
-
                             bench++;
 
                         }
 
                         else if (usage.getEquipmentName().equals("Dumbbell Set")) {
-
                             dumbbell++;
 
                         }
 
                         else if (usage.getEquipmentName().equals("Elliptical Machine")) {
-
                             elliptical++;
 
                         }
@@ -241,9 +189,7 @@ public class U3G8_GymActivitySummaryController {
                 catch (EOFException e) {
 
                     break;
-
                 }
-
             }
 
             ois.close();
@@ -251,7 +197,6 @@ public class U3G8_GymActivitySummaryController {
         }
 
         catch (Exception e) {
-
             e.printStackTrace();
 
         }
@@ -263,14 +208,12 @@ public class U3G8_GymActivitySummaryController {
 
             max = rowing;
             mostUsedEquipment = "Rowing Machine";
-
         }
 
         if (bike > max) {
 
             max = bike;
             mostUsedEquipment = "Exercise Bike";
-
         }
 
         if (bench > max) {
@@ -288,24 +231,16 @@ public class U3G8_GymActivitySummaryController {
         }
 
         if (elliptical > max) {
-
-            max = elliptical;
             mostUsedEquipment = "Elliptical Machine";
 
         }
 
         summaryList.add(new GymSummary("Total Registered Members", String.valueOf(totalMembers)));
-
         summaryList.add(new GymSummary("Active Members", String.valueOf(activeMembers)));
-
         summaryList.add(new GymSummary("Total Attendance Records", String.valueOf(totalAttendance)));
-
         summaryList.add(new GymSummary("Total Equipment Usage Records", String.valueOf(totalEquipmentUsage)));
-
         summaryList.add(new GymSummary("Total Membership Revenue", "BDT " + totalRevenue));
-
         summaryList.add(new GymSummary("Most Used Equipment", mostUsedEquipment));
-
         summaryTV.setItems(summaryList);
 
     }
@@ -397,8 +332,5 @@ public class U3G8_GymActivitySummaryController {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
-
     }
-
-
 }

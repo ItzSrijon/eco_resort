@@ -1,28 +1,55 @@
 package com.summer.section1.group7.eco_resort.Nazmun.Model;
 
-public class Room {
-    private final javafx.beans.property.SimpleStringProperty roomNo;
-    private final javafx.beans.property.SimpleStringProperty roomType;
-    private final javafx.beans.property.SimpleDoubleProperty currentRate;
-    private final javafx.beans.property.SimpleStringProperty occupancyStatus;
+import java.io.Serializable;
 
-    public Room(String roomNo, String roomType, double currentRate, String occupancyStatus) {
-        this.roomNo = new javafx.beans.property.SimpleStringProperty(roomNo);
-        this.roomType = new javafx.beans.property.SimpleStringProperty(roomType);
-        this.currentRate = new javafx.beans.property.SimpleDoubleProperty(currentRate);
-        this.occupancyStatus = new javafx.beans.property.SimpleStringProperty(occupancyStatus);
+public class Room implements Serializable {
+    private String roomId, roomType, occupancyStatus = "Vacant";
+    private double rate;
+
+    public Room(String roomId, String roomType, double rate) {
+        this.roomId = roomId;
+        this.roomType = roomType;
+        this.rate = rate;
     }
 
-    public String getRoomNo() { return roomNo.get(); }
-    public String getRoomType() { return roomType.get(); }
-    public double getCurrentRate() { return currentRate.get(); }
-    public String getOccupancyStatus() { return occupancyStatus.get(); }
+    public String getRoomId() {
+        return roomId;
+    }
 
-    public void setCurrentRate(double rate) { this.currentRate.set(rate); }
-    public void setOccupancyStatus(String status) { this.occupancyStatus.set(status); }
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
 
-    public javafx.beans.property.SimpleStringProperty roomNoProperty() { return roomNo; }
-    public javafx.beans.property.SimpleStringProperty roomTypeProperty() { return roomType; }
-    public javafx.beans.property.SimpleDoubleProperty currentRateProperty() { return currentRate; }
-    public javafx.beans.property.SimpleStringProperty occupancyStatusProperty() { return occupancyStatus; }
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    public String getOccupancyStatus() {
+        return occupancyStatus;
+    }
+
+    public void setOccupancyStatus(String occupancyStatus) {
+        this.occupancyStatus = occupancyStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomId='" + roomId + '\'' +
+                ", roomType='" + roomType + '\'' +
+                ", occupancyStatus='" + occupancyStatus + '\'' +
+                '}';
+    }
 }

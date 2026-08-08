@@ -1,89 +1,95 @@
 package com.summer.section1.group7.eco_resort.Nazmun.Controller;
 
-import com.summer.section1.group7.eco_resort.Nazmun.Model.PrepTask;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.summer.section1.group7.eco_resort.Nazmun.Model.DailyPrepItem;
+import com.summer.section1.group7.eco_resort.Nazmun.Model.DailyPrepManager;
+import com.summer.section1.group7.eco_resort.Nazmun.Model.StaffManager;
+import com.summer.section1.group7.eco_resort.Nazmun.Model.StaffMember;
+import com.summer.section1.group7.eco_resort.SceneSwitcher;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class ChefOverseeDailyPreparationController
 {
     @javafx.fxml.FXML
-    private TableColumn<PrepTask, String> dishNameTC;
+    private TableView<DailyPrepItem> prepTableView;
     @javafx.fxml.FXML
-    private ComboBox<String> assignedStaffCB;
+    private TableColumn<DailyPrepItem, String> dishIdTC;
+    @javafx.fxml.FXML
+    private TableColumn<DailyPrepItem, String> dishNameTC;
+    @javafx.fxml.FXML
+    private TableColumn<DailyPrepItem, Integer> quantityTC;
+    @javafx.fxml.FXML
+    private TableColumn<DailyPrepItem, String> stationTC;
+    @javafx.fxml.FXML
+    private TableColumn<DailyPrepItem, String> assignedStaffTC;
+    @javafx.fxml.FXML
+    private TextField dishNameTF;
+    @javafx.fxml.FXML
+    private TextField quantityTF;
     @javafx.fxml.FXML
     private ComboBox<String> stationCB;
     @javafx.fxml.FXML
-    private Label taskStatusLabel;
-    @javafx.fxml.FXML
-    private TableColumn<PrepTask, String> notesTC;
-    @javafx.fxml.FXML
-    private TableColumn<PrepTask, Integer> quantityTC;
-    @javafx.fxml.FXML
-    private TableView<PrepTask> todaysOrdersTableView;
-    @javafx.fxml.FXML
-    private Label unavailabilityIssueLabel;
-
-    private final ObservableList<PrepTask> taskList = FXCollections.observableArrayList();
+    private ComboBox<String> staffCB;
 
     @javafx.fxml.FXML
     public void initialize() {
+        dishIdTC.setCellValueFactory(new PropertyValueFactory<>("dishId"));
         dishNameTC.setCellValueFactory(new PropertyValueFactory<>("dishName"));
         quantityTC.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        notesTC.setCellValueFactory(new PropertyValueFactory<>("notes"));
+        stationTC.setCellValueFactory(new PropertyValueFactory<>("station"));
+        assignedStaffTC.setCellValueFactory(new PropertyValueFactory<>("assignedStaff"));
 
-        stationCB.getItems().addAll("Grill", "Salad", "Dessert", "Beverage");
-        assignedStaffCB.getItems().addAll("Staff A", "Staff B", "Staff C");
+        stationCB.getItems().addAll("Grill", "Sauté", "Pastry", "Cold Prep", "Plating");
 
-        // Demo data — replace with real orders source later
-        taskList.addAll(
-                new PrepTask("Grilled Chicken", 12, "No spice"),
-                new PrepTask("Caesar Salad", 8, "Extra dressing"),
-                new PrepTask("Chocolate Cake", 5, "")
-        );
+        for (StaffMember s : StaffManager.getStaffList()) {
+            staffCB.getItems().add(s.getName());
+        }
 
-        todaysOrdersTableView.setItems(taskList);
+        prepTableView.getItems().addAll(DailyPrepManager.getPrepList());
     }
 
     @javafx.fxml.FXML
-    public void assignTaskButtonOA(ActionEvent actionEvent) {
-        PrepTask selected = todaysOrdersTableView.getSelectionModel().getSelectedItem();
-        String station = stationCB.getValue();
-        String staff = assignedStaffCB.getValue();
+    public void addDishButtonOA(ActionEvent actionEvent) {
+        String name = dishNameTF.getText();
 
-        if (selected == null) {
-            unavailabilityIssueLabel.setText("Select a dish/order first.");
+        int quantity;
+        try {
+            quantity = Integer.parseInt(quantityTF.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Quantity must be a whole number.");
+            alert.showAndWait();
             return;
         }
 
-        if (station == null || staff == null) {
-            unavailabilityIssueLabel.setText("Select both station and staff.");
-            return;
-        }
+        String dishId = DailyPrepManager.generateDishId();
+        DailyPrepItem item = new DailyPrepItem(dishId, name, quantity);
 
-        unavailabilityIssueLabel.setText("");
-        taskStatusLabel.setTextFill(javafx.scene.paint.Color.GREEN);
-        taskStatusLabel.setText(selected.getDishName() + " assigned to " + staff + " at " + station + " station.");
+        prepTableView.getItems().add(item);
+        DailyPrepManager.getPrepList().add(item);
+        DailyPrepManager.saveToFile();
 
-        stationCB.getSelectionModel().clearSelection();
-        assignedStaffCB.getSelectionModel().clearSelection();
+        dishNameTF.setText("");
+        quantityTF.setText("");
     }
 
     @javafx.fxml.FXML
-    public void backButtonOA(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(
-                "/com/summer/section1/group7/eco_resort/Nazmun/ChefDashboard.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    public void assignButtonOA(ActionEvent actionEvent) {
+        DailyPrepItem selected = prepTableView.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+
+        selected.setStation(stationCB.getValue());
+        selected.setAssignedStaff(staffCB.getValue());
+        DailyPrepManager.saveToFile();
+
+        prepTableView.refresh();
+        stationCB.setValue(null);
+        staffCB.setValue(null);
+    }
+
+    @javafx.fxml.FXML
+    public void backButtonOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Nazmun/ChefDashboard.fxml");
     }
 }

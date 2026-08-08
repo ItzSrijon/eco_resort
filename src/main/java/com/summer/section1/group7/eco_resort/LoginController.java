@@ -102,7 +102,7 @@ public class LoginController {
         } else if (role.equals("Receptionist")) {
             fxmlFile = "/com/summer/section1/group7/eco_resort/Srijon/Receptionist/receptionistDashboard.fxml";
         } else if (role.equals("Maintenance Officer")) {
-            fxmlFile = "/com/summer/section1/group7/eco_resort/Srijon/Maintenance/maintenanceDashboard.fxml";
+            fxmlFile = "/com/summer/section1/group7/eco_resort/Srijon/Maintenance Officer/maintenanceDashboard.fxml";
         }
 
         if (fxmlFile != null) {

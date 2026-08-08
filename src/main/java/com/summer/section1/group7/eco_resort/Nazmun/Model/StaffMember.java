@@ -3,7 +3,6 @@ package com.summer.section1.group7.eco_resort.Nazmun.Model;
 import java.io.Serializable;
 
 public class StaffMember implements Serializable {
-
     private String staffId, name, role, shiftTiming, status, currentTask, taskTimeSlot;
 
     public StaffMember(String staffId, String name, String role, String shiftTiming, String status) {
@@ -78,10 +77,6 @@ public class StaffMember implements Serializable {
                 "staffId='" + staffId + '\'' +
                 ", name='" + name + '\'' +
                 ", role='" + role + '\'' +
-                ", shiftTiming='" + shiftTiming + '\'' +
-                ", status='" + status + '\'' +
-                ", currentTask='" + currentTask + '\'' +
-                ", taskTimeSlot='" + taskTimeSlot + '\'' +
                 '}';
     }
 }
