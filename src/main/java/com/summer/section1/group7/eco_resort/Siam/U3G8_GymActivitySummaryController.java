@@ -294,23 +294,17 @@ public class U3G8_GymActivitySummaryController {
 
         }
 
-        summaryList.add(new GymSummary("Total Registered Members",
-                String.valueOf(totalMembers)));
+        summaryList.add(new GymSummary("Total Registered Members", String.valueOf(totalMembers)));
 
-        summaryList.add(new GymSummary("Active Members",
-                String.valueOf(activeMembers)));
+        summaryList.add(new GymSummary("Active Members", String.valueOf(activeMembers)));
 
-        summaryList.add(new GymSummary("Total Attendance Records",
-                String.valueOf(totalAttendance)));
+        summaryList.add(new GymSummary("Total Attendance Records", String.valueOf(totalAttendance)));
 
-        summaryList.add(new GymSummary("Total Equipment Usage Records",
-                String.valueOf(totalEquipmentUsage)));
+        summaryList.add(new GymSummary("Total Equipment Usage Records", String.valueOf(totalEquipmentUsage)));
 
-        summaryList.add(new GymSummary("Total Membership Revenue",
-                "BDT " + totalRevenue));
+        summaryList.add(new GymSummary("Total Membership Revenue", "BDT " + totalRevenue));
 
-        summaryList.add(new GymSummary("Most Used Equipment",
-                mostUsedEquipment));
+        summaryList.add(new GymSummary("Most Used Equipment", mostUsedEquipment));
 
         summaryTV.setItems(summaryList);
 
@@ -348,9 +342,7 @@ public class U3G8_GymActivitySummaryController {
             PdfWriter.getInstance(doc, new FileOutputStream(file));
 
             doc.open();
-
             Paragraph title = new Paragraph("GYM ACTIVITY SUMMARY REPORT");
-
             title.setAlignment(Element.ALIGN_CENTER);
 
             doc.add(title);
@@ -362,23 +354,18 @@ public class U3G8_GymActivitySummaryController {
                             + toDateDP.getValue()));
 
             doc.add(new Paragraph(" "));
-
             Table table = new Table(2);
 
             table.addCell("Summary Item");
             table.addCell("Value");
 
             for (GymSummary summary : summaryTV.getItems()) {
-
                 table.addCell(summary.getSummaryItem());
                 table.addCell(summary.getValue());
 
             }
-
             doc.add(table);
-
             doc.close();
-
             showAlert(Alert.AlertType.INFORMATION, "Success", "PDF exported successfully.");
 
         }

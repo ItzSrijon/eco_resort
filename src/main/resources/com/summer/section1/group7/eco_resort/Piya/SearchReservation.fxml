@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.SearchReservationController">
+   <children>
+      <TableView fx:id="searchReservationTV" layoutX="22.0" layoutY="176.0" prefHeight="152.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="guestNameTC" prefWidth="89.0" text="Guest Name" />
+          <TableColumn fx:id="reservationIdTC" prefWidth="108.0" text="Reservation ID" />
+            <TableColumn fx:id="roomNumberTC" prefWidth="96.0" text="Room Number" />
+            <TableColumn fx:id="checkInDateTC" prefWidth="110.5" text="Check-In Date" />
+            <TableColumn fx:id="checkInOutTC" minWidth="0.0" prefWidth="102.5" text="Check-Out Date" />
+            <TableColumn fx:id="bookingStatusTC" minWidth="0.0" prefWidth="96.5" text="BookingStatus" />
+        </columns>
+      </TableView>
+      <Button layoutX="318.0" layoutY="131.0" mnemonicParsing="false" onAction="#searchButtonOA" text="Search" />
+      <Label layoutX="46.0" layoutY="88.0" text="Enter Reservation ID / Name to search :" />
+      <TextField fx:id="searchTF" layoutX="269.0" layoutY="84.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="14.0" prefHeight="34.0" prefWidth="207.0" text="Search Reservation" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Button layoutX="26.0" layoutY="351.0" mnemonicParsing="false" onAction="#backButtonOA" text="Back" />
+      <Label fx:id="messageLabel" layoutX="347.0" layoutY="355.0" prefHeight="34.0" prefWidth="255.0" />
+   </children>
+</AnchorPane>

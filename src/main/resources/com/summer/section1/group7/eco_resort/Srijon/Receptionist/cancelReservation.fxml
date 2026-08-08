@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<AnchorPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.summer.section1.group7.eco_resort.Srijon.controller.cancelReservationController"
-            prefHeight="400.0" prefWidth="600.0">
-
+            prefHeight="300" prefWidth="400">
+    <children>
+        <VBox spacing="15" alignment="CENTER">
+            <Label text="Cancel Reservation" style="-fx-font-size:18;"/>
+            <TextField fx:id="reservationIdField" promptText="Enter Reservation ID"/>
+            <Button text="Cancel Reservation" onAction="#onCancel"/>
+            <Label fx:id="infoLabel" text=""/>
+        </VBox>
+    </children>
 </AnchorPane>

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" prefHeight="620.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.UpdateMembershipStatusController">
+<AnchorPane fx:id="mainPane" prefHeight="620.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.U3G2_UpdateMembershipStatusController">
 
     <children>
 
@@ -50,7 +50,7 @@
 
                 <TextField fx:id="guestIDTF" prefWidth="230" promptText="Enter User ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Button onAction="#searchMemberOA" prefWidth="120" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Button onAction="#searchMemberOA" prefWidth="120" style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-background-radius: 8;" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
                 <Label text="Guest Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 

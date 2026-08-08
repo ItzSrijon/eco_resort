@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Srijon.controller.receptionistDashboardController">
-   <left>
-      <VBox prefHeight="400.0" prefWidth="278.0" BorderPane.alignment="CENTER">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!!" textAlignment="CENTER" wrappingWidth="280.396484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Receptionist Dashboard">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Text>
-            <Button mnemonicParsing="false" onAction="#openCreateReservation" text="Create Reservations" />
-            <Button mnemonicParsing="false" onAction="#openViewReservation" text="View Reservation" />
-            <Button mnemonicParsing="false" onAction="#openCancelReservation" text="Cancel Reservation" />
-            <Button mnemonicParsing="false" onAction="#openAssignRoom" text="Assign Room" />
-            <Button mnemonicParsing="false" onAction="#openUpdateRoomStatus" text="Update Room Status" />
-            <Button mnemonicParsing="false" onAction="#openViewRooms" text="View Rooms" />
-            <Button mnemonicParsing="false" onAction="#openOccupancySummary" text="Occupancy Summary" />
-            <Button mnemonicParsing="false" onAction="#openUpdateGuestInfo" text="Update Guest Info" />
-            <Button alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="60.0" text="LogOut" />
-         </children>
-      </VBox>
-   </left>
-   <center>
-      <AnchorPane fx:id="ContentArea" prefHeight="400.0" prefWidth="339.0" BorderPane.alignment="CENTER" />
-   </center>
-</BorderPane>
+<AnchorPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer.section1.group7.eco_resort.Srijon.controller.receptionistDashboardController"
+            prefWidth="900" prefHeight="600">
+
+   <children>
+      <HBox prefWidth="900" prefHeight="600">
+         <!-- Left menu -->
+         <VBox spacing="10" prefWidth="200" style="-fx-background-color:#f0f0f0; -fx-padding:10;">
+            <Label text="Welcome!!" style="-fx-font-size:16; -fx-font-weight:bold;"/>
+            <Button fx:id="btnCreateReservation" text="Create Reservations" onAction="#openCreateReservation" />
+            <Button fx:id="btnViewReservation" text="View Reservation" onAction="#openViewReservation" />
+            <Button fx:id="btnCancelReservation" text="Cancel Reservation" onAction="#openCancelReservation" />
+            <Button fx:id="btnAssignRoom" text="Assign Room" onAction="#openAssignRoom" />
+            <Button fx:id="btnUpdateRoomStatus" text="Update Room Status" onAction="#openUpdateRoomStatus" />
+            <Button fx:id="btnViewRooms" text="View Rooms" onAction="#openViewRooms" />
+            <Button fx:id="btnOccupancySummary" text="Occupancy Summary" onAction="#openOccupancySummary" />
+            <Button fx:id="btnUpdateGuestInfo" text="Update Guest Info" onAction="#openUpdateGuestInfo" />
+            <Button fx:id="btnLogout" text="LogOut" onAction="#openLogout" />
+         </VBox>
+
+         <!-- Content area where other FXMLs will be loaded -->
+         <AnchorPane fx:id="contentArea" prefWidth="700" prefHeight="600" />
+      </HBox>
+   </children>
+</AnchorPane>

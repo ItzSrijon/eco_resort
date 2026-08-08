@@ -107,4 +107,43 @@ public class UserManager {
     public static List<User> getUserList() {
         return userList;
     }
+    public static User findGuest(String guestId) {
+
+        if (guestId == null || guestId.trim().isEmpty()) {
+            return null;
+        }
+
+        for (User user : userList) {
+
+            if (user.getUserId().equalsIgnoreCase(guestId.trim())
+                    && user.getRole().equalsIgnoreCase("Guest")) {
+
+                return user;
+            }
+
+        }
+
+        return null;
+
+    }
+    public static User findEmployee(String userId) {
+
+        if (userId == null || userId.trim().isEmpty()) {
+            return null;
+        }
+
+        for (User user : userList) {
+
+            if (user.getUserId().equalsIgnoreCase(userId.trim())
+                    && !user.getRole().equalsIgnoreCase("Guest")) {
+
+                return user;
+
+            }
+
+        }
+
+        return null;
+
+    }
 }

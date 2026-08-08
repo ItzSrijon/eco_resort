@@ -1,72 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.U4G3_ViewPaymentRecordsController">
+<AnchorPane fx:id="mainPane"
+            prefHeight="620.0"
+            prefWidth="750.0"
+            style="-fx-background-color:#ECEFF1;"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer.section1.group7.eco_resort.Siam.U4G3_ViewPaymentRecordsController">
 
     <children>
 
-        <Label alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="60.0" prefWidth="850.0" style="-fx-background-color: grey;" text="View Payment Records">
+        <!-- Header -->
+
+        <Label alignment="CENTER"
+               prefHeight="60"
+               prefWidth="750"
+               style="-fx-background-color:#263238;
+                      -fx-text-fill:white;"
+               text="View Payment Records">
+
             <font>
-                <Font name="System Bold" size="22.0" />
+                <Font name="System Bold" size="22"/>
             </font>
+
         </Label>
 
-        <Label layoutX="35.0" layoutY="90.0" text="From Date:">
-            <font>
-                <Font name="System Bold" size="13.0" />
-            </font>
-        </Label>
+        <!-- Main Card -->
 
-        <DatePicker fx:id="fromDateDP" layoutX="120.0" layoutY="85.0" prefWidth="150.0" />
+        <VBox layoutX="25"
+              layoutY="85"
+              prefHeight="500"
+              prefWidth="700"
+              spacing="18"
+              style="-fx-background-color:white;
+                     -fx-background-radius:15;
+                     -fx-border-radius:15;
+                     -fx-border-color:#CFD8DC;">
 
-        <Label layoutX="320.0" layoutY="90.0" text="To Date:">
-            <font>
-                <Font name="System Bold" size="13.0" />
-            </font>
-        </Label>
+            <padding>
+                <Insets top="18" right="18" bottom="18" left="18"/>
+            </padding>
 
-        <DatePicker fx:id="toDateDP" layoutX="390.0" layoutY="85.0" prefWidth="150.0" />
+            <children>
 
-        <Button layoutX="590.0" layoutY="84.0" onAction="#loadPaymentsOA" prefWidth="140.0" text="Load Payments">
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-        </Button>
+                <!-- Filter -->
 
-        <TableView fx:id="paymentTV" layoutX="10.0" layoutY="145.0" prefHeight="320.0" prefWidth="830.0">
+                <HBox alignment="CENTER"
+                      spacing="12">
 
-            <columns>
+                    <children>
 
-                <TableColumn fx:id="paymentIdTC" prefWidth="90.0" text="Payment ID" />
+                        <Label text="From Date">
+                            <font>
+                                <Font name="System Bold" size="13"/>
+                            </font>
+                        </Label>
 
-                <TableColumn fx:id="guestIdTC" prefWidth="90.0" text="Guest ID" />
+                        <DatePicker fx:id="fromDateDP"
+                                    prefWidth="130"/>
 
-                <TableColumn fx:id="guestNameTC" prefWidth="150.0" text="Guest Name" />
+                        <Label text="To Date">
+                            <font>
+                                <Font name="System Bold" size="13"/>
+                            </font>
+                        </Label>
 
-                <TableColumn fx:id="invoiceIdTC" prefWidth="100.0" text="Invoice ID" />
+                        <DatePicker fx:id="toDateDP"
+                                    prefWidth="130"/>
 
-                <TableColumn fx:id="amountTC" prefWidth="100.0" text="Amount" />
+                        <Button text="Load Payments"
+                                onAction="#loadPaymentsOA"
+                                prefWidth="150"
+                                prefHeight="38"
+                                style="-fx-background-color:#1565C0;
+                                       -fx-text-fill:white;
+                                       -fx-background-radius:8;">
 
-                <TableColumn fx:id="paymentMethodTC" prefWidth="140.0" text="Payment Method" />
+                            <font>
+                                <Font name="System Bold" size="12"/>
+                            </font>
 
-                <TableColumn fx:id="paymentDateTC" prefWidth="150.0" text="Payment Date" />
+                        </Button>
 
-            </columns>
+                    </children>
 
-        </TableView>
+                </HBox>
 
-        <Button layoutX="335.0" layoutY="490.0" onAction="#backButtonOA" prefHeight="40.0" prefWidth="180.0" text="Back to Dashboard">
-            <font>
-                <Font name="System Bold" size="13.0" />
-            </font>
-        </Button>
+                <Separator/>
+
+                <!-- Table -->
+
+                <TableView fx:id="paymentTV"
+                           prefHeight="320"
+                           prefWidth="660">
+
+                    <columns>
+
+                        <TableColumn fx:id="paymentIdTC"
+                                     prefWidth="95"
+                                     text="Payment ID"/>
+
+                        <TableColumn fx:id="guestIdTC"
+                                     prefWidth="95"
+                                     text="Guest ID"/>
+
+                        <TableColumn fx:id="guestNameTC"
+                                     prefWidth="150"
+                                     text="Guest Name"/>
+
+                        <TableColumn fx:id="amountTC"
+                                     prefWidth="90"
+                                     text="Amount"/>
+
+                        <TableColumn fx:id="paymentMethodTC"
+                                     prefWidth="120"
+                                     text="Method"/>
+
+                        <TableColumn fx:id="paymentDateTC"
+                                     prefWidth="110"
+                                     text="Date"/>
+
+                    </columns>
+
+                </TableView>
+
+                <Separator/>
+
+                <!-- Bottom Button -->
+
+                <HBox alignment="CENTER">
+
+                    <children>
+
+                        <Button text="Back to Dashboard"
+                                onAction="#backButtonOA"
+                                prefHeight="42"
+                                prefWidth="210"
+                                style="-fx-background-color:#616161;
+                                       -fx-text-fill:white;
+                                       -fx-background-radius:8;">
+
+                            <font>
+                                <Font name="System Bold" size="13"/>
+                            </font>
+
+                        </Button>
+
+                    </children>
+
+                </HBox>
+
+            </children>
+
+        </VBox>
 
     </children>
 

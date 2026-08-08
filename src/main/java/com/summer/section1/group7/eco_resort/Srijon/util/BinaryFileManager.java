@@ -14,7 +14,20 @@ public class BinaryFileManager {
 
     @SuppressWarnings("unchecked")
     public static <T> ArrayList<T> loadList(String filename) {
-        // 1) Try classpath resource first (read-only copy placed in src/main/resources)
+        // try data/ first (writable)
+        File file = new File(DATA_DIR, filename);
+        if (file.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                Object obj = ois.readObject();
+                if (obj instanceof ArrayList) {
+                    return (ArrayList<T>) obj;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        // fallback: try classpath resource (read-only)
         InputStream is = BinaryFileManager.class.getResourceAsStream("/" + filename);
         if (is != null) {
             try (ObjectInputStream ois = new ObjectInputStream(is)) {
@@ -24,25 +37,10 @@ public class BinaryFileManager {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                // fall through to try data/ file
             }
         }
 
-        // 2) Fallback: try data/<filename> on filesystem (writable location)
-        File file = new File(DATA_DIR, filename);
-        if (!file.exists()) return new ArrayList<>();
-
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            Object obj = ois.readObject();
-            if (obj instanceof ArrayList) {
-                return (ArrayList<T>) obj;
-            } else {
-                return new ArrayList<>();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
+        return new ArrayList<>();
     }
 
     public static <T> void saveList(String filename, ArrayList<T> list) throws IOException {
@@ -51,10 +49,5 @@ public class BinaryFileManager {
             oos.writeObject(list);
             oos.flush();
         }
-    }
-
-    // helper to show absolute path for debugging
-    public static String getDataFileAbsolutePath(String filename) {
-        return new File(DATA_DIR, filename).getAbsolutePath();
     }
 }

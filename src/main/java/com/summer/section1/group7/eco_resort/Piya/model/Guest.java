@@ -1,52 +1,72 @@
 package com.summer.section1.group7.eco_resort.Piya.model;
 
-public class Guest extends User {
+import com.summer.section1.group7.eco_resort.User;
 
-    public Guest(int userId,
-                 String fullName,
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class Guest extends User implements Serializable {
+
+    public Guest(String userId,
+                 String username,
+                 String name,
                  String phoneNumber,
                  String email,
-                 String password) {
+                 String gender,
+                 String password,
+                 LocalDate dob) {
 
-        super(userId, fullName, phoneNumber, email, password);
-
+        super(userId,
+                username,
+                name,
+                phoneNumber,
+                email,
+                gender,
+                password,
+                "Guest",
+                dob,
+                "Active");
     }
 
     public void register() {
-
-        System.out.println("Guest Registered Successfully.");
 
     }
 
     public void bookRoom() {
 
-        System.out.println("Room Booked Successfully.");
-
     }
 
     public void browseActivities() {
 
-        System.out.println("Displaying Activities.");
+    }
+
+    public void viewRoomDetails() {
 
     }
 
     public void viewReservationHistory() {
 
-        System.out.println("Displaying Reservation History.");
-
     }
 
     public void updateProfile() {
-
-        System.out.println("Profile Updated Successfully.");
 
     }
 
     public void submitFeedback() {
 
-        System.out.println("Feedback Submitted.");
-
     }
 
+    @Override
+    public String toString() {
+        return "Guest{" +
+                "userId='" + getUserId() + '\'' +
+                ", username='" + getUsername() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", phoneNumber='" + getPhoneNumber() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", gender='" + getGender() + '\'' +
+                ", role='" + getRole() + '\'' +
+                ", dob=" + getDob() +
+                '}';
+    }
 }
-

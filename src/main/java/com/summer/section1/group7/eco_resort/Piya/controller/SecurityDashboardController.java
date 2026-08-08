@@ -1,34 +1,222 @@
 package com.summer.section1.group7.eco_resort.Piya.controller;
 
+import com.summer.section1.group7.eco_resort.User;
+
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class SecurityDashboardController
-{
-    @javafx.fxml.FXML
-    public void initialize() {
+
+public class SecurityDashboardController {
+
+
+    private User currentUser;
+
+
+
+    public void setCurrentUser(User user){
+
+        this.currentUser=user;
+
     }
 
-    @javafx.fxml.FXML
-    public void checkOutRecordButtonOA(ActionEvent actionEvent) {
+
+
+    public User getCurrentUser(){
+
+        return currentUser;
+
     }
 
-    @javafx.fxml.FXML
-    public void lostFoundButtonOA(ActionEvent actionEvent) {
+
+
+
+    @FXML
+    public void checkInRecordButtonOA(ActionEvent event){
+
+        openPage(event,
+                "/com/summer/section1/group7/eco_resort/Piya/CheckInManagement.fxml");
+
     }
 
-    @javafx.fxml.FXML
-    public void checkInRecordButtonOA(ActionEvent actionEvent) {
+
+
+
+    @FXML
+    public void searchReservationButtonOA(ActionEvent event){
+
+        openPageWithUser(event,
+                "/com/summer/section1/group7/eco_resort/Piya/SearchReservation.fxml");
+
     }
 
-    @javafx.fxml.FXML
-    public void logoutButtonOA(ActionEvent actionEvent) {
+
+
+
+    @FXML
+    public void checkOutRecordButtonOA(ActionEvent event){
+
+        openPage(event,
+                "/com/summer/section1/group7/eco_resort/Piya/CheckOutRecord.fxml");
+
     }
 
-    @javafx.fxml.FXML
-    public void viewIncidentButtonOA(ActionEvent actionEvent) {
+
+
+
+    @FXML
+    public void reportIncidentButtonOA(ActionEvent event){
+
+        openPageWithUser(event,
+                "/com/summer/section1/group7/eco_resort/Piya/ReportIncident.fxml");
+
     }
 
-    @javafx.fxml.FXML
-    public void reportIncidentButtonOA(ActionEvent actionEvent) {
+
+
+
+    @FXML
+    public void lostFoundButtonOA(ActionEvent event){
+
+        openPageWithUser(event,
+                "/com/summer/section1/group7/eco_resort/Piya/ReportLostAndFoundItems.fxml");
+
     }
+
+
+
+
+    @FXML
+    public void viewIncidentButtonOA(ActionEvent event){
+
+        openPage(event,
+                "/com/summer/section1/group7/eco_resort/Piya/ViewIncident.fxml");
+
+    }
+
+
+
+
+
+    @FXML
+    public void logoutButtonOA(ActionEvent event){
+
+        openPage(event,
+                "/com/summer/section1/group7/eco_resort/Piya/Login.fxml");
+
+    }
+
+
+
+
+
+
+
+    private void openPage(ActionEvent event,String path){
+
+
+        try{
+
+
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            getClass().getResource(path)
+                    );
+
+
+            Scene scene =
+                    new Scene(loader.load());
+
+
+
+            Stage stage =
+                    (Stage)((Node)event.getSource())
+                            .getScene()
+                            .getWindow();
+
+
+
+            stage.setScene(scene);
+
+            stage.show();
+
+
+        }
+        catch(Exception e){
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+
+
+
+
+
+    private void openPageWithUser(ActionEvent event,String path){
+
+
+        try{
+
+
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            getClass().getResource(path)
+                    );
+
+
+            Scene scene =
+                    new Scene(loader.load());
+
+
+
+            Object controller =
+                    loader.getController();
+
+
+
+            if(controller instanceof ReportIncidentController){
+
+                ((ReportIncidentController)controller)
+                        .setCurrentUser(currentUser);
+
+            }
+
+
+            if(controller instanceof SearchReservationController){
+
+                ((SearchReservationController)controller)
+                        .setCurrentUser(currentUser);
+
+            }
+
+
+
+
+            Stage stage =
+                    (Stage)((Node)event.getSource())
+                            .getScene()
+                            .getWindow();
+
+
+
+            stage.setScene(scene);
+
+            stage.show();
+
+
+        }
+        catch(Exception e){
+
+            e.printStackTrace();
+
+        }
+
+    }
+
 }

@@ -105,7 +105,7 @@ public class createReservationController {
         int max = 0;
 
         for (Reservation r : list) {
-            String id = r.getReservationId(); // e.g. R001
+            String id = r.getReservationId();
             if (id != null && id.startsWith("R")) {
                 try {
                     int num = Integer.parseInt(id.substring(1));

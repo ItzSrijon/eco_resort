@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="427.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.SearchCheckInRecordsController">
+   <children>
+      <TextField fx:id="searchTF" layoutX="271.0" layoutY="85.0" />
+      <Button layoutX="454.0" layoutY="85.0" mnemonicParsing="false" onAction="#searchButtonOA" text="Search" />
+      <TableView fx:id="checkInRecordTV" layoutX="41.0" layoutY="143.0" prefHeight="200.0" prefWidth="537.0">
+        <columns>
+          <TableColumn fx:id="guestNameTC" prefWidth="122.5" text="Guest Name" />
+          <TableColumn fx:id="reservationIdTC" prefWidth="102.5" text="Reservation ID" />
+            <TableColumn fx:id="roomNumberTC" minWidth="0.0" prefWidth="105.0" text="Room Number" />
+            <TableColumn fx:id="checkInDateTC" prefWidth="104.5" text="Check-In Date" />
+            <TableColumn fx:id="arrivalTimeTC" prefWidth="101.5" text="Arrival Time" />
+        </columns>
+      </TableView>
+      <Label layoutX="54.0" layoutY="89.0" text="Enter Guest Name or Reservation ID :" />
+      <Label layoutX="199.0" layoutY="24.0" text="Search CheckIn Records">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Button layoutX="41.0" layoutY="359.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="42.0" prefWidth="83.0" text="Back" />
+   </children>
+</AnchorPane>

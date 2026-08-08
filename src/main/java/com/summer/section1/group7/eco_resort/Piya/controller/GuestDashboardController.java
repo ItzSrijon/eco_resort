@@ -1,76 +1,302 @@
 package com.summer.section1.group7.eco_resort.Piya.controller;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import java.io.IOException;
+
+import com.summer.section1.group7.eco_resort.User;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+
+import javafx.scene.Node;
+import javafx.scene.Scene;
+
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 
-public class GuestDashboardController
-{
-    @javafx.fxml.FXML
-    public void initialize() {
+public class GuestDashboardController {
+
+
+    private User currentUser;
+
+
+
+    public void setCurrentUser(User user){
+
+        this.currentUser = user;
+
     }
+
+
+
+    public User getCurrentUser(){
+
+        return currentUser;
+
+    }
+
+
+
+
+    @FXML
+    public void initialize(){
+
+    }
+
+
+
+
 
     @FXML
     public void updateProfileButtonOA(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/summer/section1/group7/eco_resort/Piya/updateProfile.fxml"));
 
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/summer/section1/group7/eco_resort/Piya/updateProfile.fxml"));
 
         Scene scene = new Scene(loader.load());
 
-        Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+
+        UpdateProfileController controller = loader.getController();
+
+
+        controller.setCurrentUser(currentUser);
+
+
+
+        Stage stage =
+                (Stage)((Node)actionEvent.getSource())
+                        .getScene()
+                        .getWindow();
+
+
 
         stage.setScene(scene);
 
         stage.show();
-    }
-
-    @FXML
-    public void submitFeedbackButtonOA(ActionEvent actionEvent) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/summer/section1/group7/eco_resort/Piya/submitFeedback.fxml"));
-
-        Scene scene = new Scene(loader.load());
-
-        Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-
-        stage.setScene(scene);
-
-        stage.show();
 
     }
 
-    @javafx.fxml.FXML
-    public void browseActivitiesButtonOA(ActionEvent actionEvent) {
-    }
 
-    @javafx.fxml.FXML
-    public void logoutButtonOA(ActionEvent actionEvent) {
-    }
 
-    @javafx.fxml.FXML
-    public void reservationHistoryButtonOA(ActionEvent actionEvent) {
-    }
 
 
     @FXML
-    public void bookRoomButtonOA(ActionEvent actionEvent) throws IOException {
+    public void submitFeedbackButtonOA(ActionEvent actionEvent)
+            throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/summer/section1/group7/eco_resort/Piya/bookRoom.fxml"));
 
-        Scene scene = new Scene(loader.load());
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(
+                                "/com/summer/section1/group7/eco_resort/Piya/submitFeedback.fxml"
+                        )
+                );
 
-        Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+
+        Scene scene =
+                new Scene(loader.load());
+
+
+        SubmitFeedbackController controller =
+                loader.getController();
+
+
+        controller.setCurrentUser(currentUser);
+
+
+
+        Stage stage =
+                (Stage)((Node)actionEvent.getSource())
+                        .getScene()
+                        .getWindow();
+
+
 
         stage.setScene(scene);
 
         stage.show();
 
     }
+
+
+
+
+
+
+    @FXML
+    public void browseActivitiesButtonOA(ActionEvent actionEvent)
+            throws IOException {
+
+
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(
+                                "/com/summer/section1/group7/eco_resort/Piya/browseActivities.fxml"
+                        )
+                );
+
+
+        Scene scene =
+                new Scene(loader.load());
+
+
+
+        BrowseActivitiesController controller =
+                loader.getController();
+
+
+        controller.setCurrentUser(currentUser);
+
+
+
+
+        Stage stage =
+                (Stage)((Node)actionEvent.getSource())
+                        .getScene()
+                        .getWindow();
+
+
+
+        stage.setScene(scene);
+
+        stage.show();
+
+    }
+
+
+
+
+
+
+
+    @FXML
+    public void reservationHistoryButtonOA(ActionEvent actionEvent)
+            throws IOException {
+
+
+
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(
+                                "/com/summer/section1/group7/eco_resort/Piya/reservationHistory.fxml"
+                        )
+                );
+
+
+        Scene scene =
+                new Scene(loader.load());
+
+
+
+        ReservationHistoryController controller =
+                loader.getController();
+
+
+
+        controller.setCurrentUser(currentUser);
+
+
+
+
+        Stage stage =
+                (Stage)((Node)actionEvent.getSource())
+                        .getScene()
+                        .getWindow();
+
+
+
+        stage.setScene(scene);
+
+        stage.show();
+
+
+    }
+
+
+
+
+
+
+
+    @FXML
+    public void bookRoomButtonOA(ActionEvent actionEvent)
+            throws IOException {
+
+
+
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(
+                                "/com/summer/section1/group7/eco_resort/Piya/RoomReservation.fxml"
+                        )
+                );
+
+
+
+        Scene scene =
+                new Scene(loader.load());
+
+
+
+        RoomReservationController controller =
+                loader.getController();
+
+
+
+        controller.setCurrentUser(currentUser);
+
+
+
+
+        Stage stage =
+                (Stage)((Node)actionEvent.getSource())
+                        .getScene()
+                        .getWindow();
+
+
+
+        stage.setScene(scene);
+
+        stage.show();
+
+    }
+
+
+
+
+
+
+
+    @FXML
+    public void logoutButtonOA(ActionEvent actionEvent)
+            throws IOException {
+
+
+
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(
+                                "/com/summer/section1/group7/eco_resort/Piya/Login.fxml"
+                        )
+                );
+
+
+
+        Scene scene =
+                new Scene(loader.load());
+
+
+
+        Stage stage =
+                (Stage)((Node)actionEvent.getSource())
+                        .getScene()
+                        .getWindow();
+
+
+
+        stage.setScene(scene);
+
+        stage.show();
+
+    }
+
 }

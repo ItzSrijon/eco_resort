@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" prefHeight="620.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.U4G4_SupplierPaymentController">
+
+    <children>
+
+        <Label alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="60.0" prefWidth="750.0" style="-fx-background-color:#263238; -fx-text-fill:white;" text="Supplier Payment">
+
+            <font>
+                <Font name="System Bold" size="24" />
+            </font>
+
+        </Label>
+
+        <AnchorPane layoutX="55.0" layoutY="90.0" prefHeight="420.0" prefWidth="640.0" style="-fx-background-color:white; -fx-background-radius:12; -fx-border-radius:12; -fx-border-color:lightgray;">
+
+            <children>
+
+                <Label layoutX="35" layoutY="30" text="Supplier ID">
+                    <font>
+                        <Font name="System Bold" size="14" />
+                    </font>
+                </Label>
+
+                <TextField fx:id="supplierIdTF" layoutX="180" layoutY="25" prefWidth="220" />
+
+                <Button layoutX="411.0" layoutY="24.0" onAction="#loadSupplierOA" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-background-radius: 8;" text="Load Supplier">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+
+                <Label layoutX="35" layoutY="85" text="Supplier Name">
+                    <font>
+                        <Font name="System Bold" size="14" />
+                    </font>
+                </Label>
+
+                <TextField fx:id="supplierNameTF" editable="false" layoutX="180" layoutY="80" prefWidth="220" />
+
+                <Label layoutX="35" layoutY="140" text="Payment Amount">
+                    <font>
+                        <Font name="System Bold" size="14" />
+                    </font>
+                </Label>
+
+                <TextField fx:id="amountTF" layoutX="180" layoutY="135" prefWidth="220" promptText="Enter Amount" />
+
+                <Label layoutX="35" layoutY="195" text="Payment Method">
+                    <font>
+                        <Font name="System Bold" size="14" />
+                    </font>
+                </Label>
+
+                <ComboBox fx:id="paymentMethodCB" layoutX="180" layoutY="190" prefWidth="220" />
+
+                <Label layoutX="35" layoutY="250" text="Payment Date">
+                    <font>
+                        <Font name="System Bold" size="14" />
+                    </font>
+                </Label>
+
+                <DatePicker fx:id="paymentDateDP" layoutX="180" layoutY="245" prefWidth="220" />
+            <Button layoutX="527.0" layoutY="24.0" onAction="#addSupplierOA" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #2E7D32; -fx-text-fill: white; -fx-background-radius: 8;" text="Add Supplier">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+
+            </children>
+
+        </AnchorPane>
+
+        <Button layoutX="185" layoutY="540" onAction="#recordPaymentOA" prefHeight="40" prefWidth="170" style="-fx-background-color: #2E7D32; -fx-text-fill: white; -fx-background-radius: 8;" text="Record Payment">
+
+            <font>
+                <Font name="System Bold" size="13" />
+            </font>
+
+        </Button>
+
+        <Button layoutX="395" layoutY="540" onAction="#backToDashboardOA" prefHeight="40" prefWidth="170" style="-fx-background-color: #616161; -fx-text-fill: white; -fx-background-radius: 8;" text="Back to Dashboard">
+
+            <font>
+                <Font name="System Bold" size="13" />
+            </font>
+
+        </Button>
+
+    </children>
+
+</AnchorPane>

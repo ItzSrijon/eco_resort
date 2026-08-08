@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" prefHeight="650.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.ScheduleTrainingSessionController">
+<AnchorPane fx:id="mainPane" prefHeight="650.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Siam.U3G3_ScheduleTrainingSessionController">
 
     <children>
 
@@ -59,7 +59,7 @@
 
                     <TextField fx:id="guestIdTF" prefWidth="240" promptText="Enter Guest ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                    <Button onAction="#loadGuestOA" prefWidth="120" text="Load Guest" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Button onAction="#loadGuestOA" prefWidth="120" style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-background-radius: 8;" text="Load Guest" GridPane.columnIndex="2" GridPane.rowIndex="0">
 
                         <font>
                             <Font name="System Bold" size="12" />

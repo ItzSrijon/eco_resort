@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane"
+            prefHeight="620.0"
+            prefWidth="750.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer.section1.group7.eco_resort.Siam.ViewFinancialSummaryController">
+
+    <children>
+
+        <Label alignment="CENTER"
+               layoutX="0"
+               layoutY="0"
+               prefWidth="750"
+               prefHeight="60"
+               text="Financial Summary Report"
+               style="-fx-background-color:#263238; -fx-text-fill:white;">
+
+            <font>
+                <Font name="System Bold" size="24"/>
+            </font>
+
+        </Label>
+
+        <AnchorPane layoutX="25"
+                    layoutY="80"
+                    prefWidth="700"
+                    prefHeight="450"
+                    style="-fx-background-color:white;
+                           -fx-background-radius:12;
+                           -fx-border-radius:12;
+                           -fx-border-color:lightgray;">
+
+            <children>
+
+                <TableView fx:id="summaryTV"
+                           layoutX="15"
+                           layoutY="15"
+                           prefWidth="670"
+                           prefHeight="410">
+
+                    <columns>
+
+                        <TableColumn fx:id="guestPaymentTC"
+                                     prefWidth="95"
+                                     text="Guest"/>
+
+                        <TableColumn fx:id="supplierPaymentTC"
+                                     prefWidth="95"
+                                     text="Supplier"/>
+
+                        <TableColumn fx:id="employeeSalaryTC"
+                                     prefWidth="95"
+                                     text="Salary"/>
+
+                        <TableColumn fx:id="incomeTC"
+                                     prefWidth="95"
+                                     text="Income"/>
+
+                        <TableColumn fx:id="expenseTC"
+                                     prefWidth="95"
+                                     text="Expense"/>
+
+                        <TableColumn fx:id="profitTC"
+                                     prefWidth="95"
+                                     text="Profit"/>
+
+                        <TableColumn fx:id="transactionTC"
+                                     prefWidth="100"
+                                     text="Transaction"/>
+
+                    </columns>
+
+                </TableView>
+
+            </children>
+
+        </AnchorPane>
+
+        <Button layoutX="190"
+                layoutY="560"
+                prefWidth="170"
+                prefHeight="40"
+                text="Load Report"
+                onAction="#loadReportOA"
+                style="-fx-background-color:#1976D2;
+                       -fx-text-fill:white;
+                       -fx-background-radius:8;">
+
+            <font>
+                <Font name="System Bold" size="13"/>
+            </font>
+
+        </Button>
+
+        <Button layoutX="390"
+                layoutY="560"
+                prefWidth="170"
+                prefHeight="40"
+                text="Back"
+                onAction="#backOA"
+                style="-fx-background-color:#616161;
+                       -fx-text-fill:white;
+                       -fx-background-radius:8;">
+
+            <font>
+                <Font name="System Bold" size="13"/>
+            </font>
+
+        </Button>
+
+    </children>
+
+</AnchorPane>

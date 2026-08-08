@@ -12,12 +12,13 @@
       <Button layoutX="98.0" layoutY="122.0" mnemonicParsing="false" onAction="#reportIncidentButtonOA" prefHeight="25.0" prefWidth="154.0" text="Report Incident" />
       <Button layoutX="102.0" layoutY="176.0" mnemonicParsing="false" onAction="#checkInRecordButtonOA" prefHeight="25.0" prefWidth="154.0" text="Check-In Records" />
       <Button layoutX="302.0" layoutY="176.0" mnemonicParsing="false" onAction="#checkOutRecordButtonOA" prefHeight="25.0" prefWidth="166.0" text="Check-Out Records" />
-      <Button layoutX="205.0" layoutY="232.0" mnemonicParsing="false" onAction="#viewIncidentButtonOA" prefHeight="25.0" prefWidth="154.0" text="View Incidents" />
+      <Button layoutX="96.0" layoutY="226.0" mnemonicParsing="false" onAction="#viewIncidentButtonOA" prefHeight="25.0" prefWidth="154.0" text="View Incidents" />
       <Button layoutX="214.0" layoutY="289.0" mnemonicParsing="false" onAction="#logoutButtonOA" prefHeight="25.0" prefWidth="136.0" text="Logout" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="14.0" prefHeight="34.0" prefWidth="186.0" text="Security Dashboard">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button layoutX="305.0" layoutY="226.0" mnemonicParsing="false" onAction="#searchReservationButtonOA" prefHeight="25.0" prefWidth="160.0" text="Search Reservation" />
    </children>
 </AnchorPane>

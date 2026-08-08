@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="544.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.CheckOutManagementController">
+   <children>
+      <Label layoutX="206.0" layoutY="22.0" prefHeight="24.0" prefWidth="175.0" text="Check Out Management">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TableView fx:id="checkoutTV" layoutX="11.0" layoutY="85.0" prefHeight="200.0" prefWidth="660.0">
+        <columns>
+          <TableColumn fx:id="guestNameTC" prefWidth="89.5" text="Guest Name" />
+          <TableColumn fx:id="reservationIdTC" prefWidth="111.5" text="Reservation ID" />
+            <TableColumn fx:id="roomNumberTC" prefWidth="130.5" text=" Room Number" />
+            <TableColumn fx:id="checkInDateTC" prefWidth="116.0" text="Check-in Date" />
+            <TableColumn fx:id="bookingStatusTC" prefWidth="107.5" text="Booking Status" />
+            <TableColumn fx:id="guestStatusTC" prefWidth="107.5" text="Guest Status" />
+        </columns>
+      </TableView>
+      <Label layoutX="300.0" layoutY="319.0" text="CheckOut :" />
+      <DatePicker fx:id="checkOutDateDP" layoutX="372.0" layoutY="315.0" />
+      <TextField fx:id="departureTimeTF" layoutX="117.0" layoutY="315.0" />
+      <Button layoutX="145.0" layoutY="366.0" mnemonicParsing="false" onAction="#viewGuestButtonOA" prefHeight="31.0" prefWidth="76.0" text="View" />
+      <Button layoutX="282.0" layoutY="366.0" mnemonicParsing="false" onAction="#checkoutButtonOA" prefHeight="31.0" prefWidth="76.0" text="CheckOut" />
+      <Button layoutX="425.0" layoutY="366.0" mnemonicParsing="false" onAction="#refreshButtonOA" prefHeight="31.0" prefWidth="68.0" text="Refresh" />
+      <Button layoutX="22.0" layoutY="432.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="37.0" prefWidth="108.0" text="Back" />
+      <Label fx:id="messageLabel" layoutX="358.0" layoutY="498.0" prefHeight="24.0" prefWidth="307.0" />
+      <Label layoutX="22.0" layoutY="319.0" text="Departure Time :" />
+      <Label fx:id="roomStatusLabel" layoutX="197.0" layoutY="417.0" prefHeight="67.0" prefWidth="323.0" />
+   </children>
+</AnchorPane>

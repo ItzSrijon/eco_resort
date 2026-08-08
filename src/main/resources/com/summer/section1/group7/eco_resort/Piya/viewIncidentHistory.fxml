@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group7.eco_resort.Piya.controller.ViewIncidentsController">
+   <children>
+      <Label layoutX="45.0" layoutY="41.0" text="Incident List" />
+      <TableView fx:id="incidentTableView" layoutX="70.0" layoutY="75.0" prefHeight="200.0" prefWidth="550.0">
+        <columns>
+          <TableColumn fx:id="incidentIdTC" prefWidth="109.0" text="Incident ID" />
+          <TableColumn fx:id="incidentTypeTC" prefWidth="107.0" text="Incident Type" />
+            <TableColumn fx:id="incidentTitleTC" prefWidth="133.5" text="Incident Title" />
+            <TableColumn fx:id="reportingDateTC" prefWidth="101.0" text="Date" />
+            <TableColumn fx:id="statusTC" prefWidth="98.5" text="Status" />
+        </columns>
+      </TableView>
+      <Button layoutX="248.0" layoutY="291.0" mnemonicParsing="false" onAction="#refreshButtonOA" prefHeight="37.0" prefWidth="86.0" text="Refresh" />
+      <Label layoutX="272.0" layoutY="14.0" text="View Incidents">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="messageLabel" layoutX="367.0" layoutY="309.0" prefHeight="59.0" prefWidth="253.0" />
+      <Button layoutX="45.0" layoutY="291.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="37.0" prefWidth="86.0" text="Back" />
+   </children>
+</AnchorPane>

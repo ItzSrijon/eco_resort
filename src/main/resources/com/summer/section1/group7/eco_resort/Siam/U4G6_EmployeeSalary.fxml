@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane"
+            prefHeight="620.0"
+            prefWidth="750.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer.section1.group7.eco_resort.Siam.U4G6_ProcessEmployeeSalaryController">
+
+    <children>
+
+        <Label alignment="CENTER"
+               layoutX="0.0"
+               layoutY="0.0"
+               prefHeight="60.0"
+               prefWidth="750.0"
+               style="-fx-background-color:#263238; -fx-text-fill:white;"
+               text="Process Employee Salary">
+
+            <font>
+                <Font name="System Bold" size="24"/>
+            </font>
+
+        </Label>
+
+        <AnchorPane layoutX="55.0"
+                    layoutY="90.0"
+                    prefHeight="420.0"
+                    prefWidth="640.0"
+                    style="-fx-background-color:white;
+                           -fx-background-radius:12;
+                           -fx-border-radius:12;
+                           -fx-border-color:lightgray;">
+
+            <children>
+
+                <Label layoutX="35.0"
+                       layoutY="35.0"
+                       text="User ID">
+
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+
+                </Label>
+
+                <TextField fx:id="userIdTF"
+                           layoutX="180.0"
+                           layoutY="30.0"
+                           prefWidth="220.0"/>
+
+                <Button layoutX="420.0"
+                        layoutY="29.0"
+                        prefHeight="28.0"
+                        prefWidth="100.0"
+                        text="Search"
+                        onAction="#searchEmployeeOA"
+                        style="-fx-background-color:#1976D2;
+                               -fx-text-fill:white;
+                               -fx-background-radius:8;">
+
+                    <font>
+                        <Font name="System Bold" size="12"/>
+                    </font>
+
+                </Button>
+
+                <Label layoutX="35.0"
+                       layoutY="95.0"
+                       text="Employee Name">
+
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+
+                </Label>
+
+                <TextField fx:id="employeeNameTF"
+                           editable="false"
+                           layoutX="180.0"
+                           layoutY="90.0"
+                           prefWidth="220.0"/>
+
+                <Label layoutX="35.0"
+                       layoutY="155.0"
+                       text="Salary Amount">
+
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+
+                </Label>
+
+                <TextField fx:id="salaryTF"
+                           layoutX="180.0"
+                           layoutY="150.0"
+                           prefWidth="220.0"
+                           promptText="Enter Salary"/>
+
+                <Label layoutX="35.0"
+                       layoutY="215.0"
+                       text="Payment Date">
+
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+
+                </Label>
+
+                <DatePicker fx:id="paymentDateDP"
+                            layoutX="180.0"
+                            layoutY="210.0"
+                            prefWidth="220.0"/>
+
+            </children>
+
+        </AnchorPane>
+
+        <Button layoutX="185.0"
+                layoutY="540.0"
+                prefHeight="40.0"
+                prefWidth="170.0"
+                text="Pay Salary"
+                onAction="#paySalaryOA"
+                style="-fx-background-color:#2E7D32;
+                       -fx-text-fill:white;
+                       -fx-background-radius:8;">
+
+            <font>
+                <Font name="System Bold" size="13"/>
+            </font>
+
+        </Button>
+
+        <Button layoutX="395.0"
+                layoutY="540.0"
+                prefHeight="40.0"
+                prefWidth="170.0"
+                text="Back to Dashboard"
+                onAction="#backToDashboardOA"
+                style="-fx-background-color:#616161;
+                       -fx-text-fill:white;
+                       -fx-background-radius:8;">
+
+            <font>
+                <Font name="System Bold" size="13"/>
+            </font>
+
+        </Button>
+
+    </children>
+
+</AnchorPane>

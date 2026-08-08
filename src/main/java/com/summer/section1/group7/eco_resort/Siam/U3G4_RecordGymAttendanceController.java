@@ -51,44 +51,29 @@ public class U3G4_RecordGymAttendanceController {
     public void searchGuestOA(ActionEvent actionEvent) {
 
         loadedMember = null;
+
         if (guestIdTF.getText().trim().isEmpty()) {
-
             showAlert(Alert.AlertType.ERROR, "Error", null, "Please enter Guest ID.");
+
             return;
-        }
-
-        try {
-            FileInputStream fis = new FileInputStream("gymMember.bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-
-            while (true) {
-                try {
-                    GymMember gm = (GymMember) ois.readObject();
-                    if (gm.getGuestId().equalsIgnoreCase(guestIdTF.getText().trim())) {
-                        loadedMember = gm;
-                        guestNameTF.setText(gm.getGuestName());
-                        phoneNumberTF.setText(gm.getPhoneNumber());
-                        packageTF.setText(gm.getPackageName());
-                        statusTF.setText(gm.getStatus());
-                        showAlert(Alert.AlertType.INFORMATION, "Success", null, "Gym member loaded successfully.");
-                        break;
-                    }
-
-                } catch (EOFException e) {
-                    break;
-                }
-            }
-            ois.close();
-            if (loadedMember == null) {
-
-                showAlert(Alert.AlertType.ERROR, "Not Found", null, "Gym member not found.");
-            }
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
 
         }
+        loadedMember = GymManager.findGymMember(guestIdTF.getText().trim());
+        if (loadedMember == null) {
+            guestNameTF.clear();
+            phoneNumberTF.clear();
+            packageTF.clear();
+            statusTF.clear();
+            showAlert(Alert.AlertType.ERROR, "Not Found", null, "Gym member not found.");
+
+            return;
+
+        }
+        guestNameTF.setText(loadedMember.getGuestName());
+        phoneNumberTF.setText(loadedMember.getPhoneNumber());
+        packageTF.setText(loadedMember.getPackageName());
+        statusTF.setText(loadedMember.getStatus());
+        showAlert(Alert.AlertType.INFORMATION, "Success", null, "Gym member loaded successfully.");
 
     }
     @FXML
@@ -132,12 +117,10 @@ public class U3G4_RecordGymAttendanceController {
             ObjectOutputStream oos;
 
             if (file.exists()) {
-
                 fos = new FileOutputStream(file, true);
                 oos = new AppendableObjectOutputStream(fos);
 
             } else {
-
                 fos = new FileOutputStream(file);
                 oos = new ObjectOutputStream(fos);
 
@@ -163,7 +146,6 @@ public class U3G4_RecordGymAttendanceController {
         checkInTimeTF.clear();
         attendanceCB.getSelectionModel().clearSelection();
         loadedMember = null;
-
     }
 
     private void showAlert(Alert.AlertType type, String title, String header, String message) {
